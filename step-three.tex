@@ -1,0 +1,224 @@
+\section{Step 3 of Friedgut}
+
+	Friedgut's main theorem is proved in three steps; the first two are generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of lemma 6, lemma 7, and lemma 8 which we will generalize one at a time.
+
+	\begin{lemma}[Lemma 3 of Friedgut]
+		For every SCF $f$ on $m$ alternatives and every $a, b \in C$:
+		\[
+			M^{a, b}(f) \le m! \cdot \sum_i M_i(f)
+		\]
+	\end{lemma}
+
+	For the rest of the proof we will fix a SCF $f$.
+
+
+\subsection{Generalized Lemma 6 of Friedgut}
+
+	For any preference profile $p \in P$ there are $(\frac{m!}{2})^n$ profiles $x$ such that $x|_{\{a, b\}} = p|_{\{a, b\}}$. This is because there are $m!$ possible preference lists; half of them will have the preference between $a$ and $b$ that agrees with $p|_{\{a, b\}}$ and half will disagree. For each voter this gives $\frac{m!}{2}$ possible preference lists which gives $(\frac{m!}{2})^n$ profiles comprised of these preference lists.
+
+	\begin{definition}
+		Let $C$ be a set of alternatives. Let $a, b, c \in C$ be any three alternatives. Let $p \in L(C)^n$ be a preference profile for $n$ voters, and let $f$ be a SCF. We define
+		\[
+			A^{a,b}_c(p) = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = c\}
+		\]
+	\end{definition}
+
+	Therefore we can rewrite $M^{a,b}(f)$ as follows.
+
+	\begin{lemma}[Lemma 6 of Friedgut] Let $C$ be a set of alternatives. Let $a, b \in C$ be any two alternatives. Let $m = |C|$ and let $n$ be the number of voters. Let $f$ be a SCF. We have
+		\[
+			M^{a,b}(f) = E_{p \in L(C)^n} \left[ \frac{|A^{a,b}_a(p)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|A^{a,b}_b(p)|}{\left(\frac{m!}{2}\right)^n} \right]
+		\]
+	\end{lemma}
+
+	\begin{proof}
+		This is just a rewording of the definition of $M^{a,b}(f)$.
+	\end{proof}
+
+
+\subsection{Generalized Lemma 7 of Friedgut}
+
+	We now attempt to relate $M_i(f)$ to $A$.
+
+	Let $n$ be the number of voters. Let $C = \{1, \ldots, m\}$ be a set of alternatives, and let $a,b \in C$ be any two alternatives. We define an anonymized version of the alternatives as $C' = \{c_1, \ldots, c_m\}$, totally ordered as $c_1 < \ldots < c_m$.
+
+	\begin{definition}
+		$C'$ is isomorphic to $C$ and we define the mapping function $g^{a,b} : C \to C'$ such that
+		\begin{align*}
+			g^{a,b}(x) =
+			\begin{cases}
+				c_x & \textrm{if } x \in C \backslash \{1, 2, a, b\} \\
+				c_1 & \textrm{if } x = a \\
+				c_2 & \textrm{if } x = b \\
+				c_a & \textrm{if } x = 1 \\
+				c_b & \textrm{if } x = 2
+			\end{cases}
+		\end{align*}
+		We define $G^{a,b} : L(C) \to L(C')$ such that
+		\[
+			G^{a,b}(x) = (g^{a,b}(x_1), \ldots, g^{a,b}(x_m))
+		\]
+	\end{definition}
+
+	\begin{definition}
+		We define the partial ordering, $\le^G_s$, on $L(C)$ such that for all $x, y \in L(C)$:
+		\[
+			x \le^g_s y \iff g^{a,b}(x) \le_s g^{a,b}(y)
+		\]
+	\end{definition}
+
+	Clearly $(L(C), \le^G_s)$ is a lattice.
+
+	\begin{definition}
+		We define the partial order $(\le^G_s)^n$ on $L(C)^n$ such that for all $x,y \in L(C)^n$ and all $i \in \{1, \ldots, n\}$:
+		\[
+			x (\le^G_s)^n y \iff x_i \le^G_s y_i
+		\]
+	\end{definition}
+
+	Clearly $(L(C)^n, (\le^G_s)^n)$ is a lattice.
+
+	\begin{definition}
+		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A^{a,b}_a(p)$, denoted $\partial A^{a,b}_a(p)$, to be the set of directed edges whose tail is in $\partial A^{a,b}_a(p)$ and whose head is not in $\partial A^{a,b}_a(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
+			\[
+				\partial_i A^{a,b}_a(p) = \{ (x_{-i}, x_i, x'_i) \mid (x_{-i}, x_i) \in A^{a,b}_a(p), (x_{-i}, x'_i) \notin A^{a,b}_a(p), x_i <^G_s x'_i \}
+			\]
+		and
+			\[
+				\partial A^{a,b}_a(p) = \bigcup_j \partial_j A^{a,b}_a(p)
+			\]
+		We define the upper edge border of $A^{a,b}_b(p)$ analogously.
+	\end{definition}
+
+	\begin{lemma}
+		\label{manipulation-per-edge-in-a}
+		Let $p, p' \in L(C)^n$ be profiles such that for all $i \in \{1, \ldots, n\}$:
+		\begin{align*}
+			p_{-i} &= p'_{-i} \textrm{ and} \\
+			p_i|_{a,b} &= p'_i|_{a,b}
+		\end{align*}
+		If either
+		\begin{align*}
+			(x_{-i}, x_i, x'_i) &\in \partial_i A^{a,b}_a(p) \textrm{ or} \\
+			(x_{-i}, x_i, x'_i) &\in \partial_i A^{a,b}_b(p)
+		\end{align*}
+		then the pair $p, p'$ corresponds to at least one successful manipulation.
+	\end{lemma}
+
+	\begin{proof}
+		By definition of the upper edge border we have
+		\[
+			x_i \le^G_s x'_i
+		\]
+		And by definition of $A^{a,b}_a$ and $A^{a,b}_b$ we have
+		\[
+			x_i|_{\{a,b\}} = x'_i|_{\{a,b\}}
+		\]
+
+		For $(x_{-i}, x_i, x'_i) \in \partial_i A^{a,b}_a(p)$, we know that $f((x_{-i}, x_i)) = a$ and $f((x_{-i}, x'_i)) = t$ for $t \in C \backslash \{a\}$. If $t \succ_{x_i} a$ then $x'$ is a successful manipulation of $x$. Otherwise, $a \succ_{x_i} t$. If this is the case, then we know that $(a, t) \notin Inv_{x_i}$, and because $x_i \le^G_s x'_i$ we have $(a, t) \notin Inv_{x'_i}$, which means $a \succ_{x'_i} t$. Therefore $x_i$ is a successful manipulation of $x'$.
+
+		For $(x_{-i}, x_i, x'_i) \in \partial_i A^{a,b}_b(p)$, we know that $f((x_{-i}, x_i)) = b$ and $f((x_{-i}, x'_i)) = t$ for $t \in C \backslash \{b\}$. If $t \succ_{x_i} b$ then $x'$ is a successful manipulation of $x$. Otherwise, $b \succ_{x_i} t$. If this is the case, then we know that $(b, t) \notin Inv_{x_i}$, and because $x_i \le^G_s x'_i$ we have $(b, t) \notin Inv_{x'_i}$, which means $b \succ_{x'_i} t$. Therefore $x_i$ is a successful manipulation of $x'$.
+	\end{proof}
+
+	\begin{lemma}[Lemma 7 of Friedgut]
+		\[
+			M_i(f) \ge \frac{1}{m!} \left(\frac{m!}{2}\right)^{-n} E_x \left[|\partial_i A^{a,b}_a(p)| + |\partial_i A^{a,b}_b(p)| \right]
+		\]
+	\end{lemma}
+
+	\begin{proof}
+		Recall the definition of $M_i(f)$: given a profile $p \in P$ and vote $p'_i \in V$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
+
+		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we have $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
+
+		By lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A^{a,b}_a(p) \cup \partial_i A^{a,b}_b(p))$ corresponds to at least one successful manipulation.
+
+		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A^{a,b}_a(p)$ or $\partial_i A^{a,b}_b(p)$. The total possible number of edges is
+		\[
+			\frac{m!}{2} \cdot \frac{m!}{2} \cdot \left(\frac{m!}{2}\right)^{n-1} = \frac{m!}{2}\left(\frac{m!}{2}\right)^{n}
+		\]
+		So the probability that a randomly chosen edge is in either $\partial_i A^{a,b}_a(p)$ or $\partial_i A^{a,b}_b(p)$ is
+		\[
+			\frac{2}{m!} \left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A^{a,b}_a(p)| + |\partial_i A^{a,b}_b(p)| \right]
+		\]
+		Note that we can add the probabilities for $\partial_i A^{a,b}_a(p)$ and $\partial_i A^{a,b}_b(p)$ because they are disjoint by the definition of the upper edge border; an edge cannot satisfy both $(x_{-i}, x_i) \in A^{a,b}_a(p)$ and $(x_{-i}, x_i) \in A^{a,b}_b(p)$ simultaneously.
+
+		We conditioned our analysis on $p_i = p'_i$, so then, our lower bound becomes
+		\[
+			M_i(f) \ge \frac{1}{2} \cdot \frac{2}{m!}\left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A^{a,b}_a(p)| + |\partial_i A^{a,b}_b(p)| \right]
+		\]
+		And simplified
+		\[
+			M_i(f) \ge \frac{1}{m!}\left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A^{a,b}_a(p)| + |\partial_i A^{a,b}_b(p)| \right]
+		\]
+	\end{proof}
+
+	Summing over $i$ we get
+
+	\begin{corollary}[Corollary 1 of Friedgut]
+		\[
+			\frac{1}{m!} \cdot \left(\frac{m!}{2}\right)^{-n} E_p[|\partial A^{a,b}_a(p)| + |\partial A^{a,b}_b(p)|] \le \sum_i M_i(f)
+		\]
+	\end{corollary}
+
+
+\subsection{Generalized Lemma 8 of Friedgut}
+
+	\begin{lemma}
+		For every disjoint $A^{a,b}_a(p), A^{a,b}_b(p)$ we have that
+		\[
+			|\partial A^{a,b}_a(p)| + |\partial A^{a,b}_b(p)| \ge \left( \frac{2}{m!} \right)^n |A^{a,b}_a(p)| \cdot |A^{a,b}_b(p)|
+		\]
+	\end{lemma}
+
+	We define $A'$ to be a consolidation of $A$ as follows. Iterate one at a time through $x \in A$, for each $x$ we add $y \in P$ to $A'$ such that
+	\[
+		y (\le^G_s)^n x
+	\]
+	and for all $z \in P \backslash A'$
+	\[
+		z (\le^G_s)^n x \implies y (\le^G_s)^n z
+	\]
+	In other words, we add the least profile not already in $A'$ which is less than or equal to $x$.
+
+	It is easy to check that
+	\begin{align*}
+		|\partial A'^{a,b}_a(p)| &\le |\partial A^{a,b}_a(p)| \textrm{ and} \\
+		|\partial A'^{a,b}_b(p)| &\le |\partial A^{a,b}_b(p)|
+	\end{align*}
+
+
+\subsection{Finished Step 3 of Friedgut}
+
+	Lemma 6, 7, and 8 fit together as follows. First we define the variables $L_6$, $L_7$, and $L_8$ to be variable values that multiply each of the lemmas respectively. The values of these variables will change depending on the value of $m$, so we evaluate the lemmas in terms of these variables to be more general. We can define the lemmas in terms of these variables:
+	\begin{align*}
+		&M^{a,b} = E[|A||B|] \cdot L_6 & \textrm{lemma 6} \\
+		&L_7 \cdot E[|\partial A| + |\partial B|] \le \sum_i M_i & \textrm{lemma 7} \\
+		&\frac{1}{L_8} \cdot (|\partial A| + |\partial B|) \ge |A||B| & \textrm{lemma 8}
+	\end{align*}
+
+	Now we can solve for the result of step 3.
+	\begin{align*}
+		M^{a,b} &= E[|A||B|] \cdot L_6 & \textrm{by lemma 6} \\
+		M^{a,b} &\le E[|\partial A| + |\partial B|] \cdot \frac{L_6}{L_8} & \textrm{by lemma 8} \\
+		M^{a,b} &\le \sum_i M_i \cdot \frac{L_6}{L_7L_8} & \textrm{by lemma 7}
+	\end{align*}
+
+	If we can fully generalize this step and capture all of the $v_i$'s our results will, possibly, look like this:
+	\begin{align*}
+		L_6 &= \left(\frac{m!}{2}\right)^{-2n} \\
+		L_7 &= \frac{1}{m!}\left(\frac{m!}{2}\right)^{-n} \\
+		L_8 &= \left(\frac{m!}{2}\right)^{-n}
+	\end{align*}
+
+	So we have that
+	\begin{align*}
+		\frac{L_6}{L_7L_8} &= \left(\frac{m!}{2}\right)^{-2n} \cdot m!\left(\frac{m!}{2}\right)^{n} \cdot \left(\frac{m!}{2}\right)^{n} \\
+		&= \left(\frac{m!}{2}\right)^{-2n} \cdot m! \cdot \left(\frac{m!}{2}\right)^{2n} \\
+		&= m!
+	\end{align*}
+
+	And the final result for step 3 becomes
+	\begin{align*}
+		M^{a,b} &\le \sum_i M_i \cdot m!
+	\end{align*}

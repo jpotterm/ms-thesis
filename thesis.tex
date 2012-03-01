@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{newclude, amsthm, amsmath, amssymb, hyperref, mathrsfs, graphicx, tabularx, multirow}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\permindex}{index}
+\DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\meet}{\wedge}
+\DeclareMathOperator{\bigmeet}{\bigwedge}
+\DeclareMathOperator{\join}{\vee}
+\DeclareMathOperator{\bigjoin}{\bigvee}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{example}{Example}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}
+
+\newtheoremstyle{customtheoremstyle}
+	{\topsep}
+	{\topsep}
+	{\itshape}
+	{}
+	{\bfseries}
+	{.}
+	{.5em}
+	{\thmname{#3}}
+
+\theoremstyle{customtheoremstyle}
+\newtheorem{customtheorem}{Custom}
+
+\includeonly{step-three}
+
+\begin{document}
+
+\title{MS Thesis}
+\author{Jonathan Potter \\ jmp2909@rit.edu}
+\date{\today}
+\maketitle
+
+
+\include*{preliminaries}
+\include*{step-three}
+
+
+% Bibliography
+\bibliographystyle{abbrv}
+\bibliography{../../Common/references}  % file path without .bib extension
+
+\end{document}
