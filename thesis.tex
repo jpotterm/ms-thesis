@@ -1,5 +1,6 @@
-\documentclass{article}
-\usepackage{newclude, amsthm, amsmath, amssymb, hyperref, mathrsfs, graphicx, tabularx, multirow}
+\documentclass[11pt,oneside]{book}
+
+\usepackage{amsthm, amsmath, amssymb, hyperref, mathrsfs, graphicx, tabularx, multirow}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -40,19 +41,29 @@
 \theoremstyle{customtheoremstyle}
 \newtheorem{customtheorem}{Custom}
 
-\includeonly{step-three}
+% \includeonly{step-three}
 
 \begin{document}
 
-\title{MS Thesis}
+\frontmatter
+
+\title{A Generalized Probabilistic Gibbard-Satterthwaite Theorem}
 \author{Jonathan Potter \\ jmp2909@rit.edu}
 \date{\today}
 \maketitle
 
+\tableofcontents
+% \listoffigures
+% \listoftables
 
-\include*{preliminaries}
-\include*{step-three}
+\mainmatter
 
+\include{introduction}
+\include{preliminaries}
+\include{step-three}
+
+
+\backmatter
 
 % Bibliography
 \bibliographystyle{abbrv}

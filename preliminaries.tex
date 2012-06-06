@@ -1,25 +1,40 @@
-\section{Preliminaries}
+%!TEX root = thesis.tex
+
+\chapter{Preliminaries}
 
 	\begin{definition}
-		A \emph{permutation} of a set $X$ is a bijective function from $\{1, \ldots, |X|\}$ to $X$. In other words, it is a sequence of length $|X|$ containing each element of $X$ exactly once. We use $L(X)$ to denote the set of all permutations of $X$.
+		A \emph{permutation} of a set $X$ is a bijective function from $X$ to $X$.
 	\end{definition}
 
 	\begin{definition}
-		Throughout this paper we will use $n$ to represent the number of voters in an election, and $m$ to represent the number of candidates. Let $C = \{1, \ldots, m\}$ be the set of all \emph{alternatives} (candidates). We define the set of all \emph{preference lists} to be $V = L(C)$. We define the set of all \emph{preference profiles} to be $P = L(C)^n$. We define a \emph{voting rule}, or \emph{social choice function} (SCF), to be a function $f : P \to C$. And lastly we define an \emph{election} to be simply a voting rule paired with a profile: $(f, p)$ where $f$ is a voting rule and $p \in P$.
+		We use $L(X)$ to denote the set of all total orders over $X$.
+	\end{definition}
+
+	For countable sets we will sometimes view permutations and total orders as sequences of elements using a subscript notation as long as our meaning is clear from the context.
+
+	\begin{definition}
+		Throughout this paper we will use $n$ to represent the number of voters in an election, and $m$ to represent the number of candidates. Let $C = \{1, \ldots, m\}$ be the set of all \emph{alternatives} (candidates). We define the set of all \emph{preference lists} to be $V = L(C)$. We can also view a preference list as a permutation on $C$; it will be obvious from context which approach we a using. We define the set of all \emph{preference profiles} to be $P = L(C)^n$. We define a \emph{voting rule}, or \emph{social choice function} (SCF), to be a function $f : P \to C$. And lastly we define an \emph{election} to be simply a voting rule paired with a profile: $(f, p)$ where $f$ is a voting rule and $p \in P$.
 	\end{definition}
 
 	\begin{definition}
-		For a preference list $v \in V$ and two alternatives $x, y \in C$ we view $x$ as being ranked above $y$ in $v$ if
+		A \emph{successful manipulation} (or \emph{profitable manipulation}) by voter $i$ of a SCF $f$ at profile $x$ is a preference $x'_i$ such that
 		\[
-			v^{-1}(x) < v^{-1}(y)
+			f((x_{-i}, x'_i)) \succ_i f((x_{-i}, x_i))
 		\]
-		and we would say that $x$ beats $y$, and denote this as
+	\end{definition}
+
+	\begin{definition}
+		Let $v \in V$ be a preference list, and let $x, y \in C$ be two alternatives. Since $v$ is actually a total ordering, we denote $(x, y) \in v$ by
+		\[
+			x <_v y
+		\]
+		and if this is the case we view $x$ as being ranked above $y$ in $v$ and we say that $x$ beats $y$, and denote this as
 		\[
 			x \succ_v y
 		\]
 		We view $x$ as being ranked below $y$ in $v$ if
 		\[
-			v^{-1}(x) > v^{-1}(y)
+			x >_v y
 		\]
 		and we would say that $x$ is beaten by $y$, we denote this as
 		\[
@@ -32,11 +47,19 @@
 	\end{definition}
 
 	\begin{definition}
+		We define a \emph{poset}, or \emph{partially ordered set}, to be $(X, \le)$ where $X$ is a set, and $\le$ is a binary relation on $X$. $\le$ is also called a partial ordering because of the fact that not every pair of elements in $X$ needs to be related by $\le$, as opposed to a total ordering which must relate every pair.
+	\end{definition}
+
+	\begin{definition}
 		For any poset $(P, \le)$, an \emph{upper bound} of a subset $X \subseteq P$ is an element $a \in P$ such that $a \le x$ for every $x \in X$. A \emph{least upper bound} is an \emph{upper bound} that is less than or equal to every other \emph{upper bound}. We denote this \emph{least upper bound} as $\sup_P X$ calling it the \emph{supremum} \cite{birkhoﬀ1967lattice} and also as $\bigjoin_P X$ calling it the \emph{join}. When $X$ contains only two elements, we can use the join as a binary operator: $\bigjoin_P \{a, b\} = a \join_P b$. When $P$ is obvious from context we will simply write $\sup X$ or $\bigjoin X$. If the supremum exists, it is unique because posets are antisymmetric. The supremum is the same as the infimum in the inverse order.
 	\end{definition}
 
 	\begin{definition}
 		For any poset $(P, \le)$, a \emph{lower bound} of a subset $X \subseteq P$ is an element $a \in P$ such that $a \ge x$ for every $x \in X$. A \emph{greatest lower bound} is a \emph{lower bound} that is greater than or equal to every other \emph{lower bound}. We denote this \emph{greatest lower bound} as $\inf_P X$ calling it the \emph{infimum} \cite{birkhoﬀ1967lattice} and also as $\bigmeet_P X$ calling it the \emph{meet}. When $X$ contains only two elements, we can use the meet as a binary operator: $\bigmeet_P \{a, b\} = a \meet_P b$. When $P$ is obvious from context we will simply write $\inf X$ or $\bigmeet X$. If the infimum exists, it is unique because posets are antisymmetric. The infimum is the same as the supremum in the inverse order.
+	\end{definition}
+
+	\begin{definition}
+		A poset, $(P, \le)$, is a \emph{lattice} if for any $x, y \in P$ the meet and join of $x$ and $y$ both exist. Note that the meet and join are unique by definition (if they exist).
 	\end{definition}
 
 	\begin{definition}
@@ -51,13 +74,15 @@
 	\end{definition}
 
 	\begin{definition}
-		For any poset $(P, \le)$, let $\sigma$ be a permutation of $P$. We define the $inversions$ of $\sigma$ to be a binary relation $\Inv_{\sigma}$ on $P$:
+		For any poset $(P, \le)$, let $\sigma$ be a permutation of $P$. We define the \emph{inversions} of $\sigma$ to be a binary relation $\Inv_{\sigma}$ on $P$:
 		\[
 			\Inv_{\sigma} = \{(i,j) \mid i, j \in P, i < j, \sigma^{-1}(i) > \sigma^{-1}(j)\}
 		\]
-		$\Inv$ is a transitive relation because for any $a,b,c \in P$ if $a \Inv b$ and $b \Inv c$ then $a < b < c$ and $\sigma^{-1}(a) > \sigma^{-1}(b) > \sigma^{-1}(c)$ which means that $a \Inv c$. In addition, for any $a,b \in P$ we have
+		We can read $i \Inv_{\sigma} j$ as ``$i$ is inverted with $j$ in $\sigma$''. $\Inv$ is a transitive relation because for any $i,j,k \in P$ if $i \Inv_{\sigma} j$ and $j \Inv_{\sigma} k$ then $i < j < k$ and $\sigma^{-1}(i) > \sigma^{-1}(k) > \sigma^{-1}(k)$ which means that $i \Inv_{\sigma} k$.
+
+		In addition, let $(X, \le')$ be a lattice such that the elements of $X$ are permutations of $P$. For any $\sigma, \pi \in X$ we have
 		\[
-			\Inv_{a \meet b} = (\Inv_a \cup \Inv_b)^t
+			\Inv_{\sigma \meet \pi} = (\Inv_{\sigma} \cup \Inv_{\pi})^t
 		\]
 		\cite{markowsky1994permutation}.
 	\end{definition}
@@ -82,9 +107,9 @@
 	\end{definition}
 
 	\begin{definition}[$\le_s$]
-		Let $(P, \le)$ be a poset. We define the partial ordering $\le_s$ on $P$ such that for all $x, y \in P$:
+		Let $(P, \le)$ be a poset and let $X$ be the set of all permutations on $P$. We define the partial ordering $\le_s$ on $X$ such that for all $\sigma, \pi \in X$:
 		\[
-			x \le_s y \iff \Inv_y \subseteq \Inv_x
+			\sigma \le_s \pi \iff \Inv_{\sigma} \subseteq \Inv_{\pi}
 		\]
 	\end{definition}
 
