@@ -1,6 +1,6 @@
 %!TEX root = thesis.tex
 
-\chapter{Step Three of Friedgut}
+\chapter{Results}
 
 	Friedgut's main theorem is proved in three steps; the first two are generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of lemma 6, lemma 7, and lemma 8 which we will generalize one at a time.
 
@@ -166,10 +166,34 @@
 
 \section{Generalized Lemma 8 of Friedgut}
 
-	In this section we will fix candidates $a, b$ and profile $p$, and for the sake of readability we will define the following sets:
+	In this section we will fix candidates $a, b$ and profile $p$, and for the sake of readability we will define the following.
+
+	First, we revise our previous definition to allow us to limit $A$ and $B$ to a specific set of lattice nodes, here referred to as $X$:
 	\begin{align*}
-		A &= A^{a,b}_a(p) \\
-		B &= A^{a,b}_b(p)
+		A^{a,b}_c(p, X) = \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = c\}
+	\end{align*}
+
+	Next we define shorthand for $A$ and $B$:
+	\begin{align*}
+		A(X) &= A^{a,b}_a(p, X) \\
+		B(X) &= A^{a,b}_b(p, X) \\
+	\end{align*}
+	and when we refer to $A$ and $B$ without parameters, we assume they are only limited to valid profiles:
+	\begin{align*}
+		A &= A(V^n) \\
+		B &= B(V^n) \\
+	\end{align*}
+
+	We also rename the orderings:
+	\begin{align*}
+		\le &\textrm{ is } \le_s^G \\
+		\le^n &\textrm{ is } (\le_s^G)^n \\
+	\end{align*}
+
+	And finally, we recall $(V^n, \le^n)$ is our $n$-dimensional lattice, and that $A$ and $B$ reside in this space:
+	\begin{align*}
+		A &\subseteq V^n \\
+		B &\subseteq V^n \\
 	\end{align*}
 
 	\begin{lemma}
@@ -180,63 +204,24 @@
 	\end{lemma}
 
 	\begin{proof}
-		We first define a total ordering, $\le_i^t$, over each dimension of $P$ as follows. Let $x, y \in P$ and let $i \in \{1, \ldots, n\}$.
-		\[
-			x_i \le^G_s y_i \implies x_i \le_i^t y_i
-		\]
-		Otherwise, sort the pairs of $\Inv_{x_i} \cup \Inv_{y_i}$ primarily by the first item of the pair, and secondarily by the second item. Iterate through this sorted list and when an item, $z_i$, is reached such that
-		\[
-			z_i \in \Inv_{x_i} \oplus \Inv_{y_i}
-		\]
-		then
-		\begin{align*}
-			z_i &\in \Inv_{x_i} \implies x_i \le_i^t y_i \\
-			z_i &\in \Inv_{y_i} \implies y_i \le_i^t x_i
-		\end{align*}
-		Note: we can sort $\Inv_{x_i} \cup \Inv_{y_i}$ because $C$ is totally ordered.
+		We define $A'$ to be a consolidation of $A$ as follows. We start with $A' = A$. We iterate over $i \in \{1, \ldots, n\}$ and $(j_1, \ldots, j_{i-1}, j_{i+1}, \ldots, j_n) \in V^{n-1}$ and $k \in V$. We can view $p = (j_1, \ldots, j_{i-1}, k, j_{i+1}, \ldots, j_n)$ as a profile, i.e. $p \in P$. Let the current dimension be represented by the set $D = \{x | x \in V^n, x_{-i} = p_{-i}\}$. Let $z = \bigjoin D$.
 
-		We claim that $\le_i^t$ is now a total ordering over $V$.
+		We know that either $z \notin A(D)$ or $z \notin B(D)$ because $A, B$ are disjoint. If $z \notin A(D)$ then for each $x \in A'(D) \backslash B'(D)$ replace $x$ with any $y \in B' \backslash A'$ (unless $B' \backslash A' = \emptyset$). Otherwise $z \notin B$ then for each $x \in B'(D) \backslash A'(D)$ we replace $x$ with $y \in A' \backslash B'$ (unless $A' \backslash B' = \emptyset$). When we are finished with this, we have that either $A' \subseteq B'$ or $B' \subseteq A'$.
 
-		We define $A'$ to be a consolidation of $A$ as follows. We start with $A' = A$. We iterate over $i \in \{1, \ldots, n\}$. For each $x \in A'$, for each $j \in \{1, \ldots, n\} \backslash \{i\}$ we replace $x$ with $y \in P \backslash A'$ such that the following holds
-		\begin{align*}
-			y_i &\le_i^t x_i \\
-			y_j &= x_j
-		\end{align*}
-		if such a $y$ exists.
-
-
-
-
-		\[
-			y \le_t x
-		\]
-		and $\forall z \in P \backslash A' \cup y$
-		\[
-			z \le_t x \implies y \le_t z
-		\]
-		In other words, we add the least profile not already in $A'$ which is less than or equal to $x$. In a visual sense, we are consolidating the elements of $A$ towards the bottom of the ordering $\le_t$.
-
-		It is easy to check that
+		Note: in the Friedgut paper, he mentions the following conditions, which I don't think holds here, but I'm not sure if we need it.
 		\begin{align*}
 			|\partial A'| &\le |\partial A| \textrm{ and} \\
-			|\partial B'| &\le |\partial B|
+			|\partial B'| &\le |\partial B| \\
 		\end{align*}
 
-		We will now show that if a profile is in $|A' \backslash A|$ then it is also in $\partial A$. Let $y \in |A' \backslash A|$. Since $y \in A'$ we know that there is a corresponding $x \in A$ such that
-		\[
-			y (\le^G_s)^n x
-		\]
-		But because $y \notin A$ we know that
-		\[
-			y (\ne^G_s)^n x
-		\]
-		So we have that $\exists i \in \{1, \ldots, n\}$ such that
-		\[
-			y_i <^G_s x_i
-		\]
-		which means that the edge $(x_{-i}, x_i, y_i) \in \partial_i A$ so $(x_{-i}, x_i, y_i) \in \partial A$ as well.
+		We will now show that
+		\begin{align*}
+			|A' \backslash A| &\le |\partial A| \textrm{ and} \\
+			|B' \backslash B| &\le |\partial B| \\
+		\end{align*}
+		The only way for an element $y$ to be in $A' \backslash A$ is that we shifted it during one of the above iterations. We (lazily) define $i$ and $D$ to be the same as they were in whichever iteration caused $y$ to enter $A' \backslash A$. Since $z = \bigjoin D$ and $z \notin A(D)$, we know that $y_i \le z_i$. So the edge $(z_{-i}, z_i, y_i) \in \partial_i A$ and therefore $(z_{-i}, z_i, y_i) \in \partial A$ as well.
 
-		Since every profile in $|A' \backslash A|$ corresponds to at least one profile in $\partial A$ we know that
+		Since every profile in $A' \backslash A$ corresponds to at least one profile in $\partial A$ we know that
 		\[
 			|A' \backslash A| \le |\partial A|
 		\]
@@ -249,7 +234,7 @@
 		\[
 			P' = \{x \in P \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
 		\]
-		and view $A$, $B$, $A'$, and $B'$ as residing in $P'$ without losing any information. Clearly $|P'| = (\frac{m!}{2})^n$.
+		and view $A$, $B$, $A'$, and $B'$ as residing in $P'$ without losing any information. This is because any element in $A$, $B$, $A'$, or $B'$ cannot possibly be in $P \backslash P'$: by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
 
 		For any vote $v \in P'$, let $E_{A'}$ be the event that $v$ is in $A'$, and let $E_{B'}$ be the event that $v$ is in $B'$. Then
 		\[
@@ -264,11 +249,11 @@
 			\label{probability-values-3}
 			P(E_{B'}) &= \frac{|B'|}{|P'|}
 		\end{align}
-		We claim that $A'$ and $B'$ are positively correlated, and so knowing that an element is in $A'$ only increases the chances that it is in $B'$. In other words
+		Since either $A' \subseteq B'$ or $B' \subseteq A'$, we have
 		\[
 			P(E_{B'}|E_{A'}) \ge P(E_{B'})
 		\]
-		So we have
+		Therefore
 		\[
 			P(E_A \cap E_B) \ge P(E_A) P(E_B)
 		\]

@@ -41,6 +41,9 @@
 \theoremstyle{customtheoremstyle}
 \newtheorem{customtheorem}{Custom}
 
+\let\emptysetraw\emptyset
+\renewcommand{\emptyset}{\varnothing}
+
 % \includeonly{step-three}
 
 \begin{document}
@@ -59,8 +62,10 @@
 \mainmatter
 
 \include{introduction}
+\include{background}
 \include{preliminaries}
-\include{step-three}
+\include{results}
+\include{conclusion}
 
 
 \backmatter
