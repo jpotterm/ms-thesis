@@ -208,7 +208,7 @@
 
 		We know that either $z \notin A(D)$ or $z \notin B(D)$ because $A, B$ are disjoint. If $z \notin A(D)$ then for each $x \in A'(D) \backslash B'(D)$ replace $x$ with any $y \in B' \backslash A'$ (unless $B' \backslash A' = \emptyset$). Otherwise $z \notin B$ then for each $x \in B'(D) \backslash A'(D)$ we replace $x$ with $y \in A' \backslash B'$ (unless $A' \backslash B' = \emptyset$). When we are finished with this, we have that either $A' \subseteq B'$ or $B' \subseteq A'$.
 
-		Note: in the Friedgut paper, he mentions the following conditions, which I don't think holds here, but I'm not sure if we need it.
+		Note: in the Friedgut paper, he mentions the following condition, which I don't think holds here, but I'm not sure if we need it.
 		\begin{align*}
 			|\partial A'| &\le |\partial A| \textrm{ and} \\
 			|\partial B'| &\le |\partial B| \\
@@ -219,7 +219,7 @@
 			|A' \backslash A| &\le |\partial A| \textrm{ and} \\
 			|B' \backslash B| &\le |\partial B| \\
 		\end{align*}
-		The only way for an element $y$ to be in $A' \backslash A$ is that we shifted it during one of the above iterations. We (lazily) define $i$ and $D$ to be the same as they were in whichever iteration caused $y$ to enter $A' \backslash A$. Since $z = \bigjoin D$ and $z \notin A(D)$, we know that $y_i \le z_i$. So the edge $(z_{-i}, z_i, y_i) \in \partial_i A$ and therefore $(z_{-i}, z_i, y_i) \in \partial A$ as well.
+		The only way for an element $y'$ to be in $A' \backslash A$ is that we shifted it during one of the above iterations. We define $y$ to be the original element before it was shifted to $y'$. We also (lazily) define $i$ and $D$ to be the same as they were in whichever iteration caused $y$ to shift to enter $A' \backslash A$. Since $z = \bigjoin D$ and $z \notin A(D)$, we know that $y_i \le z_i$. So the edge $(z_{-i}, z_i, y_i) \in \partial_i A$ and therefore $(z_{-i}, z_i, y_i) \in \partial A$ as well.
 
 		Since every profile in $A' \backslash A$ corresponds to at least one profile in $\partial A$ we know that
 		\[
