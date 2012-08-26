@@ -310,3 +310,48 @@
 	\begin{align*}
 		M^{a,b} &\le \sum_i M_i \cdot m!
 	\end{align*}
+
+\section{Main Theorem of Friedgut}
+
+	Now we can use the Friedgut's generalized steps 1 and 2 along with our generalized version of step 3 to prove a general version of Friedgut's main theorem. We will restate Friedgut's generalized lemmas from step 1 and 2.
+
+	\begin{lemma}[Lemma 1 of Friedgut]
+		\label{friedgut-lemma-1}
+		For every fixed $m$ and $\epsilon > 0$ there exists $\delta > 0$ such that if $F = f^{\otimes \binom{m}{2}}$ is a neutral IIA GSWF over $m$ alternatives with $f : \{0,1\}^n \rightarrow \{0,1\}$, and $\Delta(f, DICT) > \epsilon$, then $F$ has probability of at least $\delta \ge (C\epsilon)^{\lfloor m/3 \rfloor}$ of not having a Generalized Condorcet Winner, where $C > 0$ is an absolute constant.
+	\end{lemma}
+
+	\begin{lemma}[Lemma 2 of Friedgut]
+		\label{friedgut-lemma-2}
+		For every fixed $m$ there exists $\delta > 0$ such that for all $\epsilon > 0$ the following holds. Let $f$ be a neutral SCF among $m$ alternatives such that $\Delta(f, DICT) > \epsilon$. Then for all $(a,b)$ we have $M^{a,b}(f) \ge \delta$.
+	\end{lemma}
+
+	And we restate our generalized version of Friedgut's Lemma 3.
+
+	\begin{lemma}[Lemma 3 of Friedgut]
+		\label{friedgut-lemma-3}
+		For every SCF $f$ on $m$ alternatives and every $a,b \in A$, $M^{a,b} \le \sum_i M_i \cdot m!$
+	\end{lemma}
+
+	With these three lemmas we can now prove a generalized version of Friedgut's main theorem.
+
+	\begin{theorem}[Theorem 1 of Friedgut]
+		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over 3 alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulatiblity: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
+	\end{theorem}
+
+	\begin{proof}
+		Lemma \ref{friedgut-lemma-2} gives us
+		\begin{align*}
+			M^{a,b}(f) \ge \delta
+		\end{align*}
+		and by substituting the result from Lemma \ref{friedgut-lemma-1} for $\delta$ we get
+		\begin{align*}
+			M^{a,b}(f) &\ge \delta \ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
+			M^{a,b}(f) &\ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
+		\end{align*}
+		We then relate $M^{a,b}$ to $M_i$ by Lemma \ref{friedgut-lemma-3}
+		\begin{align*}
+			\sum^n_{i=1} M_i(f) \cdot m! &\ge M^{a,b}(f) \ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
+			\sum^n_{i=1} M_i(f) \cdot m! &\ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
+			\sum^n_{i=1} M_i(f) &\ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!} \\
+		\end{align*}
+	\end{proof}

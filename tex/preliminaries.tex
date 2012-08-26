@@ -2,6 +2,10 @@
 
 \chapter{Preliminaries}
 
+	In this chapter we build up foundational formal definitions that we will need for the rest of the thesis. These serve as a reference and as an introduction to the technical work we have done in the following chapters. These definitions naturally lead into a few foundational lemmas which will be presented at the end of the chapter. Some definitions are very basic indeed and many will already be known to the reader, and so they are stated here explicitly simply to provide maximum clarity, and a solid foundation upon which to present the rest of our work.
+
+\section{Definitions}
+
 	\begin{definition}
 		A \emph{permutation} of a set $X$ is a bijective function from $X$ to $X$.
 	\end{definition}
@@ -10,10 +14,10 @@
 		We use $L(X)$ to denote the set of all total orders over $X$.
 	\end{definition}
 
-	For countable sets we will sometimes view permutations and total orders as sequences of elements using a subscript notation as long as our meaning is clear from the context.
+	For countable sets we will sometimes view permutations and total orders as sequences of elements using a subscript notation, provided our meaning is clear from context.
 
 	\begin{definition}
-		Throughout this paper we will use $n$ to represent the number of voters in an election, and $m$ to represent the number of candidates. Let $C = \{1, \ldots, m\}$ be the set of all \emph{alternatives} (candidates). We define the set of all \emph{preference lists} to be $V = L(C)$. We can also view a preference list as a permutation on $C$; it will be obvious from context which approach we are using. We define the set of all \emph{preference profiles} to be $P = L(C)^n$. We define a \emph{voting rule}, or \emph{social choice function} (SCF), to be a function $f : P \to C$. And lastly we define an \emph{election} to be simply a voting rule paired with a profile: $(f, p)$ where $f$ is a voting rule and $p \in P$.
+		Throughout this paper we will use $n$ to represent the number of voters in an election, and $m$ to represent the number of alternatives. Let $C = \{1, \ldots, m\}$ be the set of all \emph{alternatives} (candidates). We define the set of all \emph{preference lists} to be $V = L(C)$. We can also view a preference list as a permutation on $C$; it will be obvious from context which approach we are using. We define the set of all \emph{preference profiles} to be $P = L(C)^n$. We define a \emph{voting rule}, or \emph{social choice function} (SCF), to be a function $f : P \to C$. And lastly we define an \emph{election} to be simply a voting rule paired with a profile: $(f, p)$ where $f$ is a voting rule and $p \in P$.
 	\end{definition}
 
 	\begin{definition}
@@ -59,6 +63,7 @@
 	\end{definition}
 
 	\begin{definition}
+		\label{lattice-definition}
 		A poset, $(P, \le)$, is a \emph{lattice} if for any $x, y \in P$ the meet and join of $x$ and $y$ both exist. Note that the meet and join are unique by definition (if they exist).
 	\end{definition}
 
@@ -113,6 +118,14 @@
 		\]
 	\end{definition}
 
+
+
+\section{Lemmas}
+
+	We now have enough definitions to prove some lemmas and propositions that we will need later.
+
+	First we will prove that our inversion lattice remains a lattice when two neighboring elements are identified (made to be the same element). Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
+
 	\begin{lemma}
 		\label{identified-permutation-lattice-join}
 		Let $(X, \le_s)$ be a lattice whose elements are permutations of a set $Y$, and $\le_s$ is defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. For any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, then for all $x, y \in X^{ij}$:
@@ -137,7 +150,7 @@
 
 	\begin{lemma}
 		\label{identified-permutation-lattice-meet}
-		Let $(X, \le_s)$ be a lattice whose elements are permutations of a set $Y$, and $\le_s$ is defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\meet$ and $\meet^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. For any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, then for all $x, y \in X^{ij}$:
+		Let $(X, \le_s)$ be a lattice whose elements are permutations of a set $Y$, and $\le_s$ is defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\meet$ and $\meet^{ij}$ denote the meet in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. For any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, then for all $x, y \in X^{ij}$:
 		\[
 			\exists(x \meet y) \implies \exists(x \meet^{ij} y)
 		\]
@@ -168,6 +181,26 @@
 	\begin{proof}
 		We know that $\exists(x \join y)$ and $\exists(x \meet y)$ because $(X, \le_s)$ is a lattice. Therefore by lemma \ref{identified-permutation-lattice-join} and lemma \ref{identified-permutation-lattice-meet} we have $\exists(x \join^{ij} y)$ and $\exists(x \meet^{ij} y)$ respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
 	\end{proof}
+
+	Now we will show that a ``grid'' of lattices is also a lattice. For example, suppose we have the lattice in Figure \ref{figure-one-dimensional-lattice}. The top element is the greatest, and the arrows show the ``less than'' relationship between elements. Each column of numbers represents a ranking of alternatives ${1, 2, 3}$ in which we don't care about the relationship between alternative $1$ and $2$ so we simply replace alternative $2$ with $1$ in the ranking. All this aside though, this proof is valid for any lattice.
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=1in]{../figures/diagram5.pdf}
+			\caption{A single dimension of lattice.}
+			\label{figure-one-dimensional-lattice}
+		\end{center}
+	\end{figure}
+
+	If we were to make that lattice into a 2-dimensional ``grid'' it would look like Figure \ref{figure-two-dimensional-lattice}. This would be the case if we only had two voters ($n = 2$).
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=3in]{../figures/diagram6.pdf}
+			\caption{A 2-dimensional version of the lattice from Figure \ref{figure-one-dimensional-lattice}.}
+			\label{figure-two-dimensional-lattice}
+		\end{center}
+	\end{figure}
 
 	\begin{proposition}
 		\label{proposition-grid-is-lattice}

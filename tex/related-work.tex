@@ -1,0 +1,7 @@
+%!TEX root = thesis.tex
+
+\chapter{Related Work}
+
+	Complexity theorists have analyzed many voting systems using computational complexity as a means of inhibiting manipulation \cite{bartholdi1989computational, hemaspaandra2009hybrid}. Friedgut et al., on the other hand, took a probabilistic approach to this problem \cite{friedgut2008elections}. Instead of studying worst-case manipulation, they performed a probabilistic analysis of random manipulation. That is, instead of a voter intelligently manipulating an election, which can be difficult in terms of worst-case complexity, he simply chooses his manipulation randomly. Friedgut et al. \cite{friedgut2008elections} proved that even an random manipulation will succeed with non-negligible probability. This is significant because no matter how hard it is in the worst-case to find a profitable manipulation, it is trivial to find a random manipulation, which could be enough.
+
+	However, the results of Friedgut et al. \cite{friedgut2008elections} apply only to elections with a maximum of 3 candidates, which is not useful for most practical applications, and is less satisfactory than a general solution from a theoretical standpoint. Building on this work, Xia and Conitzer \cite{xia2008sufficient}, were able to prove the same theorem for any number of candidates, but they assumed different conditions than Friedgut et al. and therefore their work only applies to some of the common voting systems.
