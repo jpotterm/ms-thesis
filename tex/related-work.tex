@@ -2,6 +2,45 @@
 
 \chapter{Related Work}
 
-	Complexity theorists have analyzed many voting systems using computational complexity as a means of inhibiting manipulation \cite{bartholdi1989computational, hemaspaandra2009hybrid}. Friedgut et al., on the other hand, took a probabilistic approach to this problem \cite{friedgut2008elections}. Instead of studying worst-case manipulation, they performed a probabilistic analysis of random manipulation. That is, instead of a voter intelligently manipulating an election, which can be difficult in terms of worst-case complexity, he simply chooses his manipulation randomly. Friedgut et al. \cite{friedgut2008elections} proved that even an random manipulation will succeed with non-negligible probability. This is significant because no matter how hard it is in the worst-case to find a profitable manipulation, it is trivial to find a random manipulation, which could be enough.
+	We will now take an in-depth look at some of the results leading up to and related to our own. Unless the reader is familiar with this topic area, he should refer to the Preliminaries chapter for definitions of any of our notation, or to the cited paper for notation specific to that paper. In general, an election will consist of a SCF $f$, a set of $m$ alternatives $C$, $n$ voters, and a profile $P \subseteq L(C)^n$.
 
-	However, the results of Friedgut et al. \cite{friedgut2008elections} apply only to elections with a maximum of 3 candidates, which is not useful for most practical applications, and is less satisfactory than a general solution from a theoretical standpoint. Building on this work, Xia and Conitzer \cite{xia2008sufficient}, were able to prove the same theorem for any number of candidates, but they assumed different conditions than Friedgut et al. and therefore their work only applies to some of the common voting systems.
+	Complexity theorists have analyzed many voting systems using computational complexity as a means of inhibiting manipulation \cite{bartholdi1989computational, hemaspaandra2009hybrid}. Friedgut, Kalai, and Nisan, on the other hand, took a probabilistic approach to this problem \cite{friedgut2008elections}. Instead of studying worst-case manipulation, they performed a probabilistic analysis of random manipulation. That is, instead of a voter intelligently manipulating an election, which can be difficult in terms of worst-case complexity, he simply chooses his manipulation randomly (if his most preferred candidate is not winning already). They proved that even a random manipulation will succeed with non-negligible probability. This is significant because no matter how hard it is in the worst-case to find a profitable manipulation, if it is trivial to find a random manipulation, that could be enough.
+
+	More formally they defined a metric, \emph{manipulation power} $M_i(f)$, of voter $i$ on a social choice function $f$ to be the probability that $p_i'$ is a profitable manipulation by voter $i$, where $p$ is a profile and $p_i'$ is a preference list which are both chosen uniformly at random. Their main result is that there exists a constant $C$ such that for 3 alternatives, $n$ voters, and a neutral social choice function $f$ which is $\epsilon$-far from dictatorship ($\epsilon > 0$) then
+
+	\begin{align*}
+		\sum_{i=1}^n M_i(f) \ge C \epsilon^2
+	\end{align*}
+
+	This means that when $\epsilon$ is fixed --- it is once a voting rule is determined --- then some voter has more than his share (a non-negligable amount) of manipulation power: $\max_i M_i(f) \ge \Omega(\frac{1}{n})$ \cite{friedgut2008elections}.
+
+	Besides the unfortunate limitation of 3 alternatives, these results are incredibly general. The only assumptions are the \emph{impartial culture} assumption, that votes are selected uniformly at random, and the neutrality of the social choice function. The neutrality assumption was removed by Friedgut, Kalai, and Nisan in 2011 \cite{friedgut2011quantitative}.
+
+	However, these results apply only to elections with a maximum of 3 alternatives, which is not useful for most practical applications, and is less satisfactory than a general solution from a practical and theoretical standpoint. Therefore many people have worked to generalize these results. In 2008 Xia and Conitzer, were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed 5 other conditions for the voting rule \cite{xia2008sufficient}:
+
+	\begin{description}
+		\item[Homogeneity] For any $n \in \mathbb{N}$ we have:
+			\begin{align*}
+				f(P) = f\left(\bigcup_{i=1}^n P\right).
+			\end{align*}
+		\item[Anonymity] The result of the election does not depend on the names of the voters. Formally, given a profile $P$ and a permutation $\sigma(P)$: $f(P) = f(\sigma(P))$.
+		\item[Non-imposition] (Defined above, in the Gibbard-Satterthwaite theorem)
+		\item[Canceling out] Adding the set of all linear orders to the votes does not change the result. More formally, for any profile $P$ we have that: $f(P) = f(P \cup L(C))$.
+		\item[Stability] Given alternatives $C = \{c_1, c_2, \ldots, c_m\}$, there exists a profile $P$ such that:
+			\begin{enumerate}
+				\item $P$ and $D_{m}(P)$ are both stable (slight modifications don't change the winner)
+				\item $f(P) = c_1$
+				\item $f(D_{m}(P)) = c_2$
+			\end{enumerate}
+			Where $D_m$ is defined such that if $D_m(P) = P'$, then $P|_{C \backslash c_m} = P'|_{C \backslash c_m}$ and the position of $c_m$ is uniformly distributed in $P'$. For a formal definition of $D_m$ and of ``stability'', see the original paper \cite{xia2008sufficient}.
+	\end{description}
+
+	However, these conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
+
+	Around the same time Dobzinski and Procaccia published complemetary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}.
+
+	In 2010 Isaksson, Kindler, and Mossel published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}.
+
+	In 2011 Friedgut et al. removed the neutrality constraint from their original theorem, and added an author \cite{friedgut2011quantitative}.
+
+	Mossel and R\'{a}cz \cite{mossel2011quantitative} took ideas from these two proofs and created a unified proof with the same results as Isaksson, Kindler, and Mossel, but without the neutrality constraint. This is a very useful result, and independently supercedes our work here. We hope that, though our results here have been surpassed, our work may still be instructive as an alternative, and possibly simpler proof.
