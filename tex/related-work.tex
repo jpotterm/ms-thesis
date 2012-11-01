@@ -12,11 +12,13 @@
 		\sum_{i=1}^n M_i(f) \ge C \epsilon^2
 	\end{align*}
 
-	This means that when $\epsilon$ is fixed --- it is once a voting rule is determined --- then some voter has more than his share (a non-negligable amount) of manipulation power: $\max_i M_i(f) \ge \Omega(\frac{1}{n})$ \cite{friedgut2008elections}.
+	This means that when $\epsilon$ is fixed --- it is once a voting rule is determined --- then some voter has more than his share (a non-negligible amount) of manipulation power: $\max_i M_i(f) \ge \Omega(\frac{1}{n})$ \cite{friedgut2008elections}.
 
 	Besides the unfortunate limitation of 3 alternatives, these results are incredibly general. The only assumptions are the \emph{impartial culture} assumption, that votes are selected uniformly at random, and the neutrality of the social choice function. The neutrality assumption was removed by Friedgut, Kalai, and Nisan in 2011 \cite{friedgut2011quantitative}.
 
-	However, these results apply only to elections with a maximum of 3 alternatives, which is not useful for most practical applications, and is less satisfactory than a general solution from a practical and theoretical standpoint. Therefore many people have worked to generalize these results. In 2008 Xia and Conitzer, were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed 5 other conditions for the voting rule \cite{xia2008sufficient}:
+	However, these results apply only to elections with a maximum of 3 alternatives, which is not useful for most practical applications, and is less satisfactory than a general solution from a practical and theoretical standpoint. Therefore many people have worked to generalize these results.
+
+	In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed 5 other conditions for the voting rule \cite{xia2008sufficient}:
 
 	\begin{description}
 		\item[Homogeneity] For any $n \in \mathbb{N}$ we have:
@@ -37,10 +39,165 @@
 
 	However, these conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
 
-	Around the same time Dobzinski and Procaccia published complemetary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}.
+	Around the same time Dobzinski and Procaccia published complementary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}. They proved the following:
 
-	In 2010 Isaksson, Kindler, and Mossel published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}.
+	\begin{theorem}[Dobzinski and Procaccia]
+		Let $f$ be a Pareto-optimal SCF and let $n = 2$, $m \ge 3$, and $\delta < \frac{1}{32m^9}$. If $f$ is $\delta$-strategyproof then $f$ is $16m^8 \delta$-dictatorial.
+	\end{theorem}
+
+	We will translate these results into the same terms used by Friedgut, Kalai, and Nisan so that we can easily compare the results. According to Dobzinski and Procaccia, being $\delta$-strategyproof means that $f$ is manipulable with probability at most $\delta$. This means that if
+
+	\begin{align*}
+		\sum_{i=1}^n M_i(f) \le \delta
+	\end{align*}
+
+	then $f$ is $16m^8 \delta$-near to dictatorship. If we let $\epsilon = 16m^8 \delta$ then we get
+
+	\begin{align*}
+		\sum_{i=1}^n M_i(f) \le \frac{\epsilon}{16m^8}
+	\end{align*}
+
+	implies $f$ is $\epsilon$-near to dictatorship. Or
+
+	\begin{align*}
+		\sum_{i=1}^n M_i(f) \ge \frac{\epsilon}{16m^8}
+	\end{align*}
+
+	implies $f$ is $\epsilon$-far from dictatorship. And since $\delta < \frac{1}{32m^9}$, we have $\epsilon < \frac{1}{2m}$.
+
+	\begin{theorem}[Dobzinski and Procaccia re-worded]
+		Let $f$ be a Pareto-optimal SCF and let $n = 2$, $m \ge 3$, and $\epsilon < \frac{1}{2m}$. If $\sum_{i=1}^n M_i(f) \ge \frac{\epsilon}{16m^8}$ then $f$ is $\epsilon$-far from dictatorship.
+	\end{theorem}
+
+	The limitation of these results to two voters makes them unsuitable for application to political elections because any political election with only two voters seems meaningless. However, Dobzinski and Procaccia point out that even without extending these results there are some social choice situations which have only two voters but many alternatives --- indeed these results are more interesting as the number of alternatives becomes very large. One example of this would be a couple deciding where to eat dinner. There are only two ``voters'', but there can be a huge number of alternatives to choose from. This kind of situation can also occur among artificial intelligence agents deciding among a vast number of alternatives.
+
+	In 2010 Isaksson, Kindler, and Mossel published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}. Translating their results into the terminology we have been using, they proved that for a neutral social choice function $f$ with $m \ge 4$ alternatives and $n$ voters that is $\epsilon$-far from dictatorship, a uniformly chosen profile will be manipulable with probability at least $2^{-1} \epsilon^2 n^{-4} m^{-6} (m!)^{-3}$. In other words
+
+	\begin{align*}
+		\sum_{i=1}^n M_i(f) \ge \frac{\epsilon^2}{2 n^4 m^6 (m!)^3}.
+	\end{align*}
+
+	This bound allows the manipulating voter to randomly permute his entire preference list, which is the case considered by Friedgut, Kalai, and Nisan. However if we restrict him to permuting only four adjacent alternatives, Isaksson, Kindler, and Mossel showed that the bound becomes polynomial in the number of alternatives:
+
+	\begin{align*}
+		\sum_{i=1}^n M_i(f) \ge \frac{\epsilon^2}{10^4 n^3 m^{30}}.
+	\end{align*}
+
+	Isaksson, Kindler, and Mossel used purely geometric and combinatorial methods to achieve their results. One of the foundational techniques they employed was the canonical path method \cite{jerrum1993polynomial}. Given a graph $G$, the canonical path method attempts to give a lower bound on the `surface area' of a subset of vertices, $A$. Surface area is defined as the number of vertices in $A$ which have an edge to at least one vertex outside of $A$. Given two vertices $x, y$ such that $x \in A$ and $y \notin A$, we call the path between them the canonical path, and clearly this path must contain at least one surface vertex. Then by proving that each surface vertex lies on at most $r$ canonical paths, we bound the surface area of $A$ below by $\frac{|A| |\overline{A}|}{r}$ because the total number of total canonical paths is $|A| |\overline{A}|$.
+
+	The graph used by Isaksson, Kindler, and Mossel is very similar to the one used by Friedgut, Kalai, and Nisan. It is also similar to the one used for the results in this thesis, except that ours is directed, and is missing certain edges.
+
+	Next we define the boundary of $f$ with respect to alternatives $a, b$ as
+	\[
+		B^{a,b}_i(f) = \{(x, x') \mid f(x) = a, f(x') = b, \forall j \neq i: x_j = x'_j\}.
+	\]
+	For any distinct alternatives $a, b, c, d$ we construct canonical paths between $B^{a,b}_i$ and $B^{c,d}_j$ such that each path passes through a manipulation point. These paths are called manipulation paths.
+
+	We define manipulation paths between pairs of profiles in $B^{a,b}_i$ and $B^{c,d}_j$. In the first half of the path we will preserve the order or $a, b$, while in the second half of the path we will only modify the order of $a, b$ and not any other alternatives. The length of the manipulation path will be $2n - 3$ because we are not modifying the last two indices. For any pair of profiles $(x, x') \in B^{a,b}_i$ and $(z, z') \in B^{c,d}_j$ we formally define the manipulation path as follows. The manipulation path is of the form:
+	\begin{align*}
+		(x^{(0)}, x^{\prime(0)}), \ldots, (x^{(n - 2)}, x^{\prime(n - 2)}), (z^{(n - 2)}, z^{\prime(n - 2)}), \ldots, (z^{(0)}, z^{\prime(0)})
+	\end{align*}
+	such that $(x^{(0)}, x^{\prime(0)}) = (x, x')$ and $(z^{(0)}, z^{\prime(0)}) = (z, z')$. For all $k \in \{0, \ldots, n - 2\}$, for all $s \in \{0, \ldots, n - 2\}$ such that $s \neq k$ we restrict the path so that:
+	\begin{align}
+		(x_s^{(k)}, x_s^{\prime(k)}) &= (x_s^{(k-1)}, x_s^{\prime(k-1)}) \label{eq:manipulation-path-rule-1-x} \\
+		(z_s^{(k)}, z_s^{\prime(k)}) &= (z_s^{(k-1)}, z_s^{\prime(k-1)}). \label{eq:manipulation-path-rule-1-z}
+	\end{align}
+	Now at the $k$\textsuperscript{th} step we update the $k$\textsuperscript{th} index to have the same ordering of $a, b$ as $(x_k^{(0)}, x_k^{\prime(0)})$ and the same ordering of all other alternatives as $(z_k^{(0)}, z_k^{\prime(0)})$:
+	\begin{align}
+		(x_k^{(0)}, x_k^{\prime(0)}) &=_{\{a, b\}} (x_k^{(k)}, x_k^{\prime(k)}) =_{\overline{\{a, b\}}} (z_k^{(0)}, z_k^{\prime(0)}) \label{eq:manipulation-path-rule-2-x} \\
+		(x_k^{(0)}, x_k^{\prime(0)}) &=_{\{a, b\}} (z_k^{(k)}, z_k^{\prime(k)}) =_{\overline{\{a, b\}}} (z_k^{(0)}, z_k^{\prime(0)}). \label{eq:manipulation-path-rule-2-z}
+	\end{align}
+	Note that by the pairwise notation for defining a path: $(x^{(0)}, x^{\prime(0)}), (x^{(1)}, x^{\prime(1)})$, we mean that we have two paths of equal length: $x^{(0)}, x^{(1)}$ and $x^{\prime(0)}, x^{\prime(1)}$. Additionally, by the notation $x_k =_D z_k$ we mean that the preference lists $x_k$ and $z_k$ have the same ordering for every alternative in the set $D$ (see Definition \ref{preference-restriction-definition}).
+
+	We will perform a small example to illustrate how the above rules work together in forming the manipulation path. We use $n = 4$ voters which means we will have a manipulation path of length $2n - 3 = 5$. Here, for simplicity, we show only $x$ and $z$ but the example for $x'$ and $z'$ is exactly the same.
+	\begin{center}
+		\begin{tabular}{r | c c c c c c}
+			step						&	0		&	1		&	2		&	2		&	1		&	0		\\
+			\hline
+			1\textsuperscript{st} index	&	$x_1$	&	$y_1$	&	$y_1$	&	$y_1$	&	$y_1$	&	$z_1$	\\
+			2\textsuperscript{nd} index	&	$x_2$	&	$x_2$	&	$y_2$	&	$y_2$	&	$z_2$	&	$z_2$	\\
+			3\textsuperscript{rd} index	&	$x_3$	&	$x_3$	&	$x_3$	&	$z_3$	&	$z_3$	&	$z_3$	\\
+			4\textsuperscript{th} index	&	$x_4$	&	$x_4$	&	$x_4$	&	$z_4$	&	$z_4$	&	$z_4$	\\
+		\end{tabular}
+	\end{center}
+	Here $y_i$ for $i \in \{1, 2, 3, 4\}$ represents the result of Equation \ref{eq:manipulation-path-rule-2-x} (or \ref{eq:manipulation-path-rule-2-z} depending on whether it's on the $x$ side or the $z$ side). Therefore $y_i$ can be defined as
+	\[
+		x_i =_{\{a, b\}} y_i =_{\overline{\{a, b\}}} z_i
+	\]
+	or in other words we get $y_i$ by taking $z_i$ and swapping $a, b$ if necessary to ensure that their order is the same as in $x_i$.
+
+	Another example of a manipulation path is illustrated in Figure \ref{fig:manipulation-path}. In order to keep the figure simple we use $n = 3$ and $m = 4$ and only show one dimension (the ``front'') of the graph, when in reality it would be 3-dimensional. Notice that the $n - 1$ and $n$ (in this case 2\textsuperscript{nd} and 3\textsuperscript{rd}) indices of the nodes differ. In this highly simplified example the 1\textsuperscript{st} index of $x$, $x^{(1)}$, and $z$ are all the same. Usually they would be different, but still following the constraint
+	\[
+		x =_{\{a, b\}} x^{(1)} =_{\overline{\{a, b\}}} z.
+	\]
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=5in]{../figures/diagram7.pdf}
+			\caption{A visual example of a manipulation path.}
+			\label{fig:manipulation-path}
+		\end{center}
+	\end{figure}
+
+
+	We will now go through the example table step by step for the $x$ side (left half); the $z$ side is simply a mirror image of what happens in the $x$ side. At step 0 we have $x^{(0)} = x$ because we specified above that our initial value was $(x^{(0)}, x^{\prime(0)}) = (x,x')$. At step 1 we first use Equation \ref{eq:manipulation-path-rule-1-x} to essentially copy over every index from step 0 except index 1 (because it is the $k$\textsuperscript{th} index during this step). We then apply Equation \ref{eq:manipulation-path-rule-2-x} to index 1 to get $y_1$. At step 2 we again use Equation \ref{eq:manipulation-path-rule-1-x} to copy over every index from step 1 except for index 2 for which we use Equation \ref{eq:manipulation-path-rule-2-x} to get $y_2$. We don't modify the last two indices because these are the only ones on which $x, x'$ and $z, z'$ differ: recall that $(x, x') \in B_{n-1}^{a,b}$ and $(z, z') \in B_{n}^{c,d}$.
+
+	\begin{lemma}[Lemma 5.1 of Isaksson, Kindler, and Mossel]
+		For any SCF $f$, distinct $i, j \in \{1, \ldots, n\}$ and distinct alternatives $a, b, c, d \in C$ there exists a mapping $h : B_i^{a,b}(f) \times B_j^{c,d}(f) \rightarrow M$ where
+		\[
+			M = \{x \in P \mid f \text{ is manipulable at x}\}
+		\]
+		such that for any $x \in M$
+		\[
+			|h^{-1}(x)| \le 2n(m!)^{n+4}
+		\]
+	\end{lemma}
+	\begin{proof}
+		Without loss of generality, let $i = n - 1$ and $j = n$. We construct a manipulation path between $(x, x') \in B_i^{a,b}(f)$ and $(z, z') \in B_j^{c,d}(f)$. Notice that $(x, x')$ takes the values $(a, b)$ while $(z, z')$ takes the values $(c, d)$ because $f(x) = a$, $f(x') = b$, $f(z) = c$, and $f(z') = d$. Our claim is that along this manipulation path is an edge $(u, u'), (v, v')$ such that either
+		\begin{enumerate}
+			\item at least one of $u, u', v, v'$ is a manipulation point
+			\item $f$ takes on at least three values on the points $u, u', v, v'$.
+		\end{enumerate}
+		In explanation, notice that there are at most three possible situations, and at least one of the above claims holds for each:
+		\begin{itemize}
+			\item On the first half of the path the value of the pair changes from $(a, b)$ to something else. If the first value changes to $b$ or the second value changes to $a$ then we have a manipulation point because the ranking of $a, b$ doesn't change on the first half of the path. Otherwise the values change to something other than $a$ or $b$, so $f$ takes at least three values at this point.
+			\item On the second half of the path the value of the pair changes from $(c, d)$ to something else --- moving from the end towards the middle. If the first value changes to $d$ or the second value changes to $c$ then we have a manipulation point because the ranking of $c, d$ doesn't change on the second half of the path. Otherwise the values change to something other than $c$ or $d$, so $f$ takes at least three values at this point.
+			\item The middle edge $(x^{(n-2)}, x^{\prime(n-2)}), (z^{(n-2)}, z^{\prime(n-2)})$ connects a pair with values $(a, b)$ and $(c, d)$. Clearly $f$ takes on at least three values at this point.
+		\end{itemize}
+
+		Notice that $u, u', v, v'$ agree in all but two indices which will be either $\{n - 1, k\}$, $\{n, k\}$, or $\{n - 1, n\}$ depending on whether $(u, u'), (v, v')$ is on the first half, on the second half, or is the middle edge of the path respectively. For example, if $(u, u'), (v, v')$ is on the first half of the path $u, u'$ and $v, v'$ will both differ on the $n - 1$ index because both pairs are in $B^{a,b}_{n-1}$. Additionaly, $u, v$ and $u', v'$ will each differ on $k$\textsuperscript{th} index because of the definition of the manipulation path.
+
+		We claim that there exists a manipulation point $h((x, x'), (z, z')) = y$ which only differs from $u, u', v, v'$ on two indices. If Case 1 above holds, then we can let $y$ be whichever one of $u, u', v, v'$ is a manipulation point.
+
+		If Case 2 holds then we apply the Gibbard-Satterthwaite to a restricted version of $f$, which we will call $f'$, which is $f$ restricted to the two indices on which $u, u', v, v'$ differ. We call these indices $k, p$. First we define a mapping $g : L(C)^2 \rightarrow L(C)^n$ which maps profiles from $f'$ to $f$.
+		\begin{align*}
+			g(x)_q &= u_q \,\,\, \forall q \notin \{k, p\} \\
+			g(x)_k &= x_1 \\
+			g(x)_p &= x_2.
+		\end{align*}
+		We define the set of alternatives to be $C$ where $|C| = m$ and we define $f' : L(C)^2 \rightarrow C$ such that
+		\[
+			f'(x) = f(g(x)).
+		\]
+		If we apply the Gibbard-Satterthwaite theorem \cite{gibbard1973manipulation, satterthwaite1975strategy} to $f'$ we will see that $f'$ is manipulable since it is not a dictator and it takes on at least 3 values (because Case 2 holds). Therefore some $x$ is a manipulation point for $f'$, so $g(x)$ is a manipulation point of $f$. And in fact $g(x)$ differs from $u, u', v, v'$ on only two indices so $y = g(x)$.
+
+		The final step in the proof is to count the maximum number of pairs that could have lead to the manipulation point $y$ and that will be simply the number of inverses of the mapping function: $|h^{-1}(f)|$. To begin with, we know that the length of the manipulation path between $(x, x')$ and $(z, z')$ is $2n - 3$. This gives us $2n - 3$ possibilities for $(u, u'), (v, v')$. In addition, given $y$ there are at most $(q!)^2$ possibilities for $u$ because it differs from $y$ on at most two indices. We find that there are at most $(q!)^n$ possibilities for $x$ and $z$ as follows. For any $k \in \{1, \ldots, n\}$ we will have either:
+		\begin{itemize}
+			\item $u_k = x_k$ if $u$ is on the first half of the path and $k$ is an index that hasn't been updated --- by update we mean that it has been made to conform to $x_k =_{\{a,b\}} u_k =_{\overline{\{a,b\}}} z_k$. In this case there are $q!$ possibilities for $z_k$ because it can be any preference list.
+			\item $u_k = z_k$ if $u$ is on the second half of the path and $k$ is an index that hasn't been updated. In this case there are $q!$ possibilities for $x_k$ because it can be any preference list.
+			\item $x_k =_{\{a,b\}} u_k =_{\overline{\{a,b\}}} z_k$ if $k$ is an index that has been updated. In this case there are $\frac{q!}{2}$ possibilities for $x_k$ because only the order of $a, b$ needs to match $u_k$, and there are $2$ possibilities for $z_k$ because the order of every alternative besides $a, b$ needs to match $u_k$.
+		\end{itemize}
+		No matter which of the previous cases hold for each $k$, the total number of possibilities for $x$ and $z$ is still bounded above by $(q!)^n$.
+
+		Lastly, given $x$ and $z$ there are at most $q!$ possibilitites for each of $x'$ and $z'$ respectively, since edges of the border set differ only in one index. Summing these we get:
+		\begin{align*}
+			|h^{-1}| &\le (2n - 3)(q!)^2(q!)^n(q!)(q!) \\
+			|h^{-1}| &\le (2n - 3)(q!)^{n+4}.
+		\end{align*}
+
+	\end{proof}
 
 	In 2011 Friedgut et al. removed the neutrality constraint from their original theorem, and added an author \cite{friedgut2011quantitative}.
 
-	Mossel and R\'{a}cz \cite{mossel2011quantitative} took ideas from these two proofs and created a unified proof with the same results as Isaksson, Kindler, and Mossel, but without the neutrality constraint. This is a very useful result, and independently supercedes our work here. We hope that, though our results here have been surpassed, our work may still be instructive as an alternative, and possibly simpler proof.
+	Mossel and R\'{a}cz \cite{mossel2011quantitative} took ideas from these two proofs and created a unified proof with the same results as Isaksson, Kindler, and Mossel, but without the neutrality constraint. This is a very useful result.
+
+	% The work of Mossel and R\'{a}cz independently supersedes our work here. We hope that, though our results here have been surpassed, our work may still be instructive as an alternative, and possibly simpler proof.

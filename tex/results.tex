@@ -2,14 +2,142 @@
 
 \chapter{Results}
 
-	Friedgut's main theorem is proved in three steps; the first two are generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of lemma 6, lemma 7, and lemma 8 which we will generalize one at a time.
+	In this chapter we will attempt to generalize step 3 of Friedgut by way of generalizing Friedgut's Lemma 6, Lemma 7, and Lemma 8. However, we will begin the chapter with some general lattice theory results that we will need later on in the chapter.
 
-	\begin{lemma}[Lemma 3 of Friedgut]
+\section{Lattice Theory}
+
+	We are not aware of any existing proofs of these lemmas, but some of them are fairly elementary and have a broad application, so they could have previously been proven by others.
+
+	First we will prove, in three steps, that our inversion lattice remains a lattice when we enforce an order between two neighboring elements in the order. Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
+
+	\begin{lemma}
+		\label{identified-permutation-lattice-join}
+		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice, with $\le_s$ defined as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation over $Y$ as defined in Definition \ref{inversion-definition}. Let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
+		\[
+			\exists(x \join y) \implies \exists(x \join^{ij} y).
+		\]
+	\end{lemma}
+
+	\begin{proof}
+		Assume $\exists(x \join y)$. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
+		\[
+			z \ge_s x \textrm{ and } z \ge_s y.
+		\]
+		And $z$ is the least upper bound of $\{x, y\}$. For every $a \in X$:
+		\[
+			(a \ge_s x \textrm{ and } a \ge_s y) \implies z \le_s a.
+		\]
+		Since $x \in X^{ij}$, then $(i, j) \notin Inv_x$. Since $z \ge_s x$, then $(i, j) \notin Inv_z$, so $z \in X^{ij}$. By definition $z \ge_s x \implies z \ge^{ij}_s x$ and $z \ge_s y \implies z \ge^{ij}_s y$. Therefore $z$ is an upper bound of $\{x, y\}$ in $X^{ij}$.
+
+		For any $a \in X^{ij}$ if $a$ is an upper bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also an upper bound of $\{x, y\}$ in $X$. Therefore $z \le_s a$, so $z \le^{ij}_s a$, which means $z = x \join^{ij} y$. So clearly $x \join^{ij} y$ exists.
+	\end{proof}
+
+	\begin{lemma}
+		\label{identified-permutation-lattice-meet}
+		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\meet$ and $\meet^{ij}$ denote the meet in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
+		\[
+			\exists(x \meet y) \implies \exists(x \meet^{ij} y).
+		\]
+	\end{lemma}
+
+	\begin{proof}
+		Assume $\exists(x \meet y)$. Let $z = x \meet y$. Then $z$ is a lower bound of $\{x, y\}$:
+		\[
+			z \le_s x \textrm{ and } z \le_s y.
+		\]
+		And $z$ is the greatest lower bound of $\{x, y\}$: for every $a \in X$:
+		\[
+			(a \le_s x \textrm{ and } a \le_s y) \implies z \ge_s a.
+		\]
+
+		We will now detour to show that $z \in X^{ij}$. Since $z = x \meet y$, then $\Inv_z = (\Inv_x \cup \Inv_y)^t$ \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for any $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
+
+		By definition $z \le_s x \implies z \le^{ij}_s x$ and $z \le_s y \implies z \le^{ij}_s y$. Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
+
+		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $z \ge_s a$, so $z \ge^{ij}_s a$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ exists.
+	\end{proof}
+
+	\begin{proposition}
+		\label{proposition-identification-is-lattice}
+		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that $(X^{ij}, \le^{ij}_s)$ is a lattice.
+	\end{proposition}
+
+	\begin{proof}
+		We know that $\exists(x \join y)$ and $\exists(x \meet y)$ because $(X, \le_s)$ is a lattice. Therefore by lemma \ref{identified-permutation-lattice-join} and lemma \ref{identified-permutation-lattice-meet} we have $\exists(x \join^{ij} y)$ and $\exists(x \meet^{ij} y)$ respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
+	\end{proof}
+
+	Now we will show that a ``grid'' of lattices is also a lattice. For example, suppose we have the lattice in Figure \ref{figure-one-dimensional-lattice}. The top element is the greatest, and the arrows show the ``less than'' relationship between elements. Each column of numbers represents a ranking of alternatives ${1, 2, 3}$ in which we don't care about the relationship between alternative $1$ and $2$ so we simply replace alternative $2$ with $1$ in the ranking. All this aside though, this proof is valid for any lattice.
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=1in]{../figures/diagram5.pdf}
+			\caption{A single dimension of lattice.}
+			\label{figure-one-dimensional-lattice}
+		\end{center}
+	\end{figure}
+
+	If we were to make that lattice into a 2-dimensional ``grid'' it would look like Figure \ref{figure-two-dimensional-lattice}. This would be the case if we only had two voters ($n = 2$).
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=3in]{../figures/diagram6.pdf}
+			\caption{A 2-dimensional version of the lattice from Figure \ref{figure-one-dimensional-lattice}.}
+			\label{figure-two-dimensional-lattice}
+		\end{center}
+	\end{figure}
+
+	\begin{proposition}
+		\label{proposition-grid-is-lattice}
+		Let $(X, \le)$ be a lattice. Let $X^n$ be the set of all $n$-tuples of elements of $X$. Let $\le^n$ be defined as: for all $x, y \in X$ and all $i \in \{1, \ldots, n\}$
+		\[
+			x \le^n y \iff x_i \le y_i.
+		\]
+		Then $(X^n, \le^n)$ is a lattice.
+	\end{proposition}
+
+	\begin{proof}
+		By definition of a lattice, $(X^n, \le^n)$ is a lattice if for any two elements $s, t \in S^n$, $s \join t$ exists and $s \meet t$ exists.
+
+		First we show that $s \join t$ exists. We define $u \in X^n$ such that $u_i = s_i \join t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \join t$. Because $u_i = s_i \join t_i$, we have
+		\[
+			u_i \ge s_i \textrm{ and } u_i \ge s_i
+		\]
+		so
+		\[
+			u \ge^n s \textrm{ and } u \ge^n t
+		\]
+		meaning that $u$ is an upper bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also an upper bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
+		\[
+			v_i \ge s_i \textrm{ and } v_i \ge t_i
+		\]
+		so since $u_i = s_i \join t_i$, then $u_i \le v_i$. Therefore $u \le^n v$, i.e. $u$ is the least upper bound of $\{s, t\}$.
+
+		Second we show that $s \meet t$ exists (by the same argument). We define $u \in X^n$ such that $u_i = s_i \meet t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \meet t$. Because $u_i = s_i \meet t_i$, we have
+		\[
+			u_i \le s_i \textrm{ and } u_i \le s_i
+		\]
+		so
+		\[
+			u \le^n s \textrm{ and } u \le^n t
+		\]
+		meaning that $u$ is a lower bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also a lower bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
+		\[
+			v_i \le s_i \textrm{ and } v_i \le t_i
+		\]
+		so since $u_i = s_i \meet t_i$, then $u_i \ge v_i$. Therefore $u \ge^n v$, i.e. $u$ is the greatest lower bound of $\{s, t\}$.
+	\end{proof}
+
+
+\section{Main Theorem}
+
+	Friedgut's main theorem is proved in three steps; the first two are already generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of Lemma 6, Lemma 7, and lemma 8 which we will generalize one at a time. Therefore, Step 3 of Friedgut is our main theorem:
+
+	\begin{theorem}[Lemma 3 of Friedgut]
 		For every SCF $f$ on $m$ alternatives and every $a, b \in C$:
 		\[
 			M^{a, b}(f) \le m! \cdot \sum_i M_i(f)
 		\]
-	\end{lemma}
+	\end{theorem}
 
 	For the rest of the proof we will fix a SCF $f$.
 

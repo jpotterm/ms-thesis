@@ -8,6 +8,8 @@
 
 \section{Definitions}
 
+	We will begin with basic definitions regarding set theory and lattice theory, and then towards the end of the section we will transition to definitions from social choice theory.
+
 	\begin{definition}
 		A \emph{permutation} of a set $X$ is a bijective function from $X$ to $X$.
 	\end{definition}
@@ -16,7 +18,10 @@
 		A \emph{total ordering} over a set $X$ is a binary relation on $X$ which is antisymmetric, transitive, and total.
 	\end{definition}
 
-	Although technically permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is similar to $\sigma$. Likewise, one could construct $\sigma$ from $R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff $\forall z \in X, z < x \implies z < y$.
+	Although technically permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $<_R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is similar to $\sigma$. Likewise, for any well-ordered set $X$ and a total ordering, $<_R$, over $X$, one could construct a permutation $\sigma$ from $<_R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff
+	\begin{align*}
+		|\{z \in X \mid z < x\}| = |\{z \in X \mid z <_R y\}|.
+	\end{align*}
 
 	For countable sets we will sometimes view permutations and total orders as sequences of elements, using a subscript notation, provided our meaning is clear from context.
 
@@ -50,6 +55,7 @@
 	\end{definition}
 
 	\begin{definition}
+		\label{inversion-definition}
 		For any poset $(P, \le)$, let $\sigma$ be a permutation of $P$. We define the \emph{inversions} of $\sigma$ to be a binary relation $\Inv_{\sigma}$ on $P$:
 		\[
 			\Inv_{\sigma} = \{(i,j) \mid i, j \in P, i < j, \sigma^{-1}(i) > \sigma^{-1}(j)\}.
@@ -63,6 +69,27 @@
 	\end{definition}
 
 	\begin{definition}
+		\label{kendall-tau-definition}
+		For any poset $(P, \le)$, let $\sigma$ and $\pi$ be a permutations of $P$. We define the \emph{Kendall tau distance}, $K$, between $\sigma$ and $\pi$ to be the number of adjacent swaps one would have to make to get from $\sigma$ to $\pi$ or vice versa. More formally:
+		\[
+			K(\sigma, \pi) = \sum_{\{i, j\} \in P} \overline{K}_{i, j}(\sigma, \pi)
+		\]
+		where
+		\[
+			\overline{K}_{i,j}(\sigma, \pi) =
+				\begin{cases}
+					0 & \textrm{ if } i \textrm{ and } j \textrm{ are in the same order in } \sigma \textrm{ and } \pi \\
+					1 & \textrm{ if } i \textrm{ and } j \textrm{ are in the opposite order in } \sigma \textrm{ and } \pi
+				\end{cases}
+		\]
+		Alternatively we can define the Kendall tau distance in terms of inversions
+		\[
+			K(\sigma, \pi) = |\Inv_{\sigma} \symmetricdifference \Inv_{\pi}|
+		\]
+		with $\symmetricdifference$ denoting symmetric difference.
+	\end{definition}
+
+	\begin{definition}
 		For any poset $(P, \le)$, let $x,y \in P$. We say that $x$ is a \emph{predecessor} of $y$ if $x < y$. We say that $x$ is a \emph{direct predecessor} of $y$ if $x$ is the greatest predecessor of $y$.
 	\end{definition}
 
@@ -73,6 +100,7 @@
 	In the next couple of definitions and many of the lemmas in this section, we will be investigating lattices whose elements are permutations of a set. That is, given a set $Y$, we will study some of the properties of the lattice $(S(Y), \le)$.
 
 	\begin{definition}[$\le_s$]
+		\label{partial-order-s-definition}
 		Let $(P, \le)$ be a poset and let $X = S(P)$. We define the partial ordering $\le_s$ on $X$ such that for all $\sigma, \pi \in X$:
 		\[
 			\sigma \le_s \pi \iff \Inv_{\sigma} \subseteq \Inv_{\pi}.
@@ -128,7 +156,12 @@
 	\end{definition}
 
 	\begin{definition}
+		\label{preference-restriction-definition}
 		For a set of candidates $D \subseteq C$, for a preference list $v \in V$ and a preference profile $p \in P$ we denote $v$ and $p$ \emph{restricted to} $D$ by $v|_D$ and $p|_D$ respectively. $v|_D$ means $v$ after all the candidates who are not in $D$ have been removed from the preference list. $p|_D$ means that every preference list in $p$ has been restricted to $D$.
+
+		We will sometimes wish to restrict to every alternative except those in $D$ in which case we will write $v|_{\overline{D}}$ where the universe is understood to be $C$.
+
+		Since we will often use restriction when comparing two preference lists we will write $x|_D = y|_D$ simply as $x =_D y$.
 	\end{definition}
 
 	\begin{definition}
@@ -136,132 +169,9 @@
 	\end{definition}
 
 	\begin{definition}
+		\label{manipulation-definition}
 		A \emph{successful manipulation} (or \emph{profitable manipulation}) by voter $i$ of a SCF $f$ at profile $x$ is a preference list $x'_i$ such that
 		\[
 			f((x_{-i}, x'_i)) \succ_i f((x_{-i}, x_i)).
 		\]
 	\end{definition}
-
-
-\section{Lemmas}
-
-	We now have enough definitions to prove some lemmas and propositions that we will need later. We are not aware of any existing proofs of these lemmas, but some of them are fairly elementary and have a broad application, so they could have previously been proven by others.
-
-	First we will prove, in three steps, that our inversion lattice remains a lattice when we enforce an order between two neighboring elements in the order. Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
-
-	\begin{lemma}
-		\label{identified-permutation-lattice-join}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice, with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
-		\[
-			\exists(x \join y) \implies \exists(x \join^{ij} y).
-		\]
-	\end{lemma}
-
-	\begin{proof}
-		Assume $\exists(x \join y)$. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
-		\[
-			z \ge_s x \textrm{ and } z \ge_s y.
-		\]
-		And $z$ is the least upper bound of $\{x, y\}$. For every $a \in X$:
-		\[
-			(a \ge_s x \textrm{ and } a \ge_s y) \implies z \le_s a.
-		\]
-		Since $x \in X^{ij}$, then $(i, j) \notin Inv_x$. Since $z \ge_s x$, then $(i, j) \notin Inv_z$, so $z \in X^{ij}$. By definition $z \ge_s x \implies z \ge^{ij}_s x$ and $z \ge_s y \implies z \ge^{ij}_s y$. Therefore $z$ is an upper bound of $\{x, y\}$ in $X^{ij}$.
-
-		For any $a \in X^{ij}$ if $a$ is an upper bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also an upper bound of $\{x, y\}$ in $X$. Therefore $z \le_s a$, so $z \le^{ij}_s a$, which means $z = x \join^{ij} y$. So clearly $x \join^{ij} y$ exists.
-	\end{proof}
-
-	\begin{lemma}
-		\label{identified-permutation-lattice-meet}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\meet$ and $\meet^{ij}$ denote the meet in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
-		\[
-			\exists(x \meet y) \implies \exists(x \meet^{ij} y).
-		\]
-	\end{lemma}
-
-	\begin{proof}
-		Assume $\exists(x \meet y)$. Let $z = x \meet y$. Then $z$ is a lower bound of $\{x, y\}$:
-		\[
-			z \le_s x \textrm{ and } z \le_s y.
-		\]
-		And $z$ is the greatest lower bound of $\{x, y\}$: for every $a \in X$:
-		\[
-			(a \le_s x \textrm{ and } a \le_s y) \implies z \ge_s a.
-		\]
-
-		We will now detour to show that $z \in X^{ij}$. Since $z = x \meet y$, then $\Inv_z = (\Inv_x \cup \Inv_y)^t$ \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for any $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
-
-		By definition $z \le_s x \implies z \le^{ij}_s x$ and $z \le_s y \implies z \le^{ij}_s y$. Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
-
-		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $z \ge_s a$, so $z \ge^{ij}_s a$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ exists.
-	\end{proof}
-
-	\begin{proposition}
-		\label{proposition-identification-is-lattice}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that $(X^{ij}, \le^{ij}_s)$ is a lattice.
-	\end{proposition}
-
-	\begin{proof}
-		We know that $\exists(x \join y)$ and $\exists(x \meet y)$ because $(X, \le_s)$ is a lattice. Therefore by lemma \ref{identified-permutation-lattice-join} and lemma \ref{identified-permutation-lattice-meet} we have $\exists(x \join^{ij} y)$ and $\exists(x \meet^{ij} y)$ respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
-	\end{proof}
-
-	Now we will show that a ``grid'' of lattices is also a lattice. For example, suppose we have the lattice in Figure \ref{figure-one-dimensional-lattice}. The top element is the greatest, and the arrows show the ``less than'' relationship between elements. Each column of numbers represents a ranking of alternatives ${1, 2, 3}$ in which we don't care about the relationship between alternative $1$ and $2$ so we simply replace alternative $2$ with $1$ in the ranking. All this aside though, this proof is valid for any lattice.
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=1in]{../figures/diagram5.pdf}
-			\caption{A single dimension of lattice.}
-			\label{figure-one-dimensional-lattice}
-		\end{center}
-	\end{figure}
-
-	If we were to make that lattice into a 2-dimensional ``grid'' it would look like Figure \ref{figure-two-dimensional-lattice}. This would be the case if we only had two voters ($n = 2$).
-
-	\begin{figure}[ht]
-		\begin{center}
-			\includegraphics[width=3in]{../figures/diagram6.pdf}
-			\caption{A 2-dimensional version of the lattice from Figure \ref{figure-one-dimensional-lattice}.}
-			\label{figure-two-dimensional-lattice}
-		\end{center}
-	\end{figure}
-
-	\begin{proposition}
-		\label{proposition-grid-is-lattice}
-		Let $(X, \le)$ be a lattice. Let $X^n$ be the set of all $n$-tuples of elements of $X$. Let $\le^n$ be defined as: for all $x, y \in X$ and all $i \in \{1, \ldots, n\}$
-		\[
-			x \le^n y \iff x_i \le y_i.
-		\]
-		Then $(X^n, \le^n)$ is a lattice.
-	\end{proposition}
-
-	\begin{proof}
-		By definition of a lattice, $(X^n, \le^n)$ is a lattice if for any two elements $s, t \in S^n$, $s \join t$ exists and $s \meet t$ exists.
-
-		First we show that $s \join t$ exists. We define $u \in X^n$ such that $u_i = s_i \join t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \join t$. Because $u_i = s_i \join t_i$, we have
-		\[
-			u_i \ge s_i \textrm{ and } u_i \ge s_i
-		\]
-		so
-		\[
-			u \ge^n s \textrm{ and } u \ge^n t
-		\]
-		meaning that $u$ is an upper bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also an upper bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
-		\[
-			v_i \ge s_i \textrm{ and } v_i \ge t_i
-		\]
-		so since $u_i = s_i \join t_i$, then $u_i \le v_i$. Therefore $u \le^n v$, i.e. $u$ is the least upper bound of $\{s, t\}$.
-
-		Second we show that $s \meet t$ exists (by the same argument). We define $u \in X^n$ such that $u_i = s_i \meet t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \meet t$. Because $u_i = s_i \meet t_i$, we have
-		\[
-			u_i \le s_i \textrm{ and } u_i \le s_i
-		\]
-		so
-		\[
-			u \le^n s \textrm{ and } u \le^n t
-		\]
-		meaning that $u$ is a lower bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also a lower bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
-		\[
-			v_i \le s_i \textrm{ and } v_i \le t_i
-		\]
-		so since $u_i = s_i \meet t_i$, then $u_i \ge v_i$. Therefore $u \ge^n v$, i.e. $u$ is the greatest lower bound of $\{s, t\}$.
-	\end{proof}

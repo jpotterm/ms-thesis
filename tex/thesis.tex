@@ -10,6 +10,7 @@
 \DeclareMathOperator{\bigmeet}{\bigwedge}
 \DeclareMathOperator{\join}{\vee}
 \DeclareMathOperator{\bigjoin}{\bigvee}
+\DeclareMathOperator{\symmetricdifference}{\vartriangle}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
@@ -27,19 +28,6 @@
 \newtheorem*{note}{Note}
 \newtheorem{case}{Case}
 \newtheorem{claim}{Claim}
-
-\newtheoremstyle{customtheoremstyle}
-	{\topsep}
-	{\topsep}
-	{\itshape}
-	{}
-	{\bfseries}
-	{.}
-	{.5em}
-	{\thmname{#3}}
-
-\theoremstyle{customtheoremstyle}
-\newtheorem{customtheorem}{Custom}
 
 \let\emptysetraw\emptyset
 \renewcommand{\emptyset}{\varnothing}
@@ -86,7 +74,8 @@
 \backmatter
 
 % Bibliography
-\bibliographystyle{abbrv}
+% \bibliographystyle{abbrv}
+\bibliographystyle{alpha}
 \bibliography{../../Common/references}  % file path without .bib extension
 
 \end{document}
