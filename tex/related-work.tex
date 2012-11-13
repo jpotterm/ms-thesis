@@ -196,8 +196,34 @@
 
 	\end{proof}
 
-	In 2011 Friedgut et al. removed the neutrality constraint from their original theorem, and added an author \cite{friedgut2011quantitative}.
+	One of the open problems of Friedgut, Kalai, and Nisan was finding a way ``to replace the neutrality condition with the weaker `correct' condition: being far from having a range of size at most 2. \cite{friedgut2008elections}'' In 2011, Friedgut et al. successfully achieved this themselves with the help of one additional author \cite{friedgut2011quantitative}. Most of the work required to replace the neutrality condition focuses on the first step of the original theorem, and their results are as follows.
+	\begin{theorem}
+		There exist universal constants $C, C' > 0$ such that for every $\epsilon > 0$ and any $n$ the following holds:
+		\begin{itemize}
+			\item If $F$ is an SCF on $n$ voters and three alternatives, such that the distance of $F$ from a dictatorship and from having only two alternatives in its range is at least $\epsilon$, then
+			\[
+				\sum_{i=1}^n M_i(F) \ge C \cdot \epsilon^6.
+			\]
+			\item If, in addition, $F$ is neutral (that is, invariant under permutation of the alternatives), then:
+			\[
+				\sum_{i=1}^n M_i(F) \ge C' \cdot \epsilon^2.
+			\]
+		\end{itemize}
+	\end{theorem}
 
-	Mossel and R\'{a}cz \cite{mossel2011quantitative} took ideas from these two proofs and created a unified proof with the same results as Isaksson, Kindler, and Mossel, but without the neutrality constraint. This is a very useful result.
+	Mossel and R\'{a}cz \cite{mossel2011quantitative} took ideas from these two proofs and created a unified proof with the same results as Isaksson, Kindler, and Mossel, but without the neutrality constraint. This is a very useful result is as follows.
+	\begin{theorem}
+		Suppose we have $n \ge 1$ voters, $m \ge 3$ alternatives, and a SCF $f : L(C)^n \rightarrow C$ satisfying $\mathbf{D}(f, \mathrm{NONMANIP}) \ge \epsilon$. Then
+		\[
+			\mathbb{P}(\sigma \in M(f)) \ge \mathbb{P}(\sigma \in M_4(f)) \ge p \left( \epsilon, \frac{1}{n}, \frac{1}{m} \right)
+		\]
+		for some polynomial $p$, where $\sigma \in L(C)^n$ is selected uniformly. In particular, we show a lower bound of $\frac{\epsilon^{15}}{10^{39} n^{67} m^{166}}$.
 
-	% The work of Mossel and R\'{a}cz independently supersedes our work here. We hope that, though our results here have been surpassed, our work may still be instructive as an alternative, and possibly simpler proof.
+		An immediate consequence is that
+		\[
+			\mathbb{P}((\sigma, \sigma') \text{ is a manipulation pair for } f) \ge q \left( \epsilon, \frac{1}{n}, \frac{1}{m} \right)
+		\]
+		for some polynomial $q$, where $\sigma \in L(C)^n$ is uniformly selected, and $\sigma'$ is obtained from $\sigma$ by uniformly selecting a coordinate $i \in \{ 1, \ldots, n \}$, uniformly selecting $j \in \{ 1, \ldots, n-3 \}$, and then uniformly randomly permuting the following four adjacent alternatives in $\sigma_i: \sigma_i(j), \sigma_i(j+1), \sigma_i(j+2),$ and $\sigma_i(j+3)$. In particular, the specific lower bound for $\mathbb{P}(\sigma \in M_4(f))$ implies that we can take $q \left( \epsilon, \frac{1}{n}, \frac{1}{m} \right) = \frac{\epsilon^{15}}{10^{41} n^{68} m^{167}}$.
+	\end{theorem}
+
+	Above the distance between SCFs is defined to be the fraction of inputs on which they differ: $\mathbf{D}(f, g) = \mathbb{P}(f (\sigma) \ne g(\sigma))$, and for a class of SCFs $G$ we take the SCF with the minimum distance: $\mathbf{D}(f, G) = \min_{g \in G} \mathbf{D}(f, g)$. NONMANIP is defined to be the set of SCFs which are either dictators or take at most two values. Finally, $M(f)$ denotes the set of manipulation points of the SCF f, and for a given $r$, let $M_r(f)$ denote the set of $r$-manipulation points of $f$ (we only allow permuting $r$ adjacent alternatives instead of the entire preference list).
