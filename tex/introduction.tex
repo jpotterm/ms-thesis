@@ -31,11 +31,43 @@
 
 \section{Difficulty}
 
-	The difficulty of this problem can be seen by the recent work done in generalizing Friedgut, Kalai, and Nisan.
+	The difficulty of this problem can be seen by the recent work done in generalizing the results of Friedgut, Kalai, and Nisan. Firstly, its difficulty can be seen by Friedgut, Kalai, and Nisan themselves failing to generalize it, both in the original paper \cite{friedgut2008elections}, and also later when they removed the neutrality constraint \cite{friedgut2011quantitative}. If it were an easy task, they would have done it from the outset.
+
+	In addition, other authors have done work along the same lines, but still without coming up with a general result. In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed 5 other conditions for the voting rule \cite{xia2008sufficient}:
+
+	\begin{description}
+		\item[Homogeneity] For any $n \in \mathbb{N}$ we have:
+			\begin{align*}
+				f(P) = f\left(\bigcup_{i=1}^n P\right).
+			\end{align*}
+		\item[Anonymity] The result of the election does not depend on the names of the voters. Formally, given a profile $P$ and a permutation $\sigma(P)$: $f(P) = f(\sigma(P))$.
+		\item[Non-imposition] (Defined above, in the Gibbard-Satterthwaite theorem)
+		\item[Canceling out] Adding the set of all linear orders to the votes does not change the result. More formally, for any profile $P$ we have that: $f(P) = f(P \cup L(C))$.
+		\item[Stability] Given alternatives $C = \{c_1, c_2, \ldots, c_m\}$, there exists a profile $P$ such that:
+			\begin{enumerate}
+				\item $P$ and $D_{m}(P)$ are both stable (slight modifications don't change the winner)
+				\item $f(P) = c_1$
+				\item $f(D_{m}(P)) = c_2$
+			\end{enumerate}
+			Where $D_m$ is defined such that if $D_m(P) = P'$, then $P|_{C \backslash c_m} = P'|_{C \backslash c_m}$ and the position of $c_m$ is uniformly distributed in $P'$. For a formal definition of $D_m$ and of ``stability'', see the original paper \cite{xia2008sufficient}.
+	\end{description}
+
+	However, these conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
+
+	Around the same time Dobzinski and Procaccia published complementary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}. They proved the following:
+
+	\begin{theorem}[Dobzinski and Procaccia]
+		Let $f$ be a Pareto-optimal SCF and let $n = 2$, $m \ge 3$, and $\delta < \frac{1}{32m^9}$. If $f$ is $\delta$-strategyproof then $f$ is $16m^8 \delta$-dictatorial.
+	\end{theorem}
+
+	The fact that all of these authors worked on the same problem over multiple years and were unable to achieve a general result speaks to the difficulty of this problem.
+
+
+\section{Independent Work}
 
 	% This should go a bit later, but I'm not sure where
 
-	Unfortunately for us, but fortunately for the field of social choice theory as a whole, Isaksson, Kindler, and Mossel have, independently during the writing of this thesis, published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}. Translating their results into the terminology we have been using, they proved that for a neutral social choice function $f$ with $m \ge 4$ alternatives and $n$ voters that is $\epsilon$-far from dictatorship, a uniformly chosen profile will be manipulable with probability at least $2^{-1} \epsilon^2 n^{-4} m^{-6} (m!)^{-3}$.
+	Unfortunately for us, but fortunately for the field of social choice theory as a whole, Isaksson, Kindler, and Mossel \emph{have}, independently during the writing of this thesis, published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}. Translating their results into the terminology we have been using, they proved that for a neutral social choice function $f$ with $m \ge 4$ alternatives and $n$ voters that is $\epsilon$-far from dictatorship, a uniformly chosen profile will be manipulable with probability at least $2^{-1} \epsilon^2 n^{-4} m^{-6} (m!)^{-3}$.
 
 	Later Friedgut et al. removed the neutrality constraint from their original theorem, and added an author \cite{friedgut2011quantitative}.
 
