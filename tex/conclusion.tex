@@ -2,4 +2,27 @@
 
 \chapter{Conclusion}
 
-	Placeholder.
+	We have attempted to prove the following main result in order to extend the results of Friedgut, Kalai, and Nisan in a straightforward manner, and along the same lines of reasoning as the original proof. Our main theorem is
+
+	\begin{theorem}[Main Result]
+		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over 3 alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulatiblity: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
+	\end{theorem}
+
+	Unfortunately, due to time constraints we were unable to prove (or disprove) Lemma \ref{friedgut-lemma-8} because of the problem noted in the attempted proof for that lemma. We conjecture that this can be proven without many changes to our attempted proof, and we leave this as an open problem.
+
+	Since our main result relies on Lemma \ref{friedgut-lemma-8}, we have only been able to show the following two lemmas.
+
+	\begin{lemma}
+		Let $C$ be a set of alternatives. Let $a, b \in C$ be any two alternatives. Let $m = |C|$ and let $n$ be the number of voters. Let $f$ be a SCF. We have
+		\[
+			M^{a,b}(f) = E_{p \in L(C)^n} \left[ \frac{|A^{a,b}_a(p)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|A^{a,b}_b(p)|}{\left(\frac{m!}{2}\right)^n} \right]
+		\]
+	\end{lemma}
+
+	\begin{lemma}
+		\[
+			M_i(f) \ge \frac{1}{m!} \left(\frac{m!}{2}\right)^{-n} E_x \left[|\partial_i A^{a,b}_a(p)| + |\partial_i A^{a,b}_b(p)| \right]
+		\]
+	\end{lemma}
+
+	We made much progress in proving Lemma \ref{friedgut-lemma-8}, but were unable to bring it to completion. If it can be proven, then our main result will follow.

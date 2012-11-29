@@ -155,7 +155,9 @@
 
 	Therefore we can rewrite $M^{a,b}(f)$ as follows.
 
-	\begin{lemma}[Lemma 6 of Friedgut] Let $C$ be a set of alternatives. Let $a, b \in C$ be any two alternatives. Let $m = |C|$ and let $n$ be the number of voters. Let $f$ be a SCF. We have
+	\begin{lemma}[Lemma 6 of Friedgut]
+		\label{friedgut-lemma-6}
+		Let $C$ be a set of alternatives. Let $a, b \in C$ be any two alternatives. Let $m = |C|$ and let $n$ be the number of voters. Let $f$ be a SCF. We have
 		\[
 			M^{a,b}(f) = E_{p \in L(C)^n} \left[ \frac{|A^{a,b}_a(p)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|A^{a,b}_b(p)|}{\left(\frac{m!}{2}\right)^n} \right]
 		\]
@@ -251,6 +253,7 @@
 	\end{proof}
 
 	\begin{lemma}[Lemma 7 of Friedgut]
+		\label{friedgut-lemma-7}
 		\[
 			M_i(f) \ge \frac{1}{m!} \left(\frac{m!}{2}\right)^{-n} E_x \left[|\partial_i A^{a,b}_a(p)| + |\partial_i A^{a,b}_b(p)| \right]
 		\]
@@ -324,7 +327,8 @@
 		B &\subseteq V^n \\
 	\end{align*}
 
-	\begin{lemma}
+	\begin{lemma}[Lemma 8 of Freidgut]
+		\label{friedgut-lemma-8}
 		For every disjoint $A, B$ we have that
 		\[
 			|\partial A| + |\partial B| \ge \left( \frac{2}{m!} \right)^n |A| \cdot |B|
