@@ -63,7 +63,7 @@
 	\end{proposition}
 
 	\begin{proof}
-		We know that $\exists(x \join y)$ and $\exists(x \meet y)$ because $(X, \le_s)$ is a lattice. Therefore by lemma \ref{identified-permutation-lattice-join} and lemma \ref{identified-permutation-lattice-meet} we have $\exists(x \join^{ij} y)$ and $\exists(x \meet^{ij} y)$ respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
+		We know that $\exists(x \join y)$ and $\exists(x \meet y)$ because $(X, \le_s)$ is a lattice. Therefore by Lemma \ref{identified-permutation-lattice-join} and Lemma \ref{identified-permutation-lattice-meet} we have $\exists(x \join^{ij} y)$ and $\exists(x \meet^{ij} y)$ respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
 	\end{proof}
 
 	Now we will show that a ``grid'' of lattices is also a lattice. For example, suppose we have the lattice in Figure \ref{figure-one-dimensional-lattice}. The top element is the greatest, and the arrows show the ``less than'' relationship between elements. Each column of numbers represents a ranking of alternatives ${1, 2, 3}$ in which we don't care about the relationship between alternative $1$ and $2$ so we simply replace alternative $2$ with $1$ in the ranking. All this aside though, this proof is valid for any lattice.
@@ -130,7 +130,7 @@
 
 \section{Main Theorem}
 
-	Friedgut's main theorem is proved in three steps; the first two are already generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of Lemma 6, Lemma 7, and lemma 8 which we will generalize one at a time. Therefore, Step 3 of Friedgut is our main theorem:
+	Friedgut's main theorem is proved in three steps; the first two are already generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. Therefore, Step 3 of Friedgut is our main theorem:
 
 	\begin{theorem}[Lemma 3 of Friedgut]
 		For every SCF $f$ on $m$ alternatives and every $a, b \in C$:
@@ -195,11 +195,12 @@
 	\begin{definition}
 		We define the partial ordering, $\le^G_s$, on $L(C)$ such that for all $x, y \in L(C)$:
 		\[
-			x \le^g_s y \iff g^{a,b}(x) \le_s g^{a,b}(y)
+			x \le^G_s y \iff G^{a,b}(x) \le_s G^{a,b}(y)
 		\]
+		where $\le_s$ is defined in Definition \ref{partial-order-s-definition}.
 	\end{definition}
 
-	Clearly $(L(C), \le^G_s)$ is a lattice.
+	Clearly $(L(C), \le^G_s)$ is a lattice, because it is isomorphic to $(L(C), \le_s)$ which is a lattice.
 
 	\begin{definition}
 		We define the partial order $(\le^G_s)^n$ on $L(C)^n$ such that for all $x,y \in L(C)^n$ and all $i \in \{1, \ldots, n\}$:
@@ -208,7 +209,7 @@
 		\]
 	\end{definition}
 
-	Clearly $(L(C)^n, (\le^G_s)^n)$ is a lattice.
+	We have that $(L(C)^n, (\le^G_s)^n)$ is a lattice by Proposition \ref{proposition-grid-is-lattice} and the fact that $(L(C), \le^G_s)$ is a lattice.
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A^{a,b}_a(p)$, denoted $\partial A^{a,b}_a(p)$, to be the set of directed edges whose tail is in $A^{a,b}_a(p)$ and whose head is not in $A^{a,b}_a(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
@@ -264,7 +265,7 @@
 
 		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we have $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
 
-		By lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A^{a,b}_a(p) \cup \partial_i A^{a,b}_b(p))$ corresponds to at least one successful manipulation. Note that if $(x_{-i}, x_i, x'_i) \in \partial_i A^{a,b}_a(p)$ then $(x_{-i}, x'_i, x_i) \notin \partial_i A^{a,b}_a(p)$.
+		By Lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A^{a,b}_a(p) \cup \partial_i A^{a,b}_b(p))$ corresponds to at least one successful manipulation. Note that if $(x_{-i}, x_i, x'_i) \in \partial_i A^{a,b}_a(p)$ then $(x_{-i}, x'_i, x_i) \notin \partial_i A^{a,b}_a(p)$.
 
 		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A^{a,b}_a(p)$ or $\partial_i A^{a,b}_b(p)$. The total possible number of edges is
 		\[

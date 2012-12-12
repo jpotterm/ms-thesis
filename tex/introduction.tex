@@ -35,24 +35,17 @@
 
 	In addition, other authors have done work along the same lines, but still without coming up with a general result. In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed 5 other conditions for the voting rule \cite{xia2008sufficient}:
 
-	\begin{description}
-		\item[Homogeneity] For any $n \in \mathbb{N}$ we have:
-			\begin{align*}
-				f(P) = f\left(\bigcup_{i=1}^n P\right).
-			\end{align*}
-		\item[Anonymity] The result of the election does not depend on the names of the voters. Formally, given a profile $P$ and a permutation $\sigma(P)$: $f(P) = f(\sigma(P))$.
-		\item[Non-imposition] (Defined above, in the Gibbard-Satterthwaite theorem)
-		\item[Canceling out] Adding the set of all linear orders to the votes does not change the result. More formally, for any profile $P$ we have that: $f(P) = f(P \cup L(C))$.
-		\item[Stability] Given alternatives $C = \{c_1, c_2, \ldots, c_m\}$, there exists a profile $P$ such that:
-			\begin{enumerate}
-				\item $P$ and $D_{m}(P)$ are both stable (slight modifications don't change the winner)
-				\item $f(P) = c_1$
-				\item $f(D_{m}(P)) = c_2$
-			\end{enumerate}
-			Where $D_m$ is defined such that if $D_m(P) = P'$, then $P|_{C \backslash c_m} = P'|_{C \backslash c_m}$ and the position of $c_m$ is uniformly distributed in $P'$. For a formal definition of $D_m$ and of ``stability'', see the original paper \cite{xia2008sufficient}.
-	\end{description}
+	\begin{itemize}
+		\item Homogeneity
+		\item Anonymity
+		\item Non-imposition
+		\item Canceling out
+		\item Stability
+	\end{itemize}
 
-	However, these conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
+	These conditions are formally defined and explained in Chapter 4: Related Work, and also by Xia and Conitzer.
+
+	These conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
 
 	Around the same time Dobzinski and Procaccia published complementary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}. They proved the following:
 
