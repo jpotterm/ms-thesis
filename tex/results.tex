@@ -149,7 +149,11 @@
 	\begin{definition}
 		Let $C$ be a set of alternatives. Let $a, b, c \in C$ be any three alternatives. Let $p \in L(C)^n$ be a preference profile for $n$ voters, and let $f$ be a SCF. We define
 		\[
-			A^{a,b}_c(p) = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = c\}
+			A^{a,b}_c(p, X) = \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = c\},
+		\]
+		For some $X \subseteq L(C)^n$. When we do not explicitly specify $X$ we wil assume $X = L(C)^n$:
+		\[
+			A^{a,b}_c(p) = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = c\}.
 		\]
 	\end{definition}
 
@@ -300,32 +304,25 @@
 
 	In this section we will fix candidates $a, b$ and profile $p$, and for the sake of readability we will define the following.
 
-	First, we revise our previous definition to allow us to limit $A$ and $B$ to a specific set of lattice nodes, here referred to as $X$:
-	\begin{align*}
-		A^{a,b}_c(p, X) = \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = c\}
-	\end{align*}
-
-	Next we define shorthand for $A$ and $B$:
+	First, we define shorthand for $A$ and $B$:
 	\begin{align*}
 		A(X) &= A^{a,b}_a(p, X) \\
-		B(X) &= A^{a,b}_b(p, X) \\
+		B(X) &= A^{a,b}_b(p, X)
 	\end{align*}
-	and when we refer to $A$ and $B$ without parameters, we assume they are only limited to valid profiles:
+	and we will sometimes refer to $A$ and $B$ without restriction of the nodes:
 	\begin{align*}
-		A &= A(V^n) \\
-		B &= B(V^n) \\
+		A &= A^{a,b}_a(p) \\
+		B &= A^{a,b}_b(p).
 	\end{align*}
-
 	We also rename the orderings:
 	\begin{align*}
 		\le &\textrm{ is } \le_s^G \\
 		\le^n &\textrm{ is } (\le_s^G)^n \\
 	\end{align*}
-
-	And finally, we recall $(V^n, \le^n)$ is our $n$-dimensional lattice, and that $A$ and $B$ reside in this space:
+	And finally, we recall $(L(C)^n, \le^n)$ is our $n$-dimensional lattice, and that $A$ and $B$ reside in this space:
 	\begin{align*}
-		A &\subseteq V^n \\
-		B &\subseteq V^n \\
+		A &\subseteq L(C)^n \\
+		B &\subseteq L(C)^n \\
 	\end{align*}
 
 	\begin{lemma}[Lemma 8 of Freidgut]
