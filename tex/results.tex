@@ -190,49 +190,12 @@
 
 	We now attempt to relate $M_i(f)$ to $A$ and $B$.
 
-	Let $C = \{1, \ldots, m\}$ be a set of alternatives, and let $a,b \in C$ be any two alternatives. We define an anonymized version of the alternatives as $C' = \{c_1, \ldots, c_m\}$, totally ordered as $c_1 < \ldots < c_m$.
-
-	\begin{definition}
-		$C'$ is isomorphic to $C$ and we define the mapping function $g^{a,b} : C \to C'$ such that
-		\begin{align*}
-			g^{a,b}(x) =
-			\begin{cases}
-				c_x & \textrm{if } x \in C \backslash \{1, 2, a, b\} \\
-				c_1 & \textrm{if } x = a \\
-				c_2 & \textrm{if } x = b \\
-				c_a & \textrm{if } x = 1 \\
-				c_b & \textrm{if } x = 2
-			\end{cases}
-		\end{align*}
-		We define $G^{a,b} : L(C) \to L(C')$ such that
-		\[
-			G^{a,b}(x) = (g^{a,b}(x_1), \ldots, g^{a,b}(x_m))
-		\]
-	\end{definition}
-
-	\begin{definition}
-		We define the partial ordering, $\le^G_s$, on $L(C)$ such that for all $x, y \in L(C)$:
-		\[
-			x \le^G_s y \iff G^{a,b}(x) \le_s G^{a,b}(y)
-		\]
-		where $\le_s$ is defined in Definition \ref{partial-order-s-definition}.
-	\end{definition}
-
-	Clearly $(L(C), \le^G_s)$ is a lattice, because it is isomorphic to $(L(C), \le_s)$ which is a lattice.
-
-	\begin{definition}
-		We define the partial order $(\le^G_s)^n$ on $L(C)^n$ such that for all $x,y \in L(C)^n$ and all $i \in \{1, \ldots, n\}$:
-		\[
-			x (\le^G_s)^n y \iff x_i \le^G_s y_i
-		\]
-	\end{definition}
-
-	We have that $(L(C)^n, (\le^G_s)^n)$ is a lattice by Proposition \ref{proposition-grid-is-lattice} and the fact that $(L(C), \le^G_s)$ is a lattice.
+	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. Clearly $(L(C), \le_s)$ is a lattice.
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
 			\[
-				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid (x_{-i}, x_i) \in A(p), (x_{-i}, x'_i) \notin A(p), x_i <^G_s x'_i \}
+				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid (x_{-i}, x_i) \in A(p), (x_{-i}, x'_i) \notin A(p), x_i <_s x'_i \}
 			\]
 		and
 			\[
@@ -259,14 +222,14 @@
 	\begin{proof}
 		By definition of the upper edge border we have
 		\[
-			x_i \le^G_s x'_i
+			x_i \le_s x'_i
 		\]
 		And by definition of $A$ and $B$ we have
 		\[
 			x_i|_{\{a,b\}} = x'_i|_{\{a,b\}}
 		\]
 
-		For $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$, we know that $f((x_{-i}, x_i)) = a$ and $f((x_{-i}, x'_i)) = t$ for $t \in C \backslash \{a\}$. If $t \succ_{x_i} a$ then $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$. Otherwise, $a \succ_{x_i} t$. If this is the case, then we know that $(a, t) \notin Inv_{x_i}$, and because $x_i \le^G_s x'_i$ we have $(a, t) \notin Inv_{x'_i}$, which means $a \succ_{x'_i} t$. Therefore $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
+		For $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$, we know that $f((x_{-i}, x_i)) = a$ and $f((x_{-i}, x'_i)) = t$ for $t \in C \backslash \{a\}$. If $t \succ_{x_i} a$ then $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$. Otherwise, $a \succ_{x_i} t$. If this is the case, then we know that $(a, t) \notin Inv_{x_i}$, and because $x_i \le_s x'_i$ we have $(a, t) \notin Inv_{x'_i}$, which means $a \succ_{x'_i} t$. Therefore $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
 
 		And analogously for $(x_{-i}, x_i, x'_i) \in \partial_i B(p)$, either $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$ or $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
 	\end{proof}
@@ -322,11 +285,10 @@
 
 \section{Generalized Lemma 8 of Friedgut}
 
-	In this section we will fix a profile $p$, and for the sake of readability we rename the orderings:
-	\begin{align*}
-		\le &\textrm{ is } \le_s^G \\
-		\le^n &\textrm{ is } (\le_s^G)^n.
-	\end{align*}
+	In this section we will fix a profile $p$, and for the sake of readability we use the following shorthand ordering:
+	\[
+		\le^n = (\le_s)^n.
+	\]
 	We also recall $(L(C)^n, \le^n)$ is our $n$-dimensional lattice, and that $A$ and $B$ reside in this space:
 	\begin{align*}
 		A &\subseteq L(C)^n \\
