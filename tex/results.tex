@@ -285,6 +285,12 @@
 
 		By Lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A(p) \cup \partial_i B(p))$ corresponds to at least one successful manipulation. Note that if $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$ then $(x_{-i}, x'_i, x_i) \notin \partial_i A(p)$.
 
+		We take a short aside to limit our domain without losing any information. Since we have conditioned this line of reasoning such that $p|_{\{a,b\}} = p'|_{\{a,b\}}$, for any two votes $v_1, v_2 \in A(p) \cup B(p) \cup A(p') \cup B(p')$ we have $v_1|_{\{a,b\}} = v_2|_{\{a,b\}}$. Therefore we can define a new set
+		\[
+			P' = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
+		\]
+		and view $A, B$, as residing in $P'$. This is because any element in $A$ or $B$, cannot possibly be in $L(C)^n \backslash P'$: by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
+
 		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A(p)$ or $\partial_i B(p)$. The total possible number of edges is
 		\[
 			\frac{m!}{2} \cdot \frac{m!}{2} \cdot \left(\frac{m!}{2}\right)^{n-1} = \frac{m!}{2}\left(\frac{m!}{2}\right)^{n}
