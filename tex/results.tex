@@ -130,7 +130,9 @@
 
 \section{Main Theorem}
 
-	Friedgut's main theorem is proved in three steps; the first two are already generalized. Therefore to generalize the main theorem we need only generalize the third step. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. Therefore, Step 3 of Friedgut is our main theorem:
+	Hereafter, since we refer very often to \cite{friedgut2008elections}, instead of saying for example ``Lemma 2 of Friedgut, Kalai, and Nisan'' we will often shorten it to ``Lemma 2 Friedgut''.
+
+	Friedgut, Kalai, and Nisan's main theorem is proved in three steps; the first two are already general. Therefore, to generalize the main theorem we need only generalize the third step. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. Therefore, Step 3 of Friedgut is our main theorem:
 
 	\begin{theorem}[Lemma 3 of Friedgut]
 		For every SCF $f$ on $m$ alternatives and every $a, b \in C$:
@@ -144,7 +146,7 @@
 
 \section{Generalized Lemma 6 of Friedgut}
 
-	For any preference profile $p \in P$ there are $(\frac{m!}{2})^n$ profiles $x$ such that $x|_{\{a, b\}} = p|_{\{a, b\}}$. This is because there are $m!$ possible preference lists; half of them will have the preference between $a$ and $b$ that agrees with $p|_{\{a, b\}}$ and half will disagree. For each voter this gives $\frac{m!}{2}$ possible preference lists which gives $(\frac{m!}{2})^n$ profiles comprised of these preference lists.
+	For any preference profile $p \in P$ there are $(\frac{m!}{2})^n$ profiles $x$ such that $x|_{\{a, b\}} = p|_{\{a, b\}}$. This is because there are $m!$ possible preference lists; half of them will have the preference between $a$ and $b$ that agrees with $p|_{\{a, b\}}$ and half will disagree. This gives $\frac{m!}{2}$ possible preference lists for each voter, so there are $(\frac{m!}{2})^n$ profiles comprised of these preference lists.
 
 	\begin{definition}
 		Let $a, b, c \in C$ be any three alternatives, and let $p \in L(C)^n$ be a preference profile. We define
@@ -152,7 +154,7 @@
 			A(p, X) &= \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = a\} \\
 			B(p, X) &= \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = b\}
 		\end{align*}
-		for some $X \subseteq L(C)^n$. When we do not explicitly specify $X$ we wil assume $X = L(C)^n$:
+		for some $X \subseteq L(C)^n$. When we do not explicitly specify $X$ we will assume $X = L(C)^n$:
 		\begin{align*}
 			A(p) &= \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = a\} \\
 			B(p) &= \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = b\}.
@@ -178,11 +180,11 @@
 		\[
 			\frac{|A(p)|}{\left(\frac{m!}{2}\right)^n}
 		\]
-		is the probability of a profile satisfying $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfying $f(p) = a$. And
+		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfying $f(p) = a$. And
 		\[
 			\frac{|B(p)|}{\left(\frac{m!}{2}\right)^n}
 		\]
-		is the probability of a profile satisfying $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfying $f(p) = b$.
+		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfying $f(p) = b$.
 	\end{proof}
 
 
@@ -190,7 +192,7 @@
 
 	We now attempt to relate $M_i(f)$ to $A$ and $B$.
 
-	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. Clearly $(L(C), \le_s)$ is a lattice.
+	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$ which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
