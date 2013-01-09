@@ -308,13 +308,19 @@
 	\begin{proof}
 		We define $A'$ to be a consolidation of $A$ as follows. We start with $A' = A$. We iterate over $i \in \{1, \ldots, n\}$ and $(j_1, \ldots, j_{i-1}, j_{i+1}, \ldots, j_n) \in V^{n-1}$ and $k \in V$. We can view $p = (j_1, \ldots, j_{i-1}, k, j_{i+1}, \ldots, j_n)$ as a profile, i.e. $p \in P$. Let the current dimension be represented by the set $D = \{x | x \in V^n, x_{-i} = p_{-i}\}$. Let $z = \bigjoin D$.
 
-		We know that either $z \notin A(D)$ or $z \notin B(D)$ because $A, B$ are disjoint. If $z \notin A(D)$ then for each $x \in A'(D) \backslash B'(D)$ replace $x$ with any $y \in B' \backslash A'$ (unless $B' \backslash A' = \emptyset$). Otherwise $z \notin B$ then for each $x \in B'(D) \backslash A'(D)$ we replace $x$ with $y \in A' \backslash B'$ (unless $A' \backslash B' = \emptyset$). When we are finished with this, we have that either $A' \subseteq B'$ or $B' \subseteq A'$.
+		We know that either $z \notin A(D)$ or $z \notin B(D)$ because $A, B$ are disjoint. If $z \notin A(D)$ then for each $x \in A'(D) \backslash B'(D)$ replace $x$ with any $y \in B' \backslash A'$ (unless $B' \backslash A' = \emptyset$). Otherwise $z \notin B$ then for each $x \in B'(D) \backslash A'(D)$ we replace $x$ with $y \in A' \backslash B'$ (unless $A' \backslash B' = \emptyset$). When we are finished with this, we have that either $A' \subseteq B'$ or $B' \subseteq A'$ (however, see Open Problem \ref{lemma-8-open-problem}.
 
-		Note: in the Friedgut paper, he mentions the following condition, which I don't think holds here, but I'm not sure if we need it.
-		\begin{align*}
-			|\partial A'| &\le |\partial A| \textrm{ and} \\
-			|\partial B'| &\le |\partial B| \\
-		\end{align*}
+		\begin{openproblem}
+			\label{lemma-8-open-problem}
+			There is a problem with the above method, and the assertion $A' \subseteq B'$ or $B' \subseteq A'$ is not necessarily true. While it is true for an individual dimension, we don't move elements across multiple dimensions. Therefore, if there are more $A$ elements than $B$ elements in one dimension and there are more $B$ elements than $A$ in another dimension, then the above assertion will be false. We can fix this by moving elements across multiple dimensions, but then it becomes difficult to prove
+			\begin{align*}
+				|A' \backslash A| &\le |\partial A| \textrm{ and} \\
+				|B' \backslash B| &\le |\partial B|.
+			\end{align*}
+			Therefore, we leave this as our first open problem.
+
+			We will continue with the proof as if this problem were solved so that if this problem is resolved then the proof will be complete.
+		\end{openproblem}
 
 		We will now show that
 		\begin{align*}
