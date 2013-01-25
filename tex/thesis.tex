@@ -2,6 +2,7 @@
 
 \usepackage{amsthm, amsmath, amssymb, mathrsfs, graphicx, tabularx, multirow}
 \usepackage[pdfborderstyle={/S/S}]{hyperref}
+\usepackage{hyperref}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -59,9 +60,17 @@
 \include{abstract}
 \include{acknowledgements}
 
+\hypersetup{
+	pdfborderstyle={}
+}
+
 \tableofcontents
 % \listoffigures
 % \listoftables
+
+\hypersetup{
+	pdfborderstyle={/S/S}
+}
 
 \mainmatter
 
