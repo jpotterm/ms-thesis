@@ -21,13 +21,13 @@
 	\begin{proof}
 		Assume $x \join y$ is defined. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
 		\[
-			x \le_s z \textrm{ and } y \le_s z.
+			z \ge_s x \textrm{ and } z \ge_s y.
 		\]
 		And $z$ is the least upper bound of $\{x, y\}$. For every $a \in X$:
 		\[
-			(x \le_s a \textrm{ and } y \le_s a) \implies z \le_s a.
+			(a \ge_s x \textrm{ and } a \ge_s y) \implies z \le_s a.
 		\]
-		Since $x \in X^{ij}$, then $(i, j) \notin Inv_x$. Since $x \le_s z$, then $(i, j) \notin Inv_z$, so $z \in X^{ij}$. By definition $x \le_s z \implies x \le^{ij}_s z$ and $y \le_s z \implies y \le^{ij}_s z$. Therefore $z$ is an upper bound of $\{x, y\}$ in $X^{ij}$.
+		Since $x \in X^{ij}$, then $(i, j) \notin Inv_x$. Since $z \ge_s x$, then $(i, j) \notin Inv_z$, so $z \in X^{ij}$. By definition $z \ge_s x \implies z \ge^{ij}_s x$ and $z \ge_s y \implies z \ge^{ij}_s y$. Therefore $z$ is an upper bound of $\{x, y\}$ in $X^{ij}$.
 
 		For any $a \in X^{ij}$ if $a$ is an upper bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also an upper bound of $\{x, y\}$ in $X$. Therefore $z \le_s a$, so $z \le^{ij}_s a$, which means $z = x \join^{ij} y$. So clearly $x \join^{ij} y$ exists.
 	\end{proof}
@@ -47,14 +47,14 @@
 		\]
 		And $z$ is the greatest lower bound of $\{x, y\}$: for every $a \in X$:
 		\[
-			(a \le_s x \textrm{ and } a \le_s y) \implies a \le_s z.
+			(a \le_s x \textrm{ and } a \le_s y) \implies z \ge_s a.
 		\]
 
 		We now show that $z \in X^{ij}$. Since $z = x \meet y$, it holds that $\Inv_z = (\Inv_x \cup \Inv_y)^t$ (Definition \ref{transitive-closure-definition}) \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for some $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
 
 		By definition $z \le_s x \implies z \le^{ij}_s x$ and $z \le_s y \implies z \le^{ij}_s y$. Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
 
-		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $a \le_s z$, so $a \le^{ij}_s z$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ is defined.
+		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $z \ge_s a$, so $z \ge^{ij}_s a$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ is defined.
 	\end{proof}
 
 	\begin{proposition}
@@ -100,15 +100,15 @@
 
 		First, we show that $s \join t$ is defined. We define $u \in X^n$ such that $u_i = s_i \join t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \join t$. Because $u_i = s_i \join t_i$, we have
 		\[
-			s_i \le u_i \textrm{ and } s_i \le u_i
+			u_i \ge s_i \textrm{ and } u_i \ge s_i
 		\]
 		so
 		\[
-			s \le^n u \textrm{ and } t \le^n u
+			u \ge^n s \textrm{ and } u \ge^n t
 		\]
 		meaning that $u$ is an upper bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also an upper bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
 		\[
-			s_i \le v_i \textrm{ and } t_i \le v_i
+			v_i \ge s_i \textrm{ and } v_i \ge t_i
 		\]
 		so since $u_i = s_i \join t_i$, then $u_i \le v_i$. Therefore $u \le^n v$, i.e. $u$ is the least upper bound of $\{s, t\}$.
 
