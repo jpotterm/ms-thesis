@@ -8,26 +8,26 @@
 
 	We are not aware of any existing proofs of these lemmas, but some of them are fairly elementary and have a broad application, so they could have previously been proven by others.
 
-	First we will prove, in three steps, that our inversion lattice remains a lattice when we enforce an order between two neighboring elements in the order. Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
+	First we will prove, in three steps, that our inversion lattice (ordered by $\le_s$; Definition \ref{partial-order-s-definition}) remains a lattice when we enforce an order between two neighboring elements in the order (Definition \ref{identified-lattice-definition}). Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
 
 	\begin{lemma}
 		\label{identified-permutation-lattice-join}
-		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice, with $\le_s$ defined as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation over $Y$ as defined in Definition \ref{inversion-definition}. Let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
+		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation (Definition \ref{inversion-definition}) over $Y$, and let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
 		\[
-			\exists(x \join y) \implies \exists(x \join^{ij} y).
+			x \join y \text{ is defined} \implies x \join^{ij} y \text{ is defined}.
 		\]
 	\end{lemma}
 
 	\begin{proof}
-		Assume $\exists(x \join y)$. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
+		Assume $x \join y$ is defined. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
 		\[
-			z \ge_s x \textrm{ and } z \ge_s y.
+			x \le_s z \textrm{ and } y \le_s z.
 		\]
 		And $z$ is the least upper bound of $\{x, y\}$. For every $a \in X$:
 		\[
-			(a \ge_s x \textrm{ and } a \ge_s y) \implies z \le_s a.
+			(x \le_s a \textrm{ and } y \le_s a) \implies z \le_s a.
 		\]
-		Since $x \in X^{ij}$, then $(i, j) \notin Inv_x$. Since $z \ge_s x$, then $(i, j) \notin Inv_z$, so $z \in X^{ij}$. By definition $z \ge_s x \implies z \ge^{ij}_s x$ and $z \ge_s y \implies z \ge^{ij}_s y$. Therefore $z$ is an upper bound of $\{x, y\}$ in $X^{ij}$.
+		Since $x \in X^{ij}$, then $(i, j) \notin Inv_x$. Since $x \le_s z$, then $(i, j) \notin Inv_z$, so $z \in X^{ij}$. By definition $x \le_s z \implies x \le^{ij}_s z$ and $y \le_s z \implies y \le^{ij}_s z$. Therefore $z$ is an upper bound of $\{x, y\}$ in $X^{ij}$.
 
 		For any $a \in X^{ij}$ if $a$ is an upper bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also an upper bound of $\{x, y\}$ in $X$. Therefore $z \le_s a$, so $z \le^{ij}_s a$, which means $z = x \join^{ij} y$. So clearly $x \join^{ij} y$ exists.
 	\end{proof}
@@ -36,25 +36,25 @@
 		\label{identified-permutation-lattice-meet}
 		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\meet$ and $\meet^{ij}$ denote the meet in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
 		\[
-			\exists(x \meet y) \implies \exists(x \meet^{ij} y).
+			x \meet y \text{ is defined} \implies x \meet^{ij} y \text{ is defined}.
 		\]
 	\end{lemma}
 
 	\begin{proof}
-		Assume $\exists(x \meet y)$. Let $z = x \meet y$. Then $z$ is a lower bound of $\{x, y\}$:
+		Assume $x \meet y$ is defined. Let $z = x \meet y$. Then $z$ is a lower bound of $\{x, y\}$:
 		\[
 			z \le_s x \textrm{ and } z \le_s y.
 		\]
 		And $z$ is the greatest lower bound of $\{x, y\}$: for every $a \in X$:
 		\[
-			(a \le_s x \textrm{ and } a \le_s y) \implies z \ge_s a.
+			(a \le_s x \textrm{ and } a \le_s y) \implies a \le_s z.
 		\]
 
-		We will now detour to show that $z \in X^{ij}$. Since $z = x \meet y$, then $\Inv_z = (\Inv_x \cup \Inv_y)^t$ \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for any $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
+		We now show that $z \in X^{ij}$. Since $z = x \meet y$, it holds that $\Inv_z = (\Inv_x \cup \Inv_y)^t$ (Definition \ref{transitive-closure-definition}) \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for some $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
 
 		By definition $z \le_s x \implies z \le^{ij}_s x$ and $z \le_s y \implies z \le^{ij}_s y$. Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
 
-		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $z \ge_s a$, so $z \ge^{ij}_s a$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ exists.
+		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $a \le_s z$, so $a \le^{ij}_s z$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ is defined.
 	\end{proof}
 
 	\begin{proposition}
@@ -63,10 +63,10 @@
 	\end{proposition}
 
 	\begin{proof}
-		We know that $\exists(x \join y)$ and $\exists(x \meet y)$ because $(X, \le_s)$ is a lattice. Therefore by Lemma \ref{identified-permutation-lattice-join} and Lemma \ref{identified-permutation-lattice-meet} we have $\exists(x \join^{ij} y)$ and $\exists(x \meet^{ij} y)$ respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
+		We know that $x \join y$ is defined and $x \meet y$ is defined because $(X, \le_s)$ is a lattice. Therefore by Lemma \ref{identified-permutation-lattice-join} and Lemma \ref{identified-permutation-lattice-meet} we have $x \join^{ij} y$ is defined and $x \meet^{ij} y$ is defined respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
 	\end{proof}
 
-	Now we will show that a ``grid'' of lattices is also a lattice. For example, suppose we have the lattice in Figure \ref{figure-one-dimensional-lattice}. The top element is the greatest, and the arrows show the ``less than'' relationship between elements. Each column of numbers represents a ranking of alternatives ${1, 2, 3}$ in which we don't care about the relationship between alternative $1$ and $2$ so we simply replace alternative $2$ with $1$ in the ranking. All this aside though, this proof is valid for any lattice.
+	Now we will show that a cross-product of lattices is also a lattice. For example, suppose we have the lattice in Figure \ref{figure-one-dimensional-lattice}. The top element is the greatest, and the arrows show the ``less than'' relationship between elements. Each column of numbers represents a ranking of alternatives ${1, 2, 3}$ in which we don't care about the relationship between alternative $1$ and $2$ so we simply replace alternative $2$ with $1$ in the ranking. All this aside though, this proof is valid for any lattice.
 
 	\begin{figure}[ht]
 		\begin{center}
@@ -88,43 +88,31 @@
 
 	\begin{proposition}
 		\label{proposition-grid-is-lattice}
-		Let $(X, \le)$ be a lattice. Let $X^n$ be the set of all $n$-tuples of elements of $X$. Let $\le^n$ be defined as: for all $x, y \in X$ and all $i \in \{1, \ldots, n\}$
+		Let $(X, \le)$ be a lattice. Let $X^n$ be the set of all $n$-tuples of elements of $X$. Let $\le^n$ be defined as: for all $x, y \in X$
 		\[
-			x \le^n y \iff x_i \le y_i.
+			x \le^n y \iff \forall i \in \{1, \ldots, n\}, x_i \le y_i.
 		\]
 		Then $(X^n, \le^n)$ is a lattice.
 	\end{proposition}
 
 	\begin{proof}
-		By definition of a lattice, $(X^n, \le^n)$ is a lattice if for any two elements $s, t \in S^n$, $s \join t$ exists and $s \meet t$ exists.
+		By definition of a lattice, $(X^n, \le^n)$ is a lattice if for any two elements $s, t \in S^n$, $s \join t$ is defined and $s \meet t$ is defined.
 
-		First we show that $s \join t$ exists. We define $u \in X^n$ such that $u_i = s_i \join t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \join t$. Because $u_i = s_i \join t_i$, we have
+		First, we show that $s \join t$ is defined. We define $u \in X^n$ such that $u_i = s_i \join t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \join t$. Because $u_i = s_i \join t_i$, we have
 		\[
-			u_i \ge s_i \textrm{ and } u_i \ge s_i
+			s_i \le u_i \textrm{ and } s_i \le u_i
 		\]
 		so
 		\[
-			u \ge^n s \textrm{ and } u \ge^n t
+			s \le^n u \textrm{ and } t \le^n u
 		\]
 		meaning that $u$ is an upper bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also an upper bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
 		\[
-			v_i \ge s_i \textrm{ and } v_i \ge t_i
+			s_i \le v_i \textrm{ and } t_i \le v_i
 		\]
 		so since $u_i = s_i \join t_i$, then $u_i \le v_i$. Therefore $u \le^n v$, i.e. $u$ is the least upper bound of $\{s, t\}$.
 
-		Second we show that $s \meet t$ exists (by the same argument). We define $u \in X^n$ such that $u_i = s_i \meet t_i$, $\forall i \in \{1, \ldots, n\}$, and we show that $u = s \meet t$. Because $u_i = s_i \meet t_i$, we have
-		\[
-			u_i \le s_i \textrm{ and } u_i \le s_i
-		\]
-		so
-		\[
-			u \le^n s \textrm{ and } u \le^n t
-		\]
-		meaning that $u$ is a lower bound for $s$ and $t$. Suppose there is some $v \in X^n$ which is also a lower bound for $s$ and $t$. Then $\forall i \in \{1, \ldots, n\}$ we have
-		\[
-			v_i \le s_i \textrm{ and } v_i \le t_i
-		\]
-		so since $u_i = s_i \meet t_i$, then $u_i \ge v_i$. Therefore $u \ge^n v$, i.e. $u$ is the greatest lower bound of $\{s, t\}$.
+		Second, it follows by analogy to the above proof for $s \join t$, that $s \meet t$ is defined. Therefore, $s \join t$ is defined and $s \meet t$ is defined, so $(X^n, \le^n)$ is a lattice.
 	\end{proof}
 
 
@@ -132,9 +120,18 @@
 
 	Hereafter, since we refer very often to \cite{friedgut2008elections}, instead of saying for example ``Lemma 2 of Friedgut, Kalai, and Nisan'' we will often shorten it to ``Lemma 2 Friedgut''.
 
-	Friedgut, Kalai, and Nisan's main theorem is proved in three steps; the first two are already general. Therefore, to generalize the main theorem we need only generalize the third step. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. Therefore, Step 3 of Friedgut is our main theorem:
+	Friedgut, Kalai, and Nisan's main theorem is proved in three steps; the first two are already general, and hold for any $n, m \in N^+$. Therefore, to generalize the main theorem we need only generalize the third step, and therefore this third step is our main theorem. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. The lemma we will generalize is:
 
-	\begin{theorem}[Lemma 3 of Friedgut]
+	\begin{lemma}[Lemma 3 of Friedgut]
+		For every SCF $f$ on $3$ alternatives and every $a,b \in A$,
+		\[
+			M^{a,b} \le \sum_i M_i \cdot 6
+		\]
+	\end{lemma}
+
+	Which we will generalize as:
+
+	\begin{theorem}[Main Theorem]
 		For every SCF $f$ on $m$ alternatives and every $a, b \in C$:
 		\[
 			M^{a, b}(f) \le m! \cdot \sum_i M_i(f)
@@ -149,15 +146,15 @@
 	For any preference profile $p \in P$ there are $(\frac{m!}{2})^n$ profiles $x$ such that $x|_{\{a, b\}} = p|_{\{a, b\}}$. This is because there are $m!$ possible preference lists; half of them will have the preference between $a$ and $b$ that agrees with $p|_{\{a, b\}}$ and half will disagree. This gives $\frac{m!}{2}$ possible preference lists for each voter, so there are $(\frac{m!}{2})^n$ profiles comprised of these preference lists.
 
 	\begin{definition}
-		Let $a, b, c \in C$ be any three alternatives, and let $p \in L(C)^n$ be a preference profile. We define
+		Let $a, b \in C$ be the first two alternatives, let $p \in L(C)^n$ be a preference profile, and let $X \subseteq L(C)^n$. We define
 		\begin{align*}
 			A(p, X) &= \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = a\} \\
-			B(p, X) &= \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = b\}
+			B(p, X) &= \{x \in X \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = b\}.
 		\end{align*}
-		for some $X \subseteq L(C)^n$. When we do not explicitly specify $X$ we will assume $X = L(C)^n$:
+		When we do not explicitly specify $X$ we assume $X = L(C)^n$:
 		\begin{align*}
-			A(p) &= \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = a\} \\
-			B(p) &= \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}, f(x) = b\}.
+			A(p) &= A(p, L(C)^n) \\
+			B(p) &= B(p, L(C)^n).
 		\end{align*}
 	\end{definition}
 
@@ -180,11 +177,11 @@
 		\[
 			\frac{|A(p)|}{\left(\frac{m!}{2}\right)^n}
 		\]
-		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfying $f(p) = a$. And
+		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfies $f(p) = a$. And
 		\[
 			\frac{|B(p)|}{\left(\frac{m!}{2}\right)^n}
 		\]
-		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfying $f(p) = b$.
+		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfies $f(p) = b$.
 	\end{proof}
 
 
@@ -192,18 +189,18 @@
 
 	We now attempt to relate $M_i(f)$ to $A$ and $B$.
 
-	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$ which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
+	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$, which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
 			\[
-				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid (x_{-i}, x_i) \in A(p), (x_{-i}, x'_i) \notin A(p), x_i <_s x'_i \}
+				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid (x_{-i}, x_i) \in A(p), (x_{-i}, x'_i) \notin A(p), x_i|_{\{a,b\}} = x'_i|_{\{a,b\}}, x_i <_s x'_i \}
 			\]
 		and
 			\[
 				\partial A(p) = \bigcup_j \partial_j A(p)
 			\]
-		We define the upper edge border of $B(p)$ analogously.
+		We define the upper edge border of $B(p)$ analogously. Note that while $(L(C), \le_s)$ is a lattice, we will treat the upper edge border as a graph.
 	\end{definition}
 
 	\begin{lemma}
@@ -211,7 +208,7 @@
 		Let $p, p' \in L(C)^n$ be profiles such that for all $i \in \{1, \ldots, n\}$:
 		\begin{align*}
 			p_{-i} &= p'_{-i} \textrm{ and} \\
-			p_i|_{a,b} &= p'_i|_{a,b}
+			p_i|_{a,b} &= p'_i|_{a,b}.
 		\end{align*}
 		If either
 		\begin{align*}
@@ -223,20 +220,27 @@
 
 	\begin{proof}
 		By definition of the upper edge border we have
-		\[
-			x_i \le_s x'_i
-		\]
-		And by definition of $A$ and $B$ we have
-		\[
-			x_i|_{\{a,b\}} = x'_i|_{\{a,b\}}
-		\]
+		\begin{align*}
+			x_i &<_s x'_i \text{ and} \\
+			x_i|_{\{a,b\}} &= x'_i|_{\{a,b\}}.
+		\end{align*}
 
-		For $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$, we know that $f((x_{-i}, x_i)) = a$ and $f((x_{-i}, x'_i)) = t$ for $t \in C \backslash \{a\}$. If $t \succ_{x_i} a$ then $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$. Otherwise, $a \succ_{x_i} t$. If this is the case, then we know that $(a, t) \notin Inv_{x_i}$, and because $x_i \le_s x'_i$ we have $(a, t) \notin Inv_{x'_i}$, which means $a \succ_{x'_i} t$. Therefore $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
+		For $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$, we know that $f((x_{-i}, x_i)) = a$ and $f((x_{-i}, x'_i)) = t$ for $t \in C \backslash \{a\}$. If $t \succ_{x_i} a$ then $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$. Otherwise, $a \succ_{x_i} t$. If this is the case, then we know that $(a, t) \notin Inv_{x_i}$, and because $x_i <_s x'_i$ we have $(a, t) \notin Inv_{x'_i}$, which means $a \succ_{x'_i} t$. Therefore $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
 
 		And analogously for $(x_{-i}, x_i, x'_i) \in \partial_i B(p)$, either $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$ or $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
 	\end{proof}
 
+	We now generalize Lemma 7 of Friedgut, Kalait, and Nisan. Their original lemma is:
+
 	\begin{lemma}[Lemma 7 of Friedgut]
+		\[
+			M_i(f) \ge \frac{1}{6} 3^{-n} E_x \left[|\partial_i A(p)| + |\partial_i B(p)| \right]
+		\]
+	\end{lemma}
+
+	And we generalize it as follows.
+
+	\begin{lemma}
 		\label{friedgut-lemma-7}
 		\[
 			M_i(f) \ge \frac{1}{m!} \left(\frac{m!}{2}\right)^{-n} E_x \left[|\partial_i A(p)| + |\partial_i B(p)| \right]
@@ -254,7 +258,7 @@
 		\[
 			P' = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
 		\]
-		and view $A, B$, as residing in $P'$. This is because any element in $A$ or $B$, cannot possibly be in $L(C)^n \backslash P'$: by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
+		and view $A(p), B(p)$, as residing in $P'$. This is because any element in $A(p)$ or $B(p)$, cannot possibly be in $L(C)^n \backslash P'$: by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
 
 		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A(p)$ or $\partial_i B(p)$. The total possible number of edges is
 		\[
