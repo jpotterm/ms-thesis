@@ -100,6 +100,18 @@
 
 	In the next couple of definitions and many of the lemmas in this section, we will be investigating lattices whose elements are permutations of a set. That is, given a set $Y$, we will study some of the properties of the lattice $(S(Y), \le)$.
 
+	\begin{definition}
+		For any partial order $\le_x$ over a set $X$, and $a, b \in X$, we define the following additional partial orders over $X$:
+		\begin{align*}
+			a \ge_x b &\equiv b \le_x a \\
+			a =_x b &\equiv a \le_x b \text{ and } b \le_x a \\
+			a \ne_x b &\equiv \text{not } a =_x b \\
+			a <_x b &\equiv a \le_x b \text{ and } a \ne_x b \\
+			a >_x b &\equiv a \ge_x b \text{ and } a \ne_x b.
+		\end{align*}
+		We will treat these additional partial orders as implicitly defined, and will not define them explicitly for each partial order individually.
+	\end{definition}
+
 	\begin{definition}[$\le_s$]
 		\label{partial-order-s-definition}
 		Let $(P, \le)$ be a poset and let $X = S(P)$. We define the partial ordering $\le_s$ on $X$ such that for all $\sigma, \pi \in X$:
