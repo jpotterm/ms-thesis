@@ -49,8 +49,7 @@
 		\[
 			(a \le_s x \textrm{ and } a \le_s y) \implies z \ge_s a.
 		\]
-
-		We now show that $z \in X^{ij}$. Since $z = x \meet y$, it holds that $\Inv_z = (\Inv_x \cup \Inv_y)^t$ (Definition \ref{transitive-closure-definition}) \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for some $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
+		We now show that $z \in X^{ij}$. Since $z = x \meet y$, it holds that $\Inv_z = (\Inv_x \cup \Inv_y)^t$ (Definition \ref{transitive-closure-definition}, Definition \ref{partial-order-s-definition}) \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for some $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
 
 		By definition $z \le_s x \implies z \le^{ij}_s x$ and $z \le_s y \implies z \le^{ij}_s y$. Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
 
