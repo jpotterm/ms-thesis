@@ -192,9 +192,12 @@
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
-			\[
-				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid (x_{-i}, x_i) \in A(p), (x_{-i}, x'_i) \notin A(p), x_i|_{\{a,b\}} = x'_i|_{\{a,b\}}, x_i <_s x'_i \}
-			\]
+			\begin{align*}
+				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid \hspace{1mm} & (x_{-i}, x_i) \in A(p), \\
+				& (x_{-i}, x'_i) \notin A(p), \\
+				& x_i|_{\{a,b\}} = x'_i|_{\{a,b\}}, \\
+				& x_i <_s x'_i \}
+			\end{align*}
 		and
 			\[
 				\partial A(p) = \bigcup_j \partial_j A(p)
@@ -247,7 +250,7 @@
 	\end{lemma}
 
 	\begin{proof}
-		Recall the definition of $M_i(f)$: given a profile $p \in P$ and vote $p'_i \in V$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
+		Recall the definition of $M_i(f)$: given a profile $p \in P$ and a vote $p'_i \in V$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
 
 		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we have $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
 
@@ -257,7 +260,7 @@
 		\[
 			P' = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
 		\]
-		and view $A(p), B(p)$, as residing in $P'$. This is because any element in $A(p)$ or $B(p)$, cannot possibly be in $L(C)^n \backslash P'$: by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
+		and view $A(p), B(p)$, as residing in $P'$. This is because any vote in $A(p)$ or $B(p)$, cannot possibly be in $L(C)^n \backslash P'$, since by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
 
 		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A(p)$ or $\partial_i B(p)$. The total possible number of edges is
 		\[
@@ -269,17 +272,17 @@
 		\]
 		Note that we can sum the probabilities for $\partial_i A(p)$ and $\partial_i B(p)$ because they are disjoint by the definition of the upper edge border; an edge cannot satisfy both $(x_{-i}, x_i) \in A(p)$ and $(x_{-i}, x_i) \in B(p)$ simultaneously because if $f((x_{-i}, x_i)) = a$ then $f((x_{-i}, x_i)) \ne b$ and vice versa.
 
-		We conditioned our analysis on $p_i = p'_i$, so then, our lower bound becomes
+		We conditioned our analysis on $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, so our lower bound becomes
 		\[
-			M_i(f) \ge \frac{1}{2} \cdot \frac{2}{m!}\left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A(p)| + |\partial_i B(p)| \right]
+			M_i(f) \ge \frac{1}{2} \cdot \frac{2}{m!}\left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A(p)| + |\partial_i B(p)| \right].
 		\]
-		And simplified
+		After simplifying, we have
 		\[
-			M_i(f) \ge \frac{1}{m!}\left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A(p)| + |\partial_i B(p)| \right]
+			M_i(f) \ge \frac{1}{m!}\left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A(p)| + |\partial_i B(p)| \right].
 		\]
 	\end{proof}
 
-	Summing over $i$ we get
+	Summing over $i$ we get the following corollary.
 
 	\begin{corollary}[Corollary 1 of Friedgut]
 		\[
