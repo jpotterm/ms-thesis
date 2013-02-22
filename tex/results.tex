@@ -168,19 +168,26 @@
 	\begin{lemma}[Lemma 6 of Friedgut]
 		\label{friedgut-lemma-6}
 		\[
-			M^{a,b}(f) = E_{p \in L(C)^n} \left[ \frac{|A(p)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|B(p)|}{\left(\frac{m!}{2}\right)^n} \right]
+			M^{a,b}(f) = E_{q \in L(C)^n} \left[ \frac{|A(q)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|B(q)|}{\left(\frac{m!}{2}\right)^n} \right]
 		\]
 	\end{lemma}
 	\begin{proof}
-		This is just a rewording of the definition of $M^{a,b}(f)$. Notice that
+		First we fix a profile $q$. Then
 		\[
-			\frac{|A(p)|}{\left(\frac{m!}{2}\right)^n}
+			\frac{|A(q)|}{\left(\frac{m!}{2}\right)^n}
 		\]
-		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfies $f(p) = a$. And
+		is the probability that a randomly chosen profile, $p$, satisfying $p|_{\{a,b\}} = q|_{\{a,b\}}$ also satisfies $f(p) = a$. This is because there are $(\frac{m!}{2})^n$ profiles that agree with $q|_{\{a,b\}}$, and $|A(q)|$ is the number of those for which the outcome is $a$.
+
+		Likewise,
 		\[
-			\frac{|B(p)|}{\left(\frac{m!}{2}\right)^n}
+			\frac{|B(q)|}{\left(\frac{m!}{2}\right)^n}
 		\]
-		is the probability of a profile that satisfies $p|_{\{a,b\}} = p'|_{\{a,b\}}$ also satisfies $f(p) = b$.
+		is the probability that a randomly chosen profile, $p'$, satisfying $p'|_{\{a,b\}} = q|_{\{a,b\}}$ also satisfies $f(p') = b$.
+
+		Since $p|_{\{a,b\}} = q|_{\{a,b\}}$ and $p'|_{\{a,b\}} = q|_{\{a,b\}}$, clearly we have that $p|_{\{a,b\}} = p'|_{\{a,b\}}$. Since $f(p) = a$ and $f(p') = b$ are independent events, the joint probability is
+		\[
+			\frac{|A(q)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|B(q)|}{\left(\frac{m!}{2}\right)^n}.
+		\]
 	\end{proof}
 
 
@@ -190,8 +197,10 @@
 
 	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$, which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
 
+	We have defined $(L(C), \le_s)$ to be a lattice, but for the following definition, and for later in the chapter we will treat it as a graph with $L(C)$ being the set of vertices, and $\le_s$ being the set of edges.
+
 	\begin{definition}
-		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. Formally, for all $i \in \{1, \ldots, n\}$:
+		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. We will use the notation $(x_{-i}, x_i, x'_i)$ as a shorthand to denote the edge $((x_{-i},x_i), (x_{-i},x'_i))$. Formally, for all $i \in \{1, \ldots, n\}$:
 			\begin{align*}
 				\partial_i A(p) = \{ (x_{-i}, x_i, x'_i) \mid \hspace{1mm} & (x_{-i}, x_i) \in A(p), \\
 				& (x_{-i}, x'_i) \notin A(p), \\
@@ -202,22 +211,17 @@
 			\[
 				\partial A(p) = \bigcup_j \partial_j A(p)
 			\]
-		We define the upper edge border of $B(p)$ analogously. Note that while $(L(C), \le_s)$ is a lattice, we will treat the upper edge border as a graph.
+		We define the upper edge border of $B(p)$ analogously.
 	\end{definition}
 
 	\begin{lemma}
 		\label{manipulation-per-edge-in-a}
-		Let $p, p' \in L(C)^n$ be profiles such that for all $i \in \{1, \ldots, n\}$:
+		Let $p, p' \in L(C)^n$, and let $i \in \{1, \ldots, n\}$. Let the following conditions hold:
 		\begin{align*}
-			p_{-i} &= p'_{-i} \textrm{ and} \\
+			p_{-i} &= p'_{-i} \\
 			p_i|_{a,b} &= p'_i|_{a,b}.
 		\end{align*}
-		If either
-		\begin{align*}
-			(x_{-i}, x_i, x'_i) &\in \partial_i A(p) \textrm{ or} \\
-			(x_{-i}, x_i, x'_i) &\in \partial_i B(p)
-		\end{align*}
-		then the pair $p, p'$ corresponds to at least one successful manipulation.
+		Then each $(x_{-i}, x_i, x'_i) \in \partial_i A(p) \cup \partial_i B(p)$ corresponds to at least one successful manipulation.
 	\end{lemma}
 
 	\begin{proof}
@@ -252,7 +256,7 @@
 	\begin{proof}
 		Recall the definition of $M_i(f)$: given a profile $p \in P$ and a vote $p'_i \in V$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
 
-		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we have $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
+		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we assume that $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
 
 		By Lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A(p) \cup \partial_i B(p))$ corresponds to at least one successful manipulation. Note that if $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$ then $(x_{-i}, x'_i, x_i) \notin \partial_i A(p)$.
 
@@ -260,7 +264,7 @@
 		\[
 			P' = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
 		\]
-		and view $A(p), B(p)$, as residing in $P'$. This is because any vote in $A(p)$ or $B(p)$, cannot possibly be in $L(C)^n \backslash P'$, since by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
+		and view $A(p), B(p)$, as residing in $P'$. This is because, by definition, the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
 
 		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A(p)$ or $\partial_i B(p)$. The total possible number of edges is
 		\[
@@ -363,7 +367,7 @@
 		\[
 			P' = \{x \in P \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
 		\]
-		and view $A$, $B$, $A'$, and $B'$ as residing in $P'$ without losing any information. This is because any element in $A$, $B$, $A'$, or $B'$ cannot possibly be in $P \backslash P'$: by definition the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
+		and view $A$, $B$, $A'$, and $B'$ as residing in $P'$ without losing any information. This is because, by definition, the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
 
 		For any vote $v \in P'$, let $E_{A'}$ be the event that $v$ is in $A'$, and let $E_{B'}$ be the event that $v$ is in $B'$. Then
 		\[
