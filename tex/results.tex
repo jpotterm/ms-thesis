@@ -320,7 +320,71 @@
 		\]
 	\end{lemma}
 
-	\noindent And our generalization is as follows.
+	Our generalization of the above lemma is Lemma \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ as follows. Let $A' = \emptyset$.
+
+	\begin{algorithm}
+		\begin{algorithmic}
+			\For{$i = 1 \to n$}
+				\For{$d \in L(C)^n$}
+					\State $D \gets \{x \in L(C)^n \mid x_{-i} = d_{-i}\}$
+					\For{$a \in A(D)$}
+						\State $a' \gets \max_{\le^n}(A(D) \backslash A')$
+						\State $A' \gets A' \cup \{a'\}$
+					\EndFor
+				\EndFor
+			\EndFor
+		\end{algorithmic}
+	\end{algorithm}
+
+	We do the same to consolidate $B$ into $B'$.
+
+	For each $D$ above, we now have that either $A'(D) \subseteq B'(D)$ or $B'(D) \subseteq A'(D)$. Unfortunately, we need $A' \subseteq B'$ or $B' \subseteq A'$ which does not necessarily follow; see Open Problem \ref{lemma-8-open-problem}.
+
+	\begin{openproblem}
+		\label{lemma-8-open-problem}
+		When using the algorithm above, we do not necessarily have $A' \subseteq B'$ or $B' \subseteq A'$. We could probably fix this by changing:
+		\[
+			a' \gets \max_{\le^n}(A(D) \backslash A')
+		\]
+		to something like
+		\[
+			a' \gets \max_{\le^n}(A \backslash A')
+		\]
+		but then it becomes difficult to prove
+		\begin{align*}
+			|A' \backslash A| &\le |\partial A| \textrm{ and} \\
+			|B' \backslash B| &\le |\partial B|.
+		\end{align*}
+		Therefore, we leave this as our first open problem.
+
+		We will continue with the proof as if we do have $A' \subseteq B'$ or $B' \subseteq A'$, so that if this problem is resolved then the proof will be complete.
+	\end{openproblem}
+
+	We will now prove the following lemma.
+	\begin{lemma}
+		\label{lemma-8-enough-edges}
+		\begin{align*}
+			|A' \backslash A| &\le |\partial A| \textrm{ and} \\
+			|B' \backslash B| &\le |\partial B| \\
+		\end{align*}
+	\end{lemma}
+
+	\begin{proof}
+		First, we show that for every $a' \in A' \backslash A$, we have an edge in $\partial A$.
+
+		Let $a' \in A' \backslash A$. The above algorithm only adds elements to $A'$ in the innermost for loop, and since that for loop iterates once for every $a \in A(D)$ we know that for every $a'$ we have a corresponding $a$. Since $a' \in A' \backslash A$, we know that $a \ne a'$. Since $a' \gets \max_{\le^n}(A(D) \backslash A')$ and $a \ne a'$, we have that $a <^n a'$. According to the algorithm, $a, a' \in D$ which means $a_{-i} = a'_{-i}$. Therefore, $(a_{-i}, a_i, a'_i) \in \partial_i A$ by the definition of $\partial_i A$.
+
+		Therefore, every profile in $A' \backslash A$ corresponds to at least one profile in $\partial A$, so we know that
+		\[
+			|A' \backslash A| \le |\partial A|.
+		\]
+		The same reasoning can be used to show that:
+		\[
+			|B' \backslash B| \le |\partial B|.
+		\]
+	\end{proof}
+
+	And now we are ready to prove the final lemma in this section:
 
 	\begin{lemma}
 		\label{friedgut-lemma-8}
@@ -331,62 +395,6 @@
 	\end{lemma}
 
 	\begin{proof}
-		We define $A'$ to be a consolidation of $A$ as follows.
-
-		\begin{algorithm}
-			\begin{algorithmic}
-				\For{$i = 1 \to n$}
-					\For{$d \in L(C)^n$}
-						\State $D \gets \{x \in L(C)^n \mid x_{-i} = d_{-i}\}$
-						\For{$a \in A|_D$}
-							\State $x \gets \max(A|_D \backslash A')$
-							\State $A' \gets A' \cup \{x\}$
-						\EndFor
-					\EndFor
-				\EndFor
-			\end{algorithmic}
-		\end{algorithm}
-
-		We do the same to consolidate $B$ to $B'$.
-
-		For each $D$ above, we now have that either $A'|_D \subseteq B'|_D$ or $B'|_D \subseteq A'|_D$. Unfortunately, we need $A' \subseteq B'$ or $B' \subseteq A'$ which does not necessarily follow; see Open Problem \ref{lemma-8-open-problem}.
-
-		\begin{openproblem}
-			\label{lemma-8-open-problem}
-			When using the algorithm above, we do not necessarily have $A' \subseteq B'$ or $B' \subseteq A'$. We could probably fix this by changing:
-			\[
-				x \gets \max(A|_D \backslash A')
-			\]
-			to something like
-			\[
-				x \gets \max(A \backslash A')
-			\]
-			but then it becomes difficult to prove
-			\begin{align*}
-				|A' \backslash A| &\le |\partial A| \textrm{ and} \\
-				|B' \backslash B| &\le |\partial B|.
-			\end{align*}
-			Therefore, we leave this as our first open problem.
-
-			We will continue with the proof as if we do have $A' \subseteq B'$ or $B' \subseteq A'$, so that if this problem is resolved then the proof will be complete.
-		\end{openproblem}
-
-		We will now show that
-		\begin{align*}
-			|A' \backslash A| &\le |\partial A| \textrm{ and} \\
-			|B' \backslash B| &\le |\partial B| \\
-		\end{align*}
-		The only way for an element $y'$ to be in $A' \backslash A$ is that we shifted it during one of the above iterations. We define $y$ to be the original element before it was shifted to $y'$. We also (lazily) define $i$ and $D$ to be the same as they were in whichever iteration caused $y$ to shift to enter $A' \backslash A$. Since $z = \bigjoin D$ and $z \notin A(D)$, we know that $y_i \le z_i$. So the edge $(z_{-i}, z_i, y_i) \in \partial_i A$ and therefore $(z_{-i}, z_i, y_i) \in \partial A$ as well.
-
-		Since every profile in $A' \backslash A$ corresponds to at least one profile in $\partial A$ we know that
-		\[
-			|A' \backslash A| \le |\partial A|
-		\]
-		and likewise for $B'$:
-		\[
-			|B' \backslash B| \le |\partial B|
-		\]
-
 		Since for any two votes $v_1, v_2 \in A \cup B$ we have $v_1|_{\{a,b\}} = v_2|_{\{a,b\}}$ we can define a new set
 		\[
 			P' = \{x \in P \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
@@ -423,7 +431,7 @@
 		\[
 			A' \cap B' \subseteq (A' \backslash A) \cup (B' \backslash B)
 		\]
-		which completes the proof as follows
+		which, along with Lemma \ref{lemma-8-enough-edges}, completes the proof as follows
 		\begin{align*}
 			|A' \cap B'| &\le |A' \backslash A| + |B' \backslash B| \\
 			|A' \cap B'| &\le |\partial A| + |\partial B| \\
