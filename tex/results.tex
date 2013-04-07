@@ -6,20 +6,20 @@
 
 \section{Lattice Theory}
 
-	We are not aware of any existing proofs of these lemmas, but some of them are fairly elementary and have a broad application, so they could have previously been proven by others.
+	We are not aware of any existing proofs of these lemmas, but some of them are fairly elementary and seem to us to be broadly applicable.
 
-	First we will prove, in three steps, that our inversion lattice (ordered by $\le_s$; Definition \ref{partial-order-s-definition}) remains a lattice when we enforce an order between two neighboring elements in the order (Definition \ref{identified-lattice-definition}). Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
+	First we will prove, in three steps, that our inversion lattice (ordered by $\le_s$; Definition \ref{partial-order-s-definition}) remains a lattice when we identify two elements that are adjacent in the order $\le$ (Definition \ref{identified-lattice-definition}). Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
 
 	\begin{lemma}
 		\label{identified-permutation-lattice-join}
-		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation (Definition \ref{inversion-definition}) over $Y$, and let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
+		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ be as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation (Definition \ref{inversion-definition}) over $Y$, and let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le$, it holds that for all $x, y \in X^{ij}$:
 		\[
 			x \join y \text{ is defined} \implies x \join^{ij} y \text{ is defined}.
 		\]
 	\end{lemma}
 
 	\begin{proof}
-		Assume $x \join y$ is defined. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
+		Choose arbitrary $x, y \in X^{ij}$. Assume $x \join y$ is defined. Let $z = x \join y$. Then $z$ is an upper bound of $\{x, y\}$:
 		\[
 			z \ge_s x \textrm{ and } z \ge_s y.
 		\]
@@ -34,14 +34,14 @@
 
 	\begin{lemma}
 		\label{identified-permutation-lattice-meet}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Let $\meet$ and $\meet^{ij}$ denote the meet in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that for all $x, y \in X^{ij}$:
+		Let $Y$ be an ordered set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above (Definition \ref{partial-order-s-definition}). Let $\Inv$ be the inversion binary relation over $Y$ as defined above (Definition \ref{inversion-definition}). Let $\meet$ and $\meet^{ij}$ denote the meet in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le$, it holds that for all $x, y \in X^{ij}$:
 		\[
 			x \meet y \text{ is defined} \implies x \meet^{ij} y \text{ is defined}.
 		\]
 	\end{lemma}
 
 	\begin{proof}
-		Assume $x \meet y$ is defined. Let $z = x \meet y$. Then $z$ is a lower bound of $\{x, y\}$:
+		Choose arbitrary $x, y \in X^{ij}$. Assume $x \meet y$ is defined. Let $z = x \meet y$. Then $z$ is a lower bound of $\{x, y\}$:
 		\[
 			z \le_s x \textrm{ and } z \le_s y.
 		\]
@@ -58,7 +58,7 @@
 
 	\begin{proposition}
 		\label{proposition-identification-is-lattice}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above. Let $\Inv$ be the inversion binary relation over $Y$ as defined above. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that $(X^{ij}, \le^{ij}_s)$ is a lattice.
+		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above (Definition \ref{partial-order-s-definition}). Let $\Inv$ be the inversion binary relation over $Y$ as defined above (Definition \ref{inversion-definition}). Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that $(X^{ij}, \le^{ij}_s)$ is a lattice.
 	\end{proposition}
 
 	\begin{proof}
@@ -117,7 +117,7 @@
 
 \section{Main Theorem}
 
-	Hereafter, since we refer very often to \cite{friedgut2008elections}, instead of saying for example ``Lemma 2 of Friedgut, Kalai, and Nisan'' we will often shorten it to ``Lemma 2 Friedgut''.
+	Hereafter, since we refer very often to \cite{friedgut2008elections}, instead of saying for example ``Lemma 2 of Friedgut, Kalai, and Nisan'' we will often shorten it to ``Lemma 2 of Friedgut''.
 
 	Friedgut, Kalai, and Nisan's main theorem is proved in three steps; the first two are already general, and hold for any $n, m \in N^+$. Therefore, to generalize the main theorem we need only generalize the third step, and therefore this third step is our main theorem. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. The lemma we will generalize is:
 
@@ -165,11 +165,12 @@
 
 	Therefore we can rewrite $M^{a,b}(f)$ as follows.
 
-	\begin{lemma}[Lemma 6 of Friedgut]
+	\begin{lemma}[See Lemma 6 of Friedgut]
 		\label{friedgut-lemma-6}
 		\[
-			M^{a,b}(f) = E_{q \in L(C)^n} \left[ \frac{|A(q)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|B(q)|}{\left(\frac{m!}{2}\right)^n} \right]
+			M^{a,b}(f) = E_{q \in L(C)^n} \left[ \frac{|A(q)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|B(q)|}{\left(\frac{m!}{2}\right)^n} \right],
 		\]
+		where $q$ is chosen uniformly at random.
 	\end{lemma}
 	\begin{proof}
 		First we fix a profile $q$. Then
@@ -197,7 +198,7 @@
 
 	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$, which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
 
-	We have defined $(L(C), \le_s)$ to be a lattice, but for the following definition, and for later in the chapter we will treat it as a graph with $L(C)$ being the set of vertices, and $\le_s$ being the set of edges.
+	We have defined $(L(C), \le_s)$ to be a lattice, but for the following definition, and for later in the chapter we will treat it as a graph with $L(C)$ being the set of vertices, and $\le_s$ being the set of edges, oriented so that edges go from greater nodes to lesser nodes.---
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. We will use the notation $(x_{-i}, x_i, x'_i)$ as a shorthand to denote the edge $((x_{-i},x_i), (x_{-i},x'_i))$. Formally, for all $i \in \{1, \ldots, n\}$:
@@ -238,7 +239,7 @@
 
 	We now generalize Lemma 7 of Friedgut, Kalait, and Nisan. Their original lemma is:
 
-	\begin{lemma}[Lemma 7 of Friedgut]
+	\begin{lemma}[See Lemma 7 of Friedgut]
 		\[
 			M_i(f) \ge \frac{1}{6} 3^{-n} E_x \left[|\partial_i A(p)| + |\partial_i B(p)| \right]
 		\]
@@ -260,7 +261,7 @@
 
 		By Lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A(p) \cup \partial_i B(p))$ corresponds to at least one successful manipulation. Note that if $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$ then $(x_{-i}, x'_i, x_i) \notin \partial_i A(p)$.
 
-		We take a short aside to limit our domain without losing any information. Since we have conditioned this line of reasoning such that $p|_{\{a,b\}} = p'|_{\{a,b\}}$, for any two votes $v_1, v_2 \in A(p) \cup B(p) \cup A(p') \cup B(p')$ we have $v_1|_{\{a,b\}} = v_2|_{\{a,b\}}$. Therefore we can define a new set
+		We take a short aside to limit our domain without losing any information. Since we have conditioned this line of reasoning such that $p|_{\{a,b\}} = p'|_{\{a,b\}}$, for any two votes $v_1, v_2 \in A(p) \cup B(p)$ we have $v_1|_{\{a,b\}} = v_2|_{\{a,b\}}$. Therefore we can define a new set
 		\[
 			P' = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
 		\]
@@ -288,7 +289,7 @@
 
 	Summing over $i$ we get the following corollary.
 
-	\begin{corollary}[Corollary 1 of Friedgut]
+	\begin{corollary}[See Corollary 1 of Friedgut]
 		\[
 			\frac{1}{m!} \cdot \left(\frac{m!}{2}\right)^{-n} E_p[|\partial A(p)| + |\partial B(p)|] \le \sum_i M_i(f)
 		\]
@@ -313,49 +314,51 @@
 
 	We now generalize Lemma 8 of Friedgut, Kalait, and Nisan. Their original lemma is:
 
-	\begin{lemma}[Lemma 8 of Freidgut]
+	\begin{lemma}[See Lemma 8 of Freidgut]
 		For every disjoint $A, B$ we have that
 		\[
 			|\partial A| + |\partial B| \ge \left( \frac{1}{3} \right)^n |A| \cdot |B|
 		\]
 	\end{lemma}
 
-	Our generalization of the above lemma is Lemma \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ as follows. Let $A' = \emptyset$.
+	Our generalization of the above lemma is Lemma \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ as follows. Let $A' = A$.
 
 	\begin{algorithm}
 		\begin{algorithmic}
 			\For{$i = 1 \to n$}
 				\For{$d \in L(C)^n$}
 					\State $D \gets \{x \in L(C)^n \mid x_{-i} = d_{-i}\}$
-					\For{$a \in A(D)$}
-						\State $a' \gets \max_{\le^n}(A(D) \backslash A')$
-						\State $A' \gets A' \cup \{a'\}$
+					\For{$a \in A'(D)$}
+						\State $a' \gets \max_{\le^n}(D \backslash A')$
+						\State $A' \gets (A' \backslash \{a\}) \cup \{a'\}$ \Comment{replace $a$ with $a'$}
 					\EndFor
 				\EndFor
 			\EndFor
 		\end{algorithmic}
 	\end{algorithm}
 
+	Figure \ref{figure-algorithm-example} gives visual example which may aid in understanding the above algorithm. It shows key steps in the process on a very small two-dimensional example lattice.
+
+	\begin{figure}[ht]
+		\begin{center}
+			\includegraphics[width=4.6in]{../figures/diagram8.pdf}
+			\caption{Example of lattice shifting algorithm.}
+			\label{figure-algorithm-example}
+		\end{center}
+	\end{figure}
+
 	We do the same to consolidate $B$ into $B'$.
 
-	For each $D$ above, we now have that either $A'(D) \subseteq B'(D)$ or $B'(D) \subseteq A'(D)$. Unfortunately, we need $A' \subseteq B'$ or $B' \subseteq A'$ which does not necessarily follow; see Open Problem \ref{lemma-8-open-problem}.
+	One of the goals of this consolidation is to achieve $A' \subseteq B'$ or $B' \subseteq A'$. While the result of this algorithm comes close to satisfying those criteria, it does not hold in all cases; see Open Problem \ref{lemma-8-open-problem}.
 
 	\begin{openproblem}
 		\label{lemma-8-open-problem}
-		When using the algorithm above, we do not necessarily have $A' \subseteq B'$ or $B' \subseteq A'$. We could probably fix this by changing:
-		\[
-			a' \gets \max_{\le^n}(A(D) \backslash A')
-		\]
-		to something like
-		\[
-			a' \gets \max_{\le^n}(A \backslash A')
-		\]
-		but then it becomes difficult to prove
+		When using the algorithm above, we do not necessarily have $A' \subseteq B'$ or $B' \subseteq A'$. We could modify the algorithm naively so that it satisfies those criteria, but then it would become difficult to prove our second condition:
 		\begin{align*}
 			|A' \backslash A| &\le |\partial A| \textrm{ and} \\
 			|B' \backslash B| &\le |\partial B|.
 		\end{align*}
-		Therefore, we leave this as our first open problem.
+		Therefore, we leave the modification of this algorithm to achieve $A' \subseteq B'$ or $B' \subseteq A'$ as our first open problem.
 
 		We will continue with the proof as if we do have $A' \subseteq B'$ or $B' \subseteq A'$, so that if this problem is resolved then the proof will be complete.
 	\end{openproblem}
