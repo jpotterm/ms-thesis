@@ -8,11 +8,11 @@
 
 	We are not aware of any existing proofs of these lemmas, but some of them are fairly elementary and seem to us to be broadly applicable.
 
-	First we will prove, in three steps, that our inversion lattice (ordered by $\le_s$; Definition \ref{partial-order-s-definition}) remains a lattice when we identify two elements that are adjacent in the order $\le$ (Definition \ref{identified-lattice-definition}). Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{proposition-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
+	First we will prove, in three steps, that our inversion lattice (ordered by $\le_s$; Definition \ref{partial-order-s-definition}) remains a lattice when we identify two elements that are adjacent in the order $\le$ (Definition \ref{identified-lattice-definition}). Recall from Definition \ref{lattice-definition} that in order to be a lattice the join and meet must exist for every pair of elements. Therefore Lemma \ref{identified-permutation-lattice-join} proves that the join exists, Lemma \ref{identified-permutation-lattice-meet} proves that the meet exists (with similar reasoning), and Proposition \ref{theorem-identification-is-lattice} combines both lemmas to prove that our structure is indeed still a lattice.
 
 	\begin{lemma}
 		\label{identified-permutation-lattice-join}
-		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ be as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation (Definition \ref{inversion-definition}) over $Y$, and let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le$, it holds that for all $x, y \in X^{ij}$:
+		Let $(Y, \le)$ be a poset and let $X = S(Y)$. Let $(X, \le_s)$ be as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation (Definition \ref{inversion-definition}) over $Y$, and let $\join$ and $\join^{ij}$ denote the join in $(X, \le_s)$ and $(X^{ij}, \le^{ij}_s)$ (Definition \ref{identified-lattice-definition}) respectively. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le$, it holds that for all $x, y \in X^{ij}$:
 		\[
 			x \join y \text{ is defined} \implies x \join^{ij} y \text{ is defined}.
 		\]
@@ -49,17 +49,29 @@
 		\[
 			(a \le_s x \textrm{ and } a \le_s y) \implies z \ge_s a.
 		\]
-		We now show that $z \in X^{ij}$. Since $z = x \meet y$, it holds that $\Inv_z = (\Inv_x \cup \Inv_y)^t$ (Definition \ref{transitive-closure-definition}, Definition \ref{partial-order-s-definition}) \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have $(i, k) \in \Inv_x$ and $(k, j) \in \Inv_y$ for some $k \in Y$, which is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
+		We now show that $z \in X^{ij}$. Since $z = x \meet y$, it holds that $\Inv_z = (\Inv_x \cup \Inv_y)^t$ (Definition \ref{transitive-closure-definition}, Definition \ref{partial-order-s-definition}) \cite{markowsky1994permutation}. Because $x,y \in X^{ij}$ we know that $(i, j) \notin (\Inv_x \cup \Inv_y)$. Therefore, in order to have $(i, j) \in (\Inv_x \cup \Inv_y)^t$ we would need to have
+		\[
+			(i, k_1), (k_1, k_2), \ldots, (k_{n-1}, k_{n}), (k_{n}, j) \in \Inv_x \cup \Inv_y
+		\]
+		for $n \ge 1$ and $k_1, \ldots, k_n \in Y$. But that is impossible because $i$ is either a direct successor or a direct predecessor of $j$. Therefore $(i, j) \notin Inv_z$, so $z \in X^{ij}$.
 
-		By definition $z \le_s x \implies z \le^{ij}_s x$ and $z \le_s y \implies z \le^{ij}_s y$. Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
+		By definition
+		\[
+			z \le_s x \textrm{ and } z \in X^{ij} \implies z \le^{ij}_s x
+		\]
+		and
+		\[
+			z \le_s y \textrm{ and } z \in X^{ij} \implies z \le^{ij}_s y.
+		\]
+		Therefore $z$ is a lower bound of $\{x, y\}$ in $X^{ij}$.
 
 		For any $a \in X^{ij}$ if $a$ is a lower bound of $\{x, y\}$ in $X^{ij}$ then clearly $a$ is also a lower bound of $\{x, y\}$ in $X$. Therefore $z \ge_s a$, so $z \ge^{ij}_s a$, which means $z = x \meet^{ij} y$. So clearly $x \meet^{ij} y$ is defined.
 	\end{proof}
 
-	\begin{proposition}
-		\label{proposition-identification-is-lattice}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ defined as above (Definition \ref{partial-order-s-definition}). Let $\Inv$ be the inversion binary relation over $Y$ as defined above (Definition \ref{inversion-definition}). Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that $(X^{ij}, \le^{ij}_s)$ is a lattice.
-	\end{proposition}
+	\begin{theorem}
+		\label{theorem-identification-is-lattice}
+		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le_s)$ be a lattice with $\le_s$ as in Definition \ref{partial-order-s-definition}. Let $\Inv$ be the inversion binary relation over $Y$ as in Definition \ref{inversion-definition}. Then for any $i,j \in Y$, if $i$ is either a direct successor or a direct predecessor of $j$ according to $\le_s$, it holds that $(X^{ij}, \le^{ij}_s)$ is a lattice.
+	\end{theorem}
 
 	\begin{proof}
 		We know that $x \join y$ is defined and $x \meet y$ is defined because $(X, \le_s)$ is a lattice. Therefore by Lemma \ref{identified-permutation-lattice-join} and Lemma \ref{identified-permutation-lattice-meet} we have $x \join^{ij} y$ is defined and $x \meet^{ij} y$ is defined respectively. So $(X^{ij}, \le^{ij}_s)$ is a lattice, by definition of a lattice.
@@ -198,7 +210,7 @@
 
 	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$, which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
 
-	We have defined $(L(C), \le_s)$ to be a lattice, but for the following definition, and for later in the chapter we will treat it as a graph with $L(C)$ being the set of vertices, and $\le_s$ being the set of edges, oriented so that edges go from greater nodes to lesser nodes.---
+	We have defined $(L(C), \le_s)$ to be a lattice, but for the following definition, and for later in the chapter we will treat it as a graph with $L(C)$ being the set of vertices, and $\le_s$ being the set of edges, oriented so that edges go from greater nodes to lesser nodes.
 
 	\begin{definition}
 		Let $p \in L(C)^n$. We define the \emph{upper edge border} of $A(p)$, denoted $\partial A(p)$, to be the set of directed edges whose tail is in $A(p)$ and whose head is not in $A(p)$. We will use the notation $(x_{-i}, x_i, x'_i)$ as a shorthand to denote the edge $((x_{-i},x_i), (x_{-i},x'_i))$. Formally, for all $i \in \{1, \ldots, n\}$:
@@ -255,7 +267,7 @@
 	\end{lemma}
 
 	\begin{proof}
-		Recall the definition of $M_i(f)$: given a profile $p \in P$ and a vote $p'_i \in V$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
+		Recall the definition of $M_i(f)$: given a profile $p \in P$ and a vote $p'_i \in L(C)$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
 
 		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we assume that $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
 
@@ -321,14 +333,18 @@
 		\]
 	\end{lemma}
 
-	Our generalization of the above lemma is Lemma \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ as follows. Let $A' = A$.
+	Our generalization of the above lemma is Lemma \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ in Algorithm \ref{algorithm-consolidate-a-prime}.
 
 	\begin{algorithm}
+		\caption{Consolidate $A'$}
+		\label{algorithm-consolidate-a-prime}
 		\begin{algorithmic}
+			\State $A' \gets A$
 			\For{$i = 1 \to n$}
 				\For{$d \in L(C)^n$}
 					\State $D \gets \{x \in L(C)^n \mid x_{-i} = d_{-i}\}$
-					\For{$a \in A'(D)$}
+					\State $F \gets D \cap A'$
+					\For{$a \in F$}
 						\State $a' \gets \max_{\le^n}(D \backslash A')$
 						\State $A' \gets (A' \backslash \{a\}) \cup \{a'\}$ \Comment{replace $a$ with $a'$}
 					\EndFor
@@ -336,6 +352,8 @@
 			\EndFor
 		\end{algorithmic}
 	\end{algorithm}
+
+	Note that since we are dealing with a lattice, the $\max$ function in Algorithm \ref{algorithm-consolidate-a-prime} can yield multiple results. In this case we assume that one result is chosen at random.
 
 	Figure \ref{figure-algorithm-example} gives visual example which may aid in understanding the above algorithm. It shows key steps in the process on a very small two-dimensional example lattice.
 

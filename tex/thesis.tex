@@ -1,8 +1,9 @@
 \documentclass[11pt,oneside]{book}
 
-\usepackage{amsthm, amsmath, amssymb, mathrsfs, graphicx, tabularx, multirow, algorithm, algorithmicx, algpseudocode}
+\usepackage{amsthm, amsmath, amssymb, mathrsfs, graphicx, tabularx, multirow, algorithmicx, algpseudocode}
 \usepackage[pdfborderstyle={/S/S}]{hyperref}
 \usepackage{hyperref}
+\usepackage[section]{algorithm}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -17,16 +18,16 @@
 \DeclareMathOperator{\symmetricdifference}{\vartriangle}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{openproblem}{Open Problem}
+\newtheorem{openproblem}[theorem]{Open Problem}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{conjecture}{Conjecture}[section]
-\newtheorem{example}{Example}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{example}[theorem]{Example}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
