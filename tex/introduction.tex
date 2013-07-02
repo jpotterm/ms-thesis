@@ -10,13 +10,13 @@
 
 \section{Importance}
 
-	It is obvious, and widely accepted that election systems are important to society. They are essential to democracy which is the foundation of many nations' governments, and are also used in many non-political situations---anywhere a group of independent agents needs to come to a consensus. They are used in schools, electing board members for a business, and stock holders voting on issues affecting a company. Election systems are not even wholly reserved to humans. Elections can be used by artificial intelligence systems when a group of agents needs to make a decision \cite{ephrati1991clarke, ephrati1993multi, pennock2000social, dwork2001rank, fagin2003efficient}, and they can be used in internet page ranking algorithms for search engines \cite{chevaleyre2007short}.
+	It is obvious, and widely accepted that election systems are important to society. They are essential to democracy which is the foundation of many nations' governments, and are also used in many non-political situations---anywhere a group of independent agents needs to come to a consensus. They are used in schools, electing board members for a business, and stock holders voting on issues affecting a company. Election systems are not even wholly restricted to humans. Elections can be used by artificial intelligence systems when a group of agents needs to make a decision \cite{ephrati1991clarke, ephrati1993multi, pennock2000social, dwork2001rank, fagin2003efficient}, and they can be used in internet page ranking algorithms for search engines \cite{chevaleyre2007short}.
 
-	However, it is less clear that manipulation in elections---especially random manipulation---is important, so we will attempt to describe its importance by briefly explaining the history behind it.
+	However, it is less clear that manipulation in elections---especially random manipulation---is important, so we will attempt to describe its importance by briefly explaining the history behind its investigation.
 
 	One obvious criteria for a good election system is fairness \cite{chevaleyre2006issues}, and it is generally accepted that the winning candidate should, on the whole, represent the will the constituents'. It is easy to recognize a fair election system if there are only two candidates: the candidate who is preferred by the majority of voters should win. But with a larger number of candidates, determining the fairness of an election system is more difficult.
 
-	Marquis de Condorcet, was one of the first people to study (academically) the issue of fairness in election systems. He proposed that the winning candidate be the candidate who would win a head-to-head election against each of the other candidates, and such a winner is known as the \emph{Condorcet winner}. Unfortunately, Condorcet also proved that a Condorcet winner does not always exist. Nevertheless, this criterion for fairness, called the \emph{Condorcet criterion}, was one of the first formal fairness criterion, and is still widely used today.
+	Marquis de Condorcet, was one of the first people to study (academically) the issue of fairness in election systems. He proposed that the winning candidate be the candidate who would win a head-to-head election against each of the other candidates, and such a winner is known as the \emph{Condorcet winner}. Unfortunately, Condorcet also proved that a Condorcet winner does not always exist. Nevertheless, this criterion for fairness, called the \emph{Condorcet criterion}, was one of the first formal fairness criteria, and is still widely used today.
 
 	In 1950, Kenneth Arrow, an American economist who was interested in the fairness of social welfare functions, made a large contribution to the field of social choice theory with his impossibility theorem \cite{arrow1950difficulty, arrow1963social}. This theorem demonstrates that no social welfare function can ``fairly'' convert the preferences of voters into a society-wide preference list by showing that no social welfare function can satisfy the following criteria (which will be further described in the next chapter): unrestricted domain, independence of irrelevant alternatives, unanimity, and non-dictatorship.
 
@@ -26,7 +26,7 @@
 
 	Many others have followed in the vein of searching for a computational barrier to manipulation, but the majority of these results deal with the worst-case complexity of manipulation. In 2006, work by Conitzer and Sandholm \cite{conitzer2006nonexistence} along with that of Procaccia and Rosenschein \cite{procaccia2006junta} showed that while manipulation can be hard in the worst case, it is often much easier in the average case. In the next few years more work was done to make this concern even more well-founded \cite{procaccia2007average, erdelyi2007approximating}.
 
-	In 2008, Friedgut, Kalai, and Nisan \cite{friedgut2008elections}, instead of studying worst-case manipulation, performed a probabilistic analysis of random manipulation. That is, instead of a voter intelligently manipulating an election, which can be difficult in terms of worst-case complexity, he simply chooses his manipulation randomly (if his most preferred candidate is not winning already). They proved that even a random manipulation will succeed with non-negligible probability. This is significant because no matter how hard it is in the worst-case to find a profitable manipulation, if it is trivial to find a random manipulation, that could be enough. These are the results we hope to extend.
+	In 2008, Friedgut, Kalai, and Nisan \cite{friedgut2008elections}, instead of studying worst-case manipulation, performed a probabilistic analysis of random manipulation. That is, instead of a voter intelligently manipulating an election, which can be difficult in terms of worst-case complexity, he simply chooses his manipulation randomly (if his most preferred candidate is not already winning). They proved that even a random manipulation will succeed with non-negligible probability. This is significant because no matter how hard it is to find a profitable manipulation in the worst-case, it is trivial to find a random manipulation. If the probability of success of a random manipulation is high enough, it could completely bypass the computational barrier to manipulation. These are the results we hope to extend in the remainder of this thesis.
 
 
 \section{Difficulty}
@@ -43,7 +43,7 @@
 		\item Stability
 	\end{itemize}
 
-	These conditions are formally defined and explained in Chapter 4: Related Work, and also by Xia and Conitzer.
+	These conditions are formally defined and explained in Chapter 4: Related Work, and also by Xia and Conitzer themselves.
 
 	These conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
 
@@ -58,13 +58,13 @@
 
 \section{Independent Work}
 
-	Unfortunately for us, but fortunately for the field of social choice theory as a whole, Isaksson, Kindler, and Mossel \emph{have}, independently during the writing of this thesis, published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}. Translating their results into the terminology we have been using, they proved that for a neutral social choice function $f$ with $m \ge 4$ alternatives and $n$ voters that is $\epsilon$-far from dictatorship, a uniformly chosen profile will be manipulable with probability at least $2^{-1} \epsilon^2 n^{-4} m^{-6} (m!)^{-3}$.
+	Unfortunately for us, but fortunately for the field of social choice theory as a whole, Isaksson, Kindler, and Mossel \emph{have}, independently and during the writing of this thesis, published a brilliant generalization of the original theorem of Friedgut, Kalai, and Nisan and even improved slightly upon the results \cite{isaksson2010geometry}. Translating their results into the terminology we have been using, they proved that for a neutral social choice function $f$ with $m \ge 4$ alternatives and $n$ voters that is $\epsilon$-far from dictatorship, a uniformly chosen profile will be manipulable with probability at least $2^{-1} \epsilon^2 n^{-4} m^{-6} (m!)^{-3}$.
 
 	Later Friedgut et al. removed the neutrality constraint from their original theorem, and added an author \cite{friedgut2011quantitative}.
 
 	Finally, Mossel and R\'{a}cz \cite{mossel2011quantitative} took ideas from these two proofs and created a unified proof with the same results as Isaksson, Kindler, and Mossel, but without the neutrality constraint.
 
-	Though these results have independently achieved the goals we set out with, we believe that our work is still useful. At the very least ours simply stands as an alternate proof. However, our proof has the benefit that it uses very similar techniques to those of the original proof of Friedgut, Kalai, and Nisan, and additionally we believe that our proof is much simpler and more easily understood.
+	Though these results have independently achieved the goals we set out with, we believe that our work is still useful. At the very least ours simply stands as an alternate proof. However, our proof has the benefit that it uses very similar techniques to those of the original proof by Friedgut, Kalai, and Nisan, and additionally we believe that our proof is much simpler and more easily understood.
 
 
 \section {Proof Summary}
@@ -72,8 +72,8 @@
 	The proof we are generalizing is broken up into three steps. In the original paper they are called Step 1, Step 2, and Step 3, but in \cite{friedgut2011quantitative} they are called the following respectively:
 	\begin{enumerate}
 		\item Applying a quantitative version of Arrow's impossibility theorem
+		\item Reduction from an SCF with low dependence on irrelevant alternatives to a GSWF with a low paradox probability
 		\item Reduction from low manipulation power to low dependence on irrelevant alternatives
-		\item Reduction from low manipulation power to low dependence on irrelevant alternatives.
 	\end{enumerate}
 	In this thesis we will refer to them as Step 1, Step 2, and Step 3.
 
@@ -87,13 +87,13 @@
 		For every fixed $m$ there exists $\delta > 0$ such that for all $\epsilon > 0$ the following holds. Let $f$ be a neutral SCF among $m$ alternatives such that $\Delta(f, DICT) > \epsilon$. Then for all $(a,b)$ we have $M^{a,b}(f) \ge \delta$.
 	\end{lemma}
 
-	Therefore, we focus on generalizing Step 3. The original Step 3 was:
+	Therefore, we focus on generalizing Step 3 so that together with the already generalized Steps 1 and 2 we will have a generalized main theorem. The original Step 3 was:
 
 	\begin{lemma}[Non-General Step 3]
 		For every SCF $f$ on $3$ alternatives and every $a,b \in A$, $M^{a,b} \le \sum_i M_i \cdot 6$
 	\end{lemma}
 
-	And our generalization is:
+	And the generalization we attempt to prove is:
 
 	\begin{lemma}[Generalized Step 3]
 		For every SCF $f$ on $m$ alternatives and every $a,b \in A$, $M^{a,b} \le \sum_i M_i \cdot m!$
@@ -101,18 +101,18 @@
 
 	When we put together all 3 generalized steps we get our main result:
 	\begin{theorem}[Main Result]
-		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over 3 alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulability: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
+		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over $m$ alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulability: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
 	\end{theorem}
 
 
 \section{Structure of the Remaining Chapters}
 
 	\begin{description}
-		\item[Chapter 2: Preliminaries] In the next chapter we introduce the preliminaries. These include formal definitions and notation to serve as a reference for use in the rest of the thesis. The preliminaries are often elementary but provide a technical foundation for the following work.
+		\item[Chapter 2: Preliminaries] In the next chapter we introduce the preliminaries, which include formal definitions and notation to serve as a reference for use in the rest of the thesis. The preliminaries are often elementary and provide a technical foundation for the following work.
 
-		\item[Chapter 3: Background] Here we give some background information on the field of social choice theory and describe how it has evolved to lead to the problem we are solving.
+		\item[Chapter 3: Background] Here we give some background information on the field of social choice theory and describe how it has evolved, leading to the problem we are addressing in this work.
 
-		\item[Chapter 4: Related Work] In the related work chapter we will describe, in a moderate amount of detail, the results and methods of various other authors relating to the work of Friedgut, Kalai, and Nisan and, hence, to ours.
+		\item[Chapter 4: Related Work] In the related work chapter we describe, in a moderate amount of detail, the results and methods of various other authors relating both to this thesis, and to the work of Friedgut, Kalai, and Nisan on which our work is based.
 
-		\item[Chapter 5: Results] This is the technical portion of the thesis in which we prove some foundational lemmas and eventually build up a proof of our main result.
+		\item[Chapter 5: Results] This is the technical portion of the thesis in which we prove foundational lemmas and build up a proof of our main result.
 	\end{description}

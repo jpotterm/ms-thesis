@@ -2,13 +2,13 @@
 
 \chapter{Preliminaries}
 
-	In this chapter we present up the formal definitions we will need for the rest of the thesis. These serve as a reference and an introduction to the technical work we have done in the following chapters. Some definitions are very basic indeed and many will already be known to the reader, and so they are stated explicitly here simply to provide maximum clarity and a solid foundation upon which to present the rest of our work.
+	In this chapter we present the formal definitions we will need for the rest of this thesis. These serve as a reference as well as an introduction to the technical work contained in the following chapters. Some definitions are very basic and many will already be known to the reader; however, they are stated explicitly here to provide maximum clarity and a solid foundation upon which to present the rest of our work.
 
-	For additional definitions which are out of the scope of this thesis the reader may refer to textbooks on set theory \cite{kunen1980set} and lattice theory \cite{birkhoff1995lattice}.
+	For additional definitions, which are out of the scope of this thesis, the reader may refer to textbooks on set theory \cite{kunen1980set} and lattice theory \cite{birkhoff1995lattice}.
 
 \section{Definitions}
 
-	We will begin with basic definitions regarding set theory and lattice theory, and then towards the end of the section we will transition to definitions from social choice theory.
+	We will begin with basic definitions regarding set theory and lattice theory, and then towards the end of this section we will transition to definitions from social choice theory.
 
 	\begin{definition}
 		A \emph{permutation} of a set $X$ is a bijective function from $X$ to $X$.
@@ -18,12 +18,12 @@
 		A \emph{total ordering} over a set $X$ is a binary relation on $X$ which is antisymmetric, transitive, and total.
 	\end{definition}
 
-	Although technically permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $<_R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is similar to $\sigma$. Likewise, for any well-ordered set $X$ and a total ordering, $<_R$, over $X$, one could construct a permutation $\sigma$ from $<_R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff
+	Although technically permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $<_R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is similar to $\sigma$. Likewise, for any well-ordered set $X$ and a total ordering $<_R$ over $X$, one could construct a permutation $\sigma$ from $<_R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff
 	\begin{align*}
 		|\{z \in X \mid z < x\}| = |\{z \in X \mid z <_R y\}|.
 	\end{align*}
 
-	For countable sets we will sometimes view permutations and total orders as sequences of elements, using a subscript notation, provided our meaning is clear from context.
+	For countable sets we will sometimes view permutations and total orders as sequences, using a subscript notation, provided our meaning is clear from context.
 
 	\begin{definition}
 		We use $S(X)$ to denote the set of all permutations of $X$.
@@ -34,7 +34,19 @@
 	\end{definition}
 
 	\begin{definition}
-		We define a \emph{poset}, or \emph{partially ordered set}, to be $(X, \le)$ where $X$ is a set, and $\le$ is a binary relation on $X$ which is antisymmetric, transitive, and reflexive. $\le$ is called a partial ordering because of the fact that not every pair of elements in $X$ needs to be related by $\le$, as opposed to a total ordering which must relate every pair.
+		We define a \emph{poset}, or \emph{partially ordered set}, to be $(X, \le)$ where $X$ is a set, and $\le$ is a binary relation on $X$ which is antisymmetric, transitive, and reflexive. $\le$ is called a partial ordering because not every pair of elements in $X$ needs to be related by $\le$, as opposed to a total ordering which must relate every pair.
+	\end{definition}
+
+	\begin{definition}
+		For any partial order $\le_x$ over a set $X$, and $a, b \in X$, we define the following additional partial orders over $X$:
+		\begin{align*}
+			a \ge_x b &\equiv b \le_x a \\
+			a =_x b &\equiv a \le_x b \text{ and } b \le_x a \\
+			a \ne_x b &\equiv \text{not } a =_x b \\
+			a <_x b &\equiv a \le_x b \text{ and } a \ne_x b \\
+			a >_x b &\equiv a \ge_x b \text{ and } a \ne_x b.
+		\end{align*}
+		We will treat these additional partial orders as implicitly defined, and will not define them explicitly for each partial order individually.
 	\end{definition}
 
 	\begin{definition}
@@ -61,12 +73,12 @@
 		\[
 			\Inv_{\sigma} = \{(i,j) \mid i, j \in P, i < j, \sigma^{-1}(i) > \sigma^{-1}(j)\}.
 		\]
-		We can read $i \Inv_{\sigma} j$ as ``$i$ is inverted with $j$ in $\sigma$''. $\Inv$ is a transitive relation because for any $i,j,k \in P$ if $i \Inv_{\sigma} j$ and $j \Inv_{\sigma} k$ then $i < j < k$ and $\sigma^{-1}(i) > \sigma^{-1}(k) > \sigma^{-1}(k)$ which means that $i \Inv_{\sigma} k$.
+		We can read $i \Inv_{\sigma} j$ as ``$i$ is inverted with $j$ in $\sigma$''. $\Inv$ is a transitive relation because for any $i,j,k \in P$ if $i \Inv_{\sigma} j$ and $j \Inv_{\sigma} k$ then $i < j < k$ and $\sigma^{-1}(i) > \sigma^{-1}(j) > \sigma^{-1}(k)$ which means that $i \Inv_{\sigma} k$.
 	\end{definition}
 
 	\begin{definition}
 		\label{kendall-tau-definition}
-		For any poset $(P, \le)$, let $\sigma$ and $\pi$ be a permutations of $P$. We define the \emph{Kendall tau distance}, $K$, between $\sigma$ and $\pi$ to be the number of adjacent swaps one would have to make to get from $\sigma$ to $\pi$ or vice versa. More formally:
+		For any poset $(P, \le)$, let $\sigma$ and $\pi$ be permutations of $P$. We define the \emph{Kendall tau distance}, $K$, between $\sigma$ and $\pi$ to be the number of adjacent swaps necessary to get from $\sigma$ to $\pi$ or vice versa. More formally:
 		\[
 			K(\sigma, \pi) = \sum_{\{i, j\} \in P} \overline{K}_{i, j}(\sigma, \pi)
 		\]
@@ -95,26 +107,14 @@
 
 	In the next couple of definitions and many of the lemmas in this section, we will be investigating lattices whose elements are permutations of a set. That is, given a set $Y$, we will study some of the properties of the lattice $(S(Y), \le)$.
 
-	\begin{definition}
-		For any partial order $\le_x$ over a set $X$, and $a, b \in X$, we define the following additional partial orders over $X$:
-		\begin{align*}
-			a \ge_x b &\equiv b \le_x a \\
-			a =_x b &\equiv a \le_x b \text{ and } b \le_x a \\
-			a \ne_x b &\equiv \text{not } a =_x b \\
-			a <_x b &\equiv a \le_x b \text{ and } a \ne_x b \\
-			a >_x b &\equiv a \ge_x b \text{ and } a \ne_x b.
-		\end{align*}
-		We will treat these additional partial orders as implicitly defined, and will not define them explicitly for each partial order individually.
-	\end{definition}
-
 	\begin{definition}[$\le_s$]
 		\label{partial-order-s-definition}
-		Let $(P, \le)$ be a poset and let $X = S(P)$. We define the partial ordering $\le_s$ on $X$ such that for all $\sigma, \pi \in X$:
+		Let $(Y, \le)$ be a poset and let $X = S(Y)$. We define the partial ordering $\le_s$ on $X$ such that for all $\sigma, \pi \in X$:
 		\[
 			\sigma \le_s \pi \iff \Inv_{\sigma} \supseteq \Inv_{\pi}.
 		\]
 
-		In addition, if $(X, \le_s)$ is a lattice, then any $\sigma, \pi \in X$ we also have \cite{markowsky1994permutation}:
+		In addition, if $(X, \le_s)$ is a lattice, then for any $\sigma, \pi \in X$ we also have \cite{markowsky1994permutation}:
 		\[
 			\Inv_{\sigma \meet \pi} = (\Inv_{\sigma} \cup \Inv_{\pi})^t.
 		\]
@@ -122,11 +122,11 @@
 
 	\begin{definition}[$X^{ij}, \le^{ij}$]
 		\label{identified-lattice-definition}
-		Let $Y$ be a set and let $X = S(Y)$. Let $(X, \le)$ be a lattice. For any $i,j \in Y$ we define
+		Let $Y$ be a set, let $X = S(Y)$, and let $(X, \le)$ be a lattice. For any $i,j \in Y$ we define
 		\[
 			X^{ij} = \{ x \in X \mid x^{-1}(i) < x^{-1}(j) \}.
 		\]
-		We then define the partial ordering, $\le^{ij}$, over $X^{ij}$ such that for $x, y \in X^{ij}$:
+		We then define the partial ordering, $\le^{ij}$, over $X^{ij}$ such that for all $x, y \in X^{ij}$:
 		\[
 			x \le^{ij} y \iff x \le y
 		\]
@@ -135,11 +135,15 @@
 	We will now introduce some definitions having to do with social choice theory. Throughout this paper we will use $n$ to represent the number of voters in an election, and $m$ to represent the number of alternatives (candidates).
 
 	\begin{definition}
-		Let $C = \{1, \ldots, m\}$ be the set of all \emph{alternatives} (candidates). We define the set of all \emph{preference profiles} to be $P = L(C)^n$.
+		Let $C = \{1, \ldots, m\}$ be the set of all \emph{alternatives} (candidates).
 	\end{definition}
 
 	\begin{definition}
-		We define the set of all \emph{preference lists} to be $V = L(C)$. We can also view a preference list as a permutation on $C$; it will be obvious from context which approach we are using.
+		We define a \emph{preference list} to be a total order over $C$. Therefore the set of all preference lists is $L(C)$. Alternatively we can view a preference list as a permutation on $C$, and it will be obvious from context which approach we are using.
+	\end{definition}
+
+	\begin{definition}
+		We define a \emph{preference profile} to be $p \in L(C)^n$. And we define $P = L(C)^n$ to be the set of all preference profiles.
 	\end{definition}
 
 	\begin{definition}
@@ -151,7 +155,7 @@
 	\end{definition}
 
 	\begin{definition}
-		Let $v \in V$ be a preference list, and let $x, y \in C$ be two alternatives. Since $v$ is actually a total ordering, we denote $(x, y) \in v$ by
+		Let $v \in L(C)$ be a preference list, and let $x, y \in C$ be two alternatives. Since $v$ is actually a total ordering, we denote $(x, y) \in v$ by
 		\[
 			x <_v y
 		\]
@@ -171,21 +175,19 @@
 
 	\begin{definition}
 		\label{preference-restriction-definition}
-		For a set of candidates $D \subseteq C$, for a preference list $v \in V$ and a preference profile $p \in P$ we denote $v$ and $p$ \emph{restricted to} $D$ by $v|_D$ and $p|_D$ respectively. $v|_D$ means $v$ after all the candidates who are not in $D$ have been removed from the preference list. $p|_D$ means that every preference list in $p$ has been restricted to $D$.
+		For a set of candidates $D \subseteq C$, for a preference list $v \in L(C)$ and a preference profile $p \in P$ we denote $v$ and $p$ \emph{restricted to} $D$ by $v|_D$ and $p|_D$ respectively. $v|_D$ means $v$ after all the candidates who are not in $D$ have been removed. $p|_D$ means that every preference list in $p$ has been restricted to $D$.
 
 		We will sometimes wish to restrict to every alternative except those in $D$ in which case we will write $v|_{\overline{D}}$ where the universe is understood to be $C$.
-
-		Since we will often use restriction when comparing two preference lists we will write $x|_D = y|_D$ simply as $x =_D y$.
 	\end{definition}
 
 	\begin{definition}
-		For any sequence $v$, and $i \in \{1, \ldots, |v|\}$ we will denote by $v_{-i}$, $v$ with $v_i$ removed.
+		For any sequence $x$, and $i \in \{1, \ldots, |x|\}$ we will denote by $x_{-i}$, $x$ with $x_i$ removed. Therefore $(x_{-i}, x'_i)$ will mean a sequence equal to $x$ except with $x'_i$ replacing $x_i$.
 	\end{definition}
 
 	\begin{definition}
 		\label{manipulation-definition}
-		A \emph{successful manipulation} (or \emph{profitable manipulation}) by voter $i$ of a SCF $f$ at profile $x$ is a preference list $x'_i$ such that
+		A \emph{successful manipulation} (or \emph{profitable manipulation}) by voter $i$ of a SCF $f$ at profile $p$ is a preference list $p'_i$ such that
 		\[
-			f((x_{-i}, x'_i)) \succ_i f((x_{-i}, x_i)).
+			f((p_{-i}, p'_i)) \succ_i f((p_{-i}, p_i)).
 		\]
 	\end{definition}
