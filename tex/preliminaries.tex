@@ -73,7 +73,18 @@
 		\[
 			\Inv_{\sigma} = \{(i,j) \mid i, j \in P, i < j, \sigma^{-1}(i) > \sigma^{-1}(j)\}.
 		\]
-		We can read $i \Inv_{\sigma} j$ as ``$i$ is inverted with $j$ in $\sigma$''. $\Inv$ is a transitive relation because for any $i,j,k \in P$ if $i \Inv_{\sigma} j$ and $j \Inv_{\sigma} k$ then $i < j < k$ and $\sigma^{-1}(i) > \sigma^{-1}(j) > \sigma^{-1}(k)$ which means that $i \Inv_{\sigma} k$.
+		We can read $i \Inv_{\sigma} j$ as ``$i$ is inverted with $j$ in $\sigma$''.
+
+		$\Inv$ is a transitive relation because for $n \ge 1$ and $i, k_1, \ldots, k_n, j \in P$ we have that if
+		\[
+			(i, k_1), (k_1, k_2), \ldots, (k_{n-1}, k_{n}), (k_{n}, j) \in \Inv_{\sigma}
+		\]
+		then both of the following hold:
+		\begin{align*}
+			i < k_1 < & \ldots < k_n < j \\
+			\sigma^{-1}(i) > \sigma^{-1}(k_1) > & \ldots > \sigma^{-1}(k_n) > \sigma^{-1}(j).
+		\end{align*}
+		Which means that $(i, j) \in \Inv_{\sigma}$.
 	\end{definition}
 
 	\begin{definition}
@@ -178,6 +189,8 @@
 		For a set of candidates $D \subseteq C$, for a preference list $v \in L(C)$ and a preference profile $p \in P$ we denote $v$ and $p$ \emph{restricted to} $D$ by $v|_D$ and $p|_D$ respectively. $v|_D$ means $v$ after all the candidates who are not in $D$ have been removed. $p|_D$ means that every preference list in $p$ has been restricted to $D$.
 
 		We will sometimes wish to restrict to every alternative except those in $D$ in which case we will write $v|_{\overline{D}}$ where the universe is understood to be $C$.
+
+		Since we will often use restriction when comparing two preference lists we will write $x|_D = y|_D$ simply as $x =_D y$.
 	\end{definition}
 
 	\begin{definition}
