@@ -18,7 +18,7 @@
 		A \emph{total ordering} over a set $X$ is a binary relation on $X$ which is antisymmetric, transitive, and total.
 	\end{definition}
 
-	Although technically permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $<_R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is similar to $\sigma$. Likewise, for any well-ordered set $X$ and a total ordering $<_R$ over $X$, one could construct a permutation $\sigma$ from $<_R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff
+	Although technically speaking permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $<_R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is structurally analogous to $\sigma$. Likewise, for any well-ordered set $X$ and a total ordering $<_R$ over $X$, one could construct a permutation $\sigma$ from $<_R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff
 	\begin{align*}
 		|\{z \in X \mid z < x\}| = |\{z \in X \mid z <_R y\}|.
 	\end{align*}
@@ -34,32 +34,32 @@
 	\end{definition}
 
 	\begin{definition}
-		We define a \emph{poset}, or \emph{partially ordered set}, to be $(X, \le)$ where $X$ is a set, and $\le$ is a binary relation on $X$ which is antisymmetric, transitive, and reflexive. $\le$ is called a partial ordering because not every pair of elements in $X$ needs to be related by $\le$, as opposed to a total ordering which must relate every pair.
+		We define a \emph{poset}, or \emph{partially ordered set}, to be $(X, \le)$, where $X$ is a set and $\le$ is a binary relation on $X$ that is antisymmetric, transitive, and reflexive. $\le$ is called ``partial'' because not every pair of elements in $X$ needs to be related by $\le$, as opposed to a total ordering which must relate every pair.
 	\end{definition}
 
 	\begin{definition}
-		For any partial order $\le_x$ over a set $X$, and $a, b \in X$, we define the following additional partial orders over $X$:
+		For any partial order $\le_x$ over a set $X$ and $a, b \in X$, we define the following additional relations over $X$:
 		\begin{align*}
-			a \ge_x b &\equiv b \le_x a \\
-			a =_x b &\equiv a \le_x b \text{ and } b \le_x a \\
-			a \ne_x b &\equiv \text{not } a =_x b \\
-			a <_x b &\equiv a \le_x b \text{ and } a \ne_x b \\
+			a \ge_x b &\equiv b \le_x a, \\
+			a =_x b &\equiv a \le_x b \text{ and } b \le_x a, \\
+			a \ne_x b &\equiv \text{not } a =_x b, \\
+			a <_x b &\equiv a \le_x b \text{ and } a \ne_x b, \\
 			a >_x b &\equiv a \ge_x b \text{ and } a \ne_x b.
 		\end{align*}
-		We will treat these additional partial orders as implicitly defined, and will not define them explicitly for each partial order individually.
+		We will treat these additional relations as implicitly defined, and will not define them explicitly for each partial order individually.
 	\end{definition}
 
 	\begin{definition}
-		For any poset $(P, \le)$, a \emph{lower bound} of a subset $X \subseteq P$ is an element $a \in P$ such that $a \le x$ for every $x \in X$. A \emph{greatest lower bound} is a \emph{lower bound} that is greater than or equal to every other \emph{lower bound}. We denote this \emph{greatest lower bound} as $\inf_P X$ calling it the \emph{infimum} \cite{birkhoﬀ1967lattice} and also as $\bigmeet_P X$ calling it the \emph{meet}. When $X$ contains only two elements, we can use the meet as a binary operator: $\bigmeet_P \{a, b\} = a \meet_P b$. When $P$ is obvious from context we will simply write $\inf X$ or $\bigmeet X$. If the infimum exists, it is unique because posets are antisymmetric. The infimum is the same as the supremum in the inverse order.
+		For any poset $(P, \le)$, a \emph{lower bound} of a subset $X \subseteq P$ is an element $a \in P$ such that $a \le x$ for every $x \in X$. A \emph{greatest lower bound} is a \emph{lower bound} that is greater than or equal to every other \emph{lower bound}. We denote this \emph{greatest lower bound} as $\inf_P X$, calling it the \emph{infimum} \cite{birkhoﬀ1967lattice} and also as $\bigmeet_P X$, calling it the \emph{meet}. When $X$ contains only two elements, we can use the meet as a binary operator: $\bigmeet_P \{a, b\} = a \meet_P b$. When $P$ is obvious from context we will simply write $\inf X$ or $\bigmeet X$. If the infimum exists, it is unique because posets are antisymmetric.
 	\end{definition}
 
 	\begin{definition}
-		For any poset $(P, \le)$, an \emph{upper bound} of a subset $X \subseteq P$ is an element $a \in P$ such that $a \ge x$ for every $x \in X$. A \emph{least upper bound} is an \emph{upper bound} that is less than or equal to every other \emph{upper bound}. We denote this \emph{least upper bound} as $\sup_P X$ calling it the \emph{supremum} \cite{birkhoﬀ1967lattice} and also as $\bigjoin_P X$ calling it the \emph{join}. When $X$ contains only two elements, we can use the join as a binary operator: $\bigjoin_P \{a, b\} = a \join_P b$. When $P$ is obvious from context we will simply write $\sup X$ or $\bigjoin X$. If the supremum exists, it is unique because posets are antisymmetric. The supremum is the same as the infimum in the inverse order.
+		For any poset $(P, \le)$, an \emph{upper bound} of a subset $X \subseteq P$ is an element $a \in P$ such that $a \ge x$ for every $x \in X$. A \emph{least upper bound} is an \emph{upper bound} that is less than or equal to every other \emph{upper bound}. We denote this \emph{least upper bound} as $\sup_P X$, calling it the \emph{supremum} \cite{birkhoﬀ1967lattice} and also as $\bigjoin_P X$, calling it the \emph{join}. When $X$ contains only two elements, we can use the join as a binary operator: $\bigjoin_P \{a, b\} = a \join_P b$. When $P$ is obvious from context we will simply write $\sup X$ or $\bigjoin X$. If the supremum exists, it is unique because posets are antisymmetric. The supremum is the same as the infimum in the inverse order, and vice versa.
 	\end{definition}
 
 	\begin{definition}
 		\label{lattice-definition}
-		A poset, $(P, \le)$, is a \emph{lattice} if for any $x, y \in P$ both the meet and join of $x$ and $y$ exist. Note that the meet and join are unique by definition (if they exist).
+		A poset, $(P, \le)$, is a \emph{lattice} if for any $x, y \in P$ both the meet and join of $\{x, y\}$ exist. Note that the meet and join are unique by definition (if they exist).
 	\end{definition}
 
 	\begin{definition}
@@ -101,9 +101,9 @@
 					1 & \textrm{ if } i \textrm{ and } j \textrm{ are in the opposite order in } \sigma \textrm{ and } \pi
 				\end{cases}
 		\]
-		Alternatively we can define the Kendall tau distance in terms of inversions
+		Alternatively we can define the Kendall tau distance in terms of inversions:
 		\[
-			K(\sigma, \pi) = |\Inv_{\sigma} \symmetricdifference \Inv_{\pi}|
+			K(\sigma, \pi) = |\Inv_{\sigma} \symmetricdifference \Inv_{\pi}|,
 		\]
 		with $\symmetricdifference$ denoting symmetric difference.
 	\end{definition}
@@ -129,6 +129,7 @@
 		\[
 			\Inv_{\sigma \meet \pi} = (\Inv_{\sigma} \cup \Inv_{\pi})^t.
 		\]
+		Note that $^t$ indicates the transitive closure as defined in Definition \ref{transitive-closure-definition}.
 	\end{definition}
 
 	\begin{definition}[$X^{ij}, \le^{ij}$]

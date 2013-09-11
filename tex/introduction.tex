@@ -3,24 +3,24 @@
 
 \chapter{Introduction}
 
-	In this thesis we endeavor to extend the results of Friedgut, Kalai, and Nisan \cite{friedgut2008elections} who proved that social choice functions can be successfully manipulated by random preference reordering with non-negligible probability. However, there are two main restrictions on their results: the social choice function must be neutral, and the election must have at most 3 alternatives. We attempt to remove the later restriction in order to generalize the results to elections with any number of candidates.
+	In this thesis we endeavor to extend the results of Friedgut, Kalai, and Nisan \cite{friedgut2008elections} who proved that social choice functions can be successfully manipulated by random preference reordering with non-negligible probability. However, there are two main restrictions on their results: the social choice function must be neutral and the election must have at most 3 alternatives. We attempt to remove the later restriction in order to generalize the results to elections with any number of candidates.
 
 	Our proof draws upon many aspects of Friedgut, Kalai, and Nisan's proof. Their proof is done in three steps, with the first two steps being already written in general terms, while the third is restricted to 3 alternatives. Therefore we need only generalize the third step. We rely heavily on lattice theory and combinatorics to prove this generalization.
 
 
 \section{Importance}
 
-	It is obvious, and widely accepted that election systems are important to society. They are essential to democracy which is the foundation of many nations' governments, and are also used in many non-political situations---anywhere a group of independent agents needs to come to a consensus. They are used in schools, electing board members for a business, and stock holders voting on issues affecting a company. Election systems are not even wholly restricted to humans. Elections can be used by artificial intelligence systems when a group of agents needs to make a decision \cite{ephrati1991clarke, ephrati1993multi, pennock2000social, dwork2001rank, fagin2003efficient}, and they can be used in internet page ranking algorithms for search engines \cite{chevaleyre2007short}.
+	It is obvious, and widely accepted that election systems are important to society. They are essential to democracy, which is the foundation of many nations' governments, and are also used in many non-political situations---anywhere a group of independent agents needs to come to a consensus. They are used in schools, electing board members for a business, and stock holders voting on issues affecting a company. Election systems are not even wholly restricted to humans. Elections can be used by artificial intelligence systems when a group of agents needs to make a decision \cite{ephrati1991clarke, ephrati1993multi, pennock2000social, dwork2001rank, fagin2003efficient}, and they can be used in internet page ranking algorithms for search engines \cite{chevaleyre2007short}.
 
 	However, it is less clear that manipulation in elections---especially random manipulation---is important, so we will attempt to describe its importance by briefly explaining the history behind its investigation.
 
-	One obvious criteria for a good election system is fairness \cite{chevaleyre2006issues}, and it is generally accepted that the winning candidate should, on the whole, represent the will the constituents'. It is easy to recognize a fair election system if there are only two candidates: the candidate who is preferred by the majority of voters should win. But with a larger number of candidates, determining the fairness of an election system is more difficult.
+	One obvious criteria for a good election system is fairness \cite{chevaleyre2006issues}, and it is generally accepted that the winning candidate should, on the whole, represent the will the constituents'. It is easy to recognize a fair election system if there are only two candidates: the one preferred by the majority of voters should win. But with a larger number of candidates, determining the fairness of an election system is more difficult.
 
-	Marquis de Condorcet, was one of the first people to study (academically) the issue of fairness in election systems. He proposed that the winning candidate be the candidate who would win a head-to-head election against each of the other candidates, and such a winner is known as the \emph{Condorcet winner}. Unfortunately, Condorcet also proved that a Condorcet winner does not always exist. Nevertheless, this criterion for fairness, called the \emph{Condorcet criterion}, was one of the first formal fairness criteria, and is still widely used today.
+	Marquis de Condorcet was one of the first people to study the issue of fairness in election systems. He proposed that the winning candidate be the candidate who would win a head-to-head election against each of the other candidates, and such a winner is known as the \emph{Condorcet winner}. Unfortunately, Condorcet also proved that a Condorcet winner does not always exist. Nevertheless, this criterion for fairness, called the \emph{Condorcet criterion}, was one of the first formal fairness criteria, and is still widely used today.
 
-	In 1950, Kenneth Arrow, an American economist who was interested in the fairness of social welfare functions, made a large contribution to the field of social choice theory with his impossibility theorem \cite{arrow1950difficulty, arrow1963social}. This theorem demonstrates that no social welfare function can ``fairly'' convert the preferences of voters into a society-wide preference list by showing that no social welfare function can satisfy the following criteria (which will be further described in the next chapter): unrestricted domain, independence of irrelevant alternatives, unanimity, and non-dictatorship.
+	In 1950, Kenneth Arrow, an American economist who was interested in the fairness of social welfare functions, made a large contribution to the field of social choice theory with his impossibility theorem \cite{arrow1950difficulty, arrow1963social}. This theorem demonstrates that no social welfare function can ``fairly'' convert the preferences of voters into a society-wide preference list, by showing that no social welfare function can satisfy the following criteria (which will be further described in the next chapter): unrestricted domain, independence of irrelevant alternatives, unanimity, and non-dictatorship.
 
-	One of the great enemies of fairness in election systems is \emph{manipulation} (or strategic voting or tactical voting). Manipulation is when an individual purposefully misrepresents his preferences hoping to achieve a more favorable outcome in the election. One way to avoid manipulation would be to devise a voting rule that is non-manipulable. Unfortunately, the Gibbard-Satterthwaite theorem states that every voting rule which is not a dictatorship, and under which any alternative can win, is subject to manipulation \cite{gibbard1973manipulation, satterthwaite1975strategy, duggan2000strategic}. This means that we cannot make manipulation impossible via a cleverly devised voting rule.
+	One of the great enemies of fairness in election systems is \emph{manipulation} (or strategic voting or tactical voting). Manipulation is when an individual purposefully misrepresents his preferences, hoping to achieve a more favorable outcome in the election. One way to avoid manipulation would be to devise a voting rule that is non-manipulable. Unfortunately, the Gibbard-Satterthwaite theorem states that every voting rule that is not a dictatorship, and under which any alternative can win, is subject to manipulation \cite{gibbard1973manipulation, satterthwaite1975strategy, duggan2000strategic}. This means that we cannot make manipulation impossible via a cleverly devised voting rule.
 
 	In an attempt to circumvent the Gibbard-Satterthwaite theorem, Bartholdi, Tovey, and Trick studied the computational difficulty of finding a winner for various voting rules. For example, they showed that the Dodgson method mentioned above \cite{dodgson1876method} is actually infeasible to manipulate for the simple reason that figuring out the winner of the election is NP-hard. Therefore, it is not sufficient for a desirable voting rule to be hard to manipulate: it must also be also be efficient to determine a winner.
 
@@ -31,7 +31,7 @@
 
 \section{Difficulty}
 
-	The difficulty of this problem can be seen by the recent work done in generalizing the results of Friedgut, Kalai, and Nisan. First, its difficulty can be seen by Friedgut, Kalai, and Nisan themselves failing to generalize it, both in the original paper \cite{friedgut2008elections}, and also later when they removed the neutrality constraint \cite{friedgut2011quantitative}. If it were an easy task, they would have done it from the outset.
+	The difficulty of this problem can be seen by recent work that generalizes the results of Friedgut, Kalai, and Nisan. First, its difficulty can be seen by Friedgut, Kalai, and Nisan themselves failing to generalize it, both in the original paper \cite{friedgut2008elections}, and also later when they removed the neutrality constraint \cite{friedgut2011quantitative}. If it were an easy task, they would have done it from the outset.
 
 	In addition, other authors have done work along the same lines, but still without coming up with a general result. In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed 5 other conditions for the voting rule \cite{xia2008sufficient}:
 
@@ -69,13 +69,12 @@
 
 \section {Proof Summary}
 
-	The proof we are generalizing is broken up into three steps. In the original paper they are called Step 1, Step 2, and Step 3, but in \cite{friedgut2011quantitative} they are called the following respectively:
-	\begin{enumerate}
-		\item Applying a quantitative version of Arrow's impossibility theorem
-		\item Reduction from an SCF with low dependence on irrelevant alternatives to a GSWF with a low paradox probability
-		\item Reduction from low manipulation power to low dependence on irrelevant alternatives
-	\end{enumerate}
-	In this thesis we will refer to them as Step 1, Step 2, and Step 3.
+	The proof we are generalizing is broken up into three steps. In the original paper they are called Step 1, Step 2, and Step 3, and in \cite{friedgut2011quantitative} they are called the following respectively:
+	\begin{description}
+		\item[Step 1:] application of a quantitative version of Arrow's impossibility theorem,
+		\item[Step 2:] reduction from an SCF with low dependence on irrelevant alternatives to a GSWF with a low paradox probability,
+		\item[Step 3:] reduction from low manipulation power to low dependence on irrelevant alternatives,
+	\end{description}
 
 	In the original paper, Friedgut, Kalai, and Nisan were able to generalize Step 1 and Step 2 as follows:
 
@@ -108,11 +107,11 @@
 \section{Structure of the Remaining Chapters}
 
 	\begin{description}
-		\item[Chapter 2: Preliminaries] In the next chapter we introduce the preliminaries, which include formal definitions and notation to serve as a reference for use in the rest of the thesis. The preliminaries are often elementary and provide a technical foundation for the following work.
+		\item[Chapter 2: Preliminaries.] In the next chapter we introduce the preliminaries, which include formal definitions and notation to serve as a reference for use in the rest of the thesis. The preliminaries are often elementary and provide a technical foundation for the following work.
 
-		\item[Chapter 3: Background] Here we give some background information on the field of social choice theory and describe how it has evolved, leading to the problem we are addressing in this work.
+		\item[Chapter 3: Background.] Here we give some background information on the field of social choice theory and describe how it has evolved, leading to the problem we are addressing in this work.
 
-		\item[Chapter 4: Related Work] In the related work chapter we describe, in a moderate amount of detail, the results and methods of various other authors relating both to this thesis, and to the work of Friedgut, Kalai, and Nisan on which our work is based.
+		\item[Chapter 4: Related Work.] In the related work chapter we describe, in a moderate amount of detail, the results and methods of various other authors relating both to this thesis, and to the work of Friedgut, Kalai, and Nisan on which our work is based.
 
-		\item[Chapter 5: Results] This is the technical portion of the thesis in which we prove foundational lemmas and build up a proof of our main result.
+		\item[Chapter 5: Results.] This is the technical portion of the thesis in which we prove foundational lemmas and build up a proof of our main result.
 	\end{description}
