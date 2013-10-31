@@ -75,16 +75,16 @@
 		\]
 		We can read $i \Inv_{\sigma} j$ as ``$i$ is inverted with $j$ in $\sigma$''.
 
-		$\Inv$ is a transitive relation because for $n \ge 1$ and $i, k_1, \ldots, k_n, j \in P$ we have that if
+		$\Inv$ is a transitive relation because for $n \ge 1$ and $i, k, j \in P$ we have that if
 		\[
-			(i, k_1), (k_1, k_2), \ldots, (k_{n-1}, k_{n}), (k_{n}, j) \in \Inv_{\sigma}
+			(i, k), (k, j) \in \Inv_{\sigma}
 		\]
 		then both of the following hold:
 		\begin{align*}
-			i < k_1 < & \ldots < k_n < j \\
-			\sigma^{-1}(i) > \sigma^{-1}(k_1) > & \ldots > \sigma^{-1}(k_n) > \sigma^{-1}(j).
+			i < &k < j \\
+			\sigma^{-1}(i) > \sigma^{-1}&(k) > \sigma^{-1}(j).
 		\end{align*}
-		Which means that $(i, j) \in \Inv_{\sigma}$.
+		And therefore $(i, j) \in \Inv_{\sigma}$.
 	\end{definition}
 
 	\begin{definition}
@@ -203,5 +203,29 @@
 		A \emph{successful manipulation} (or \emph{profitable manipulation}) by voter $i$ of a SCF $f$ at profile $p$ is a preference list $p'_i$ such that
 		\[
 			f((p_{-i}, p'_i)) \succ_i f((p_{-i}, p_i)).
+		\]
+	\end{definition}
+
+	\begin{definition}
+		\label{scf-distance-definition}
+		The distance between two SCFs is defined to be the fraction of inputs on which they differ:
+		\[
+			\mathbf{D}(f, g) = \mathbb{P}(f (\sigma) \ne g(\sigma)).
+		\]
+		When dealing with a set of SCFs, $G$, we take the minimum distance over all SCFs in that set:
+		\[
+			\mathbf{D}(f, G) = \min_{g \in G} \mathbf{D}(f, g).
+		\]
+		For example, we will sometimes say that a SCF, $f$, is $\epsilon$-far from dictatorship. This means that $\mathbf{D}(f, DICT) > \epsilon$, where $DICT$ is the set of SCFs that are dictatorships.
+	\end{definition}
+
+	\begin{definition}
+		A SCF is \emph{neutral} if its result does not change with the permutation of the alternatives. Formally, let $f$ be a SCF, let $\sigma$ be a permutation over the set of alternatives, and let $\pi$ be a function which applies $\sigma$ to each alternative in a preference list:
+		\[
+			\pi(v) = (\sigma(v_1), \ldots, \sigma(v_m)).
+		\]
+		Then $f$ is neutral iff
+		\[
+			f(\pi(p_1), \ldots, \pi(p_n)) = \sigma(f(p_1, \ldots, p_n)).
 		\]
 	\end{definition}

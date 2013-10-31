@@ -27,20 +27,31 @@
 	In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed five other conditions for the voting rule \cite{xia2008sufficient}:
 
 	\begin{description}
-		\item[Homogeneity] For any $n \in \mathbb{N}$ we have:
+		\item[Homogeneity] For any $n \in \mathbb{N}$ and any profile $p$, we have:
 			\begin{align*}
-				f(P) = f\left(\bigcup_{i=1}^n P\right).
+				f(p) = f\left(\bigcup_{i=1}^n p\right).
 			\end{align*}
-		\item[Anonymity] The result of the election does not depend on the names of the voters. Formally, given a profile $P$ and a permutation $\sigma(P)$ then: $f(P) = f(\sigma(P))$.
+		\item[Anonymity] The result of the election does not depend on the names of the voters. Formally, given a profile $p$ and a permutation $\sigma(p)$ then: $f(p) = f(\sigma(p))$.
 		\item[Non-imposition] Every alternative has the possibility of winning.
-		\item[Canceling out] Adding the set of all linear orders to the votes does not change the result. More formally, for any profile $P$ we have that: $f(P) = f(P \cup L(C))$.
-		\item[Stability] Given alternatives $C = \{c_1, c_2, \ldots, c_m\}$, there exists a profile $P$ such that:
+		\item[Canceling out] Adding the set of all linear orders to the votes does not change the result. More formally, for any profile $p$ we have that: $f(p) = f(p \cup L(C))$.
+		\item[Stability] Given alternatives $C = \{c_1, c_2, \ldots, c_m\}$, there exists a profile $p$ such that:
 			\begin{enumerate}
-				\item $P$ and $D_{m}(P)$ are both stable, i.e. slight modifications don't change the winner. (See below for a definition of $D_{m}$.)
-				\item $f(P) = c_1$
-				\item $f(D_{m}(P)) = c_2$
+				\item $p$ and $D_{m}(p)$ are both stable, i.e. slight modifications don't change the winner. (See below for a definition of $D_{m}$.)
+				\item $f(p) = c_1$
+				\item $f(D_{m}(p)) = c_2$
 			\end{enumerate}
-			Where $D_m$ is defined such that if $D_m(P) = P'$, then $P|_{C \backslash \{c_m\}} = P'|_{C \backslash \{c_m\}}$ and the position of $c_m$ is uniformly distributed in $P'$. For a formal definition of $D_m$ and of ``stability,'' see the original paper \cite{xia2008sufficient}.
+			Where $D_m$ is defined such that if $D_m(p) = p'$, then $p|_{C \backslash \{c_m\}} = p'|_{C \backslash \{c_m\}}$ and the position of $c_m$ is uniformly distributed in $p'$.
+
+			For a more formal definition of $D_m$ we must first give a couple of preliminary definitions. First, we define a merging function $M\colon L(C)^n \times C^n \rightarrow L(C)^n$ such that
+			\[
+				M((v_1, \ldots, v_n), (i_1, \ldots, i_n)) = (M(v_1, i_1), \ldots, M(v_n, i_n))
+			\]
+			where $M(v_j, i_j)$ is the preference list that results from moving $c_m$ to the $i_j$\textsuperscript{th} position. Second, we note that any profile $p$ can be written as $\sum_{i=1}^{m!} p_i l_i$ where $l_i \in L(C)$ and $p_i$ indicates how many times the linear order $l_i$ appears in $p$.
+
+			Then we can define $D_m$ as follows. Given a profile $p = \sum_{i=1}^{m!} p_i l_i$, we define \cite{xia2008sufficient}:
+			\[
+				D_m(p) = \sum_{i=1}^{m!} \sum_{j=1}^{m!} \frac{p_i}{m} M(l_i, j).
+			\]
 	\end{description}
 
 	However, these conditions are stricter than the neutrality assumption of Friedgut, Kalai, and Nisan, in the sense that they do not capture all of the ``common'' voting rules, e.g. Bucklin.
@@ -234,4 +245,4 @@
 		for some polynomial $q$, where $\sigma \in L(C)^n$ is uniformly selected, and $\sigma'$ is obtained from $\sigma$ by uniformly selecting a coordinate $i \in \{ 1, \ldots, n \}$, uniformly selecting $j \in \{ 1, \ldots, n-3 \}$, and then uniformly randomly permuting the following four adjacent alternatives in $\sigma_i: \sigma_i(j), \sigma_i(j+1), \sigma_i(j+2),$ and $\sigma_i(j+3)$. In particular, the specific lower bound for $\mathbb{P}(\sigma \in M_4(f))$ implies that we can take $q \left( \epsilon, \frac{1}{n}, \frac{1}{m} \right) = \frac{\epsilon^{15}}{10^{41} n^{68} m^{167}}$.
 	\end{theorem}
 
-	Above the distance between SCFs is defined to be the fraction of inputs on which they differ: $\mathbf{D}(f, g) = \mathbb{P}(f (\sigma) \ne g(\sigma))$, and for a class of SCFs $G$ we take the SCF with the minimum distance: $\mathbf{D}(f, G) = \min_{g \in G} \mathbf{D}(f, g)$. NONMANIP is defined to be the set of SCFs which are either dictators or take at most two values. Finally, $M(f)$ denotes the set of manipulation points of the SCF f, and for a given $r$, let $M_r(f)$ denote the set of $r$-manipulation points of $f$ (we only allow permuting $r$ adjacent alternatives instead of the entire preference list).
+	Above, the distance between SCFs is defined as in Definition \ref{scf-distance-definition}. NONMANIP is defined to be the set of SCFs which are either dictators or take at most two values. Finally, $M(f)$ denotes the set of manipulation points of the SCF f, and for a given $r$, let $M_r(f)$ denote the set of $r$-manipulation points of $f$ (we only allow permuting $r$ adjacent alternatives instead of the entire preference list).
