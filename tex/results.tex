@@ -227,14 +227,11 @@
 		We define the upper edge border of $B(p)$ analogously.
 	\end{definition}
 
+	Before we continue we will prove a preliminary lemma that we will use later in our proof. This lemma will show that each edge in $(x_{-i}, x_i, x'_i) \in \partial_i A(p) \cup \partial_i B(p)$ corresponds to a successful manipulation.
+
 	\begin{lemma}
 		\label{manipulation-per-edge-in-a}
-		Let $p, p' \in L(C)^n$, and let $i \in \{1, \ldots, n\}$. Let the following conditions hold:
-		\begin{align*}
-			p_{-i} &= p'_{-i} \\
-			p_i|_{a,b} &= p'_i|_{a,b}.
-		\end{align*}
-		Then each $(x_{-i}, x_i, x'_i) \in \partial_i A(p) \cup \partial_i B(p)$ corresponds to at least one successful manipulation.
+		Let $p \in L(C)^n$, and let $i \in \{1, \ldots, n\}$. Then each $(x_{-i}, x_i, x'_i) \in \partial_i A(p) \cup \partial_i B(p)$ corresponds to at least one successful manipulation.
 	\end{lemma}
 
 	\begin{proof}
@@ -257,7 +254,7 @@
 		\]
 	\end{lemma}
 
-	And we generalize it as follows.
+	This lemma relates $M_i(f)$ to the upper edge border defined above, and we generalize it as follows.
 
 	\begin{lemma}
 		\label{friedgut-lemma-7}
@@ -267,23 +264,28 @@
 	\end{lemma}
 
 	\begin{proof}
-		Recall the definition of $M_i(f)$: given a profile $p \in P$ and a vote $p'_i \in L(C)$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
+		First, recall the definition of $M_i(f)$: given a profile $p \in P$ and a vote $p'_i \in L(C)$ chosen uniformly at random, $M_i(f)$ is the probability that $p'_i$ is a successful manipulation of $p$ by voter $i$. Therefore to lower bound $M_i(f)$ we start with $p$ and $p'_i$ chosen uniformly at random. We can think of these as two distinct profiles, $p$ and $p'$, where $p' = (p_{-i}, p'_i)$.
 
 		Clearly $p_{-i}|_{\{a,b\}} = p'_{-i}|_{\{a,b\}}$, but we will have $p_i|_{\{a,b\}} = p'_i|_{\{a,b\}}$ only with probability $\frac{1}{2}$, and we condition the following on this being the case. So we assume that $p|_{\{a,b\}} = p'|_{\{a,b\}}$.
 
 		By Lemma \ref{manipulation-per-edge-in-a}, each $(x_{-i}, x_i, x'_i) \in (\partial_i A(p) \cup \partial_i B(p))$ corresponds to at least one successful manipulation. Note that if $(x_{-i}, x_i, x'_i) \in \partial_i A(p)$ then $(x_{-i}, x'_i, x_i) \notin \partial_i A(p)$.
 
-		We take a short aside to limit our domain without losing any information. Since we have conditioned this line of reasoning such that $p|_{\{a,b\}} = p'|_{\{a,b\}}$, for any two votes $v_1, v_2 \in A(p) \cup B(p)$ we have $v_1|_{\{a,b\}} = v_2|_{\{a,b\}}$. Therefore we can define a new set
-		\[
-			P' = \{x \in L(C)^n \mid x|_{\{a,b\}} = p|_{\{a,b\}}\}
-		\]
-		and view $A(p), B(p)$, as residing in $P'$. This is because, by definition, the elements of these sets agree with $p|_{\{a,b\}}$. Clearly $|P'| = (\frac{m!}{2})^n$.
+		Therefore we can lower bound the probability that $p, p'$ is a manipulation, i.e. $M_i(f)$, by the probability that an edge is in $\partial_i A(p) \cup \partial_i B(p)$.
 
-		Therefore we can lower bound $M_i(f)$ by the probability that an edge is in either $\partial_i A(p)$ or $\partial_i B(p)$. The total possible number of edges is
+		The total number of possible edges of the form $(x_{-i}, x_i, x'_i)$ is
 		\[
-			\frac{m!}{2} \cdot \frac{m!}{2} \cdot \left(\frac{m!}{2}\right)^{n-1} = \frac{m!}{2}\left(\frac{m!}{2}\right)^{n}
+			(m!)^{n-1} \cdot m! \cdot m!
 		\]
-		So the probability that a randomly chosen edge is in either $\partial_i A(p)$ or $\partial_i B(p)$ is
+		but all edges in $\partial_i A(p) \cup \partial_i B(p)$ must agree with $p|_{\{a, b\}}$. The total number of possible edges agreeing with $p|_{\{a, b\}}$ is
+		\[
+			\left(\frac{m!}{2}\right)^{n-1} \cdot \frac{m!}{2} \cdot \frac{m!}{2} = \frac{m!}{2}\left(\frac{m!}{2}\right)^{n}.
+		\]
+		Since $\partial_i A(p)$ and $\partial_i B(p)$ are disjoint, no edge can be in both sets and so we have
+		\[
+			|\partial_i A(p) \cup \partial_i B(p)| \le \frac{m!}{2}\left(\frac{m!}{2}\right)^{n}.
+		\]
+
+		Therefore, the probability that a randomly chosen edge is in either $\partial_i A(p)$ or $\partial_i B(p)$ is
 		\[
 			\frac{2}{m!} \left(\frac{2}{m!}\right)^{n} \cdot E \left[ |\partial_i A(p)| + |\partial_i B(p)| \right]
 		\]
