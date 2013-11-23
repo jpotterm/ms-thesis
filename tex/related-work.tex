@@ -27,10 +27,10 @@
 	In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed five other conditions for the voting rule \cite{xia2008sufficient}:
 
 	\begin{description}
-		\item[Homogeneity] For any $n \in \mathbb{N}$ and any profile $p$, we have:
-			\begin{align*}
-				f(p) = f\left(\bigcup_{i=1}^n p\right).
-			\end{align*}
+		\item[Homogeneity] Let $k \in \mathbb{N}$, let $p$ be a profile of length $n$, and let $j \in \mathbb{N}$ such that $k \le j < (k + kn)$. A voting rule is homogeneous if $f(p) = f(p')$, where $p'$ consists of $k$ copies of every vote in $p$:
+			\[
+				p'_j = p_{\lfloor j/k \rfloor}.
+			\]
 		\item[Anonymity] The result of the election does not depend on the names of the voters. Formally, given a profile $p$ and a permutation $\sigma(p)$ then: $f(p) = f(\sigma(p))$.
 		\item[Non-imposition] Every alternative has the possibility of winning.
 		\item[Canceling out] Adding the set of all linear orders to the votes does not change the result. More formally, for any profile $p$ we have that: $f(p) = f(p \cup L(C))$.
