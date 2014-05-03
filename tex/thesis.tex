@@ -38,6 +38,12 @@
 \let\emptysetraw\emptyset
 \renewcommand{\emptyset}{\varnothing}
 
+\newcommand*{\SignatureAndDate}[1]{%
+	\tiny
+    \par\noindent\makebox[3in]{\hrulefill} \hfill\makebox[1.5in]{\hrulefill}%
+    \par\noindent\makebox[3in][l]{#1}      \hfill\makebox[1.5in][l]{Date}%
+}
+
 \begin{document}
 
 \frontmatter
@@ -46,7 +52,7 @@
 \author{Jonathan Potter \\ jmp2909@rit.edu}
 \date{
 	\today \\
-	\vspace{3in} \small
+	\vspace{2.5in} \small
 	\begin{center}
 		\begin{tabular}{rl}
 			\emph{Chair} & Christopher Homan \\
@@ -54,6 +60,12 @@
 			\emph{Observer} & Zack Butler
 		\end{tabular}
 	\end{center}
+	\vspace{1cm}
+	\SignatureAndDate{Chair Signature}
+	\vspace{0.5cm}
+	\SignatureAndDate{Reader Signature}
+	\vspace{0.5cm}
+	\SignatureAndDate{Observer Signature}
 }
 
 \maketitle
