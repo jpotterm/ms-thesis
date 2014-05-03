@@ -2,7 +2,7 @@
 
 \chapter{Results}
 
-	In this chapter we will attempt to generalize step 3 of Friedgut by way of generalizing Friedgut's Lemma 6, Lemma 7, and Lemma 8. However, we will begin the chapter with some general lattice theory results that we will need later on in the chapter.
+	In this chapter we will attempt to generalize step 3 of Friedgut, Kalai, and Nisan by way of generalizing Friedgut's Lemma 6, Lemma 7, and Lemma 8. However, we will begin the chapter with some general lattice theory results that we will need later on in the chapter.
 
 \section{Lattice Theory}
 
@@ -134,9 +134,9 @@
 	Friedgut, Kalai, and Nisan's main theorem is proved in three steps; the first two are already general, and hold for any $n, m \in N^+$. Therefore, to generalize the main theorem we need only generalize the third step, and therefore this third step is our main theorem. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. The lemma we will generalize is:
 
 	\begin{lemma}[Lemma 3 of Friedgut]
-		For every SCF $f$ on $3$ alternatives and every $a,b \in A$,
+		For every SCF $f$ on three alternatives and every $a,b \in A$,
 		\[
-			M^{a,b} \le \sum_i M_i \cdot 6
+			M^{a,b} \le \sum_i M_i \cdot 6.
 		\]
 	\end{lemma}
 
@@ -145,7 +145,7 @@
 	\begin{theorem}[Main Theorem]
 		For every SCF $f$ on $m$ alternatives and every $a, b \in C$:
 		\[
-			M^{a, b}(f) \le m! \cdot \sum_i M_i(f)
+			M^{a, b}(f) \le m! \cdot \sum_i M_i(f).
 		\]
 	\end{theorem}
 
@@ -208,7 +208,7 @@
 
 	We now attempt to relate $M_i(f)$ to $A$ and $B$.
 
-	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$, which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Lemma \ref{friedgut-lemma-8}.
+	Recall the ordering, $\le_s$, which was defined in Definition \ref{partial-order-s-definition}. We know that $(L(C), \le_s)$ is a lattice by the following. First, $L(C)$ is the set of all total orderings of $C$, which is isomorphic to the set of all permutations of $C$. Second, $\le_s$ is the weak Bruhat order (also known as the weak order of permutations). The weak Bruhat order applied to the set of all permutations is a lattice \cite{bjorner1984orderings}, so $(L(C), \le_s)$ is a lattice. This is useful to note now, and will be invoked to help prove Conjecture \ref{friedgut-lemma-8}.
 
 	We have defined $(L(C), \le_s)$ to be a lattice, but for the following definition, and for later in the chapter we will treat it as a graph with $L(C)$ being the set of vertices, and $\le_s$ being the set of edges, oriented so that edges go from greater nodes to lesser nodes.
 
@@ -246,7 +246,7 @@
 		And analogously for $(x_{-i}, x_i, x'_i) \in \partial_i B(p)$, either $x'_i$ is a successful manipulation of $(x_{-i}, x_i)$ or $x_i$ is a successful manipulation of $(x_{-i}, x'_i)$.
 	\end{proof}
 
-	We now generalize Lemma 7 of Friedgut, Kalait, and Nisan. Their original lemma is:
+	We now generalize Lemma 7 of Friedgut, Kalai, and Nisan. Their original lemma is:
 
 	\begin{lemma}[See Lemma 7 of Friedgut]
 		\[
@@ -326,7 +326,7 @@
 		B &\subseteq L(C)^n \\
 	\end{align*}
 
-	We now generalize Lemma 8 of Friedgut, Kalait, and Nisan. Their original lemma is:
+	We now generalize Lemma 8 of Friedgut, Kalai, and Nisan. Their original lemma is:
 
 	\begin{lemma}[See Lemma 8 of Freidgut]
 		For every disjoint $A, B$ we have that
@@ -335,7 +335,7 @@
 		\]
 	\end{lemma}
 
-	Our generalization of the above lemma is Lemma \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ in Algorithm \ref{algorithm-consolidate-a-prime}.
+	Our generalization of the above lemma is Conjecture \ref{friedgut-lemma-8}, but we must do a little bit of setup before we are ready to prove it. First we define an algorithm to consolidate $A$ into $A'$. We define $A'$ to be a consolidation of $A$ in Algorithm \ref{algorithm-consolidate-a-prime}.
 
 	\begin{algorithm}
 		\caption{Consolidate $A'$}
@@ -409,13 +409,13 @@
 
 	And now we are ready to prove the final lemma in this section:
 
-	\begin{lemma}
+	\begin{conjecture}
 		\label{friedgut-lemma-8}
 		For every disjoint $A, B$ we have that
 		\[
 			|\partial A| + |\partial B| \ge \left( \frac{2}{m!} \right)^n |A| \cdot |B|
 		\]
-	\end{lemma}
+	\end{conjecture}
 
 	\begin{proof}
 		Since for any two votes $v_1, v_2 \in A \cup B$ we have $v_1|_{\{a,b\}} = v_2|_{\{a,b\}}$ we can define a new set
@@ -470,13 +470,13 @@
 	\begin{align*}
 		&M^{a,b} = E[|A||B|] \cdot L_6 & \textrm{lemma 6} \\
 		&L_7 \cdot E[|\partial A| + |\partial B|] \le \sum_i M_i & \textrm{lemma 7} \\
-		&\frac{1}{L_8} \cdot (|\partial A| + |\partial B|) \ge |A||B| & \textrm{lemma 8}
+		&\frac{1}{L_8} \cdot (|\partial A| + |\partial B|) \ge |A||B| & \textrm{conjecture 8}
 	\end{align*}
 
 	Now we can solve for the result of step 3.
 	\begin{align*}
 		M^{a,b} &= E[|A||B|] \cdot L_6 & \textrm{by lemma 6} \\
-		M^{a,b} &\le E[|\partial A| + |\partial B|] \cdot \frac{L_6}{L_8} & \textrm{by lemma 8} \\
+		M^{a,b} &\le E[|\partial A| + |\partial B|] \cdot \frac{L_6}{L_8} & \textrm{by conjecture 8} \\
 		M^{a,b} &\le \sum_i M_i \cdot \frac{L_6}{L_7L_8} & \textrm{by lemma 7}
 	\end{align*}
 
@@ -515,16 +515,16 @@
 
 	And we restate our generalized version of Friedgut's Lemma 3.
 
-	\begin{lemma}[Lemma 3 of Friedgut]
+	\begin{conjecture}[Lemma 3 of Friedgut]
 		\label{friedgut-lemma-3}
 		For every SCF $f$ on $m$ alternatives and every $a,b \in A$, $M^{a,b} \le \sum_i M_i \cdot m!$
-	\end{lemma}
+	\end{conjecture}
 
 	With these three lemmas we can now prove a generalized version of Friedgut's main theorem.
 
-	\begin{theorem}[Theorem 1 of Friedgut]
+	\begin{conjecture}[Theorem 1 of Friedgut]
 		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over 3 alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulatiblity: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
-	\end{theorem}
+	\end{conjecture}
 
 	\begin{proof}
 		Lemma \ref{friedgut-lemma-2} gives us
@@ -536,7 +536,7 @@
 			M^{a,b}(f) &\ge \delta \ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
 			M^{a,b}(f) &\ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
 		\end{align*}
-		We then relate $M^{a,b}$ to $M_i$ by Lemma \ref{friedgut-lemma-3}
+		We then relate $M^{a,b}$ to $M_i$ by Conjecture \ref{friedgut-lemma-3}
 		\begin{align*}
 			\sum^n_{i=1} M_i(f) \cdot m! &\ge M^{a,b}(f) \ge (C\epsilon)^{\lfloor m/3 \rfloor} \\
 			\sum^n_{i=1} M_i(f) \cdot m! &\ge (C\epsilon)^{\lfloor m/3 \rfloor} \\

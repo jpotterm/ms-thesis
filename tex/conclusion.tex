@@ -4,13 +4,13 @@
 
 	We have attempted to prove the following main result in order to extend the results of Friedgut, Kalai, and Nisan in a straightforward manner, and along the same lines of reasoning as the original proof. Our main theorem is
 
-	\begin{theorem}[Main Result]
+	\begin{conjecture}[Main Result]
 		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over 3 alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulatiblity: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
-	\end{theorem}
+	\end{conjecture}
 
-	Unfortunately, due to time constraints and unforseen difficulties, we were unable to prove (or disprove) Lemma \ref{friedgut-lemma-8} because of the problem noted in the attempted proof for that lemma. We conjecture that this can be proven without many changes to our attempted proof, and we leave this as an open problem.
+	Unfortunately, due to time constraints and unforseen difficulties, we were unable to prove (or disprove) Conjecture \ref{friedgut-lemma-8} because of the problem noted in the attempted proof for that lemma. We conjecture that this can be proven without many changes to our attempted proof, and we leave this as an open problem.
 
-	Since our main result relies on Lemma \ref{friedgut-lemma-8}, we have only been able to prove the following two lemmas.
+	Since our main result relies on Conjecture \ref{friedgut-lemma-8}, we have only been able to prove the following two lemmas.
 
 	\begin{lemma}
 		Let $C$ be a set of alternatives. Let $a, b \in C$ be any two alternatives. Let $m = |C|$ and let $n$ be the number of voters. Let $f$ be a SCF. We have
@@ -25,13 +25,13 @@
 		\]
 	\end{lemma}
 
-	Even though we were not able to complete the proof of Lemma \ref{friedgut-lemma-8}, we made progress towards that end, and we were able to provide a detailed explanation of the difficulties we ran into. We have also shown that if Lemma \ref{friedgut-lemma-8} can be proven, then our main result will follow.
+	Even though we were not able to complete the proof of Conjecture \ref{friedgut-lemma-8}, we made progress towards that end, and we were able to provide a detailed explanation of the difficulties we ran into. We have also shown that if Conjecture \ref{friedgut-lemma-8} can be proven, then our main result will follow.
 
 \section{Open Problems}
 	In closing we would like to point out a few potential areas of further research that may follow from this thesis. There are any number of directions that future research can take, but these are some of the most relevant questions that we have omitted, either intentionally or unintentionally, from this work. Therefore, we leave the following open problems.
 
 	\begin{enumerate}
-		\item As discussed above, we leave the completion of the proof of Lemma \ref{friedgut-lemma-8}, by resolving Open Problem \ref{lemma-8-open-problem}, open for further investigation.
+		\item As discussed above, we leave the completion of the proof of Conjecture \ref{friedgut-lemma-8}, by resolving Open Problem \ref{lemma-8-open-problem}, open for further investigation.
 		\item Throughout this thesis we have been concerned only with average-case complexity based on a normal distribution of votes. This is common practice and it is a useful distribution, but in real-world elections the distribution is very rarely a normal distribution, so we leave the task of investigating the impact of a more realistic distribution open for further research.
 		\item Our bounds are certainly not tight, and neither are the bounds of Mossel and R\'{a}cz \cite{mossel2011quantitative}. It would be very useful to find tight bounds, and we leave this as our third open problem.
 		\item This work deals with a lower bound on average case manipulability, but some subsets of SCFs may be close to this lower bound, while others may be significantly higher. It would be useful to investigate the average case manipulability of certain subsets of SCFs to see how close they are to this generic lower bound. This is one of the open problems stated by Mossel and R\'{a}cz \cite{mossel2011quantitative}. We restate it here for emphasis, and leave this as our final open problem.

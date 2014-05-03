@@ -15,7 +15,7 @@
 	\end{definition}
 
 	\begin{definition}
-		A \emph{total ordering} over a set $X$ is a binary relation on $X$ which is antisymmetric, transitive, and total.
+		A \emph{total ordering} over a set $X$ is a binary relation on $X$ that is antisymmetric, transitive, and total.
 	\end{definition}
 
 	Although technically speaking permutations and total orderings are different constructs (bijective functions versus binary relations), they often have similar applications. For example, given a totally-ordered set $X$ and a permutation $\sigma$ on $X$, we can construct a total ordering $<_R = \{(x,y) \mid x, y \in X, \sigma^{-1}(x) < \sigma^{-1}(y)\}$ which is structurally analogous to $\sigma$. Likewise, for any well-ordered set $X$ and a total ordering $<_R$ over $X$, one could construct a permutation $\sigma$ from $<_R$ where $\sigma : X \to X$ such that $\sigma(x) = y$ iff
@@ -210,13 +210,13 @@
 		\label{scf-distance-definition}
 		The \emph{distance} between two SCFs is defined to be the fraction of inputs on which they differ:
 		\[
-			\mathbf{D}(f, g) = \mathbb{P}(f (\sigma) \ne g(\sigma)).
+			\mathbf{D}(f, g) = \probability(f (\sigma) \ne g(\sigma)).
 		\]
 		When dealing with a set of SCFs, $G$, we take the minimum distance over all SCFs in that set:
 		\[
 			\mathbf{D}(f, G) = \min_{g \in G} \mathbf{D}(f, g).
 		\]
-		For example, we will sometimes say that a SCF, $f$, is \emph{$\epsilon$-far from dictatorship}. This means that $\mathbf{D}(f, DICT) > \epsilon$, where $DICT$ is the set of SCFs that are dictatorships.
+		For example, we will sometimes say that a SCF, $f$, is \emph{$\epsilon$-far from dictatorship}. This means that $\mathbf{D}(f, DICT) > \epsilon$, where $DICT$ is the set of SCFs that are dictatorships. A SCF is a dictatorship if there exists a voter whose top ranked alternative wins regardless of the other voters' preference lists.
 	\end{definition}
 
 	\begin{definition}
