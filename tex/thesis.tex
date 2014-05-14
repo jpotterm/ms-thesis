@@ -1,9 +1,11 @@
 \documentclass[11pt,oneside]{book}
 
-\usepackage{amsthm, amsmath, amssymb, mathrsfs, graphicx, tabularx, multirow, algorithmicx, algpseudocode}
+\usepackage{amsthm, amsmath, amssymb, mathrsfs, graphicx, tabularx, multirow, algorithmicx, algpseudocode, etoolbox}
 \usepackage[pdfborderstyle={/S/S}]{hyperref}
-\usepackage{hyperref}
 \usepackage[section]{algorithm}
+\usepackage[hypcap]{caption}
+
+\apptocmd{\thebibliography}{\raggedright}{}{}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -52,7 +54,7 @@
 \author{Jonathan Potter \\ jmp2909@rit.edu}
 \date{
 	\today \\
-	\vspace{2.5in} \small
+	\vspace{2.3in} \small
 	\begin{center}
 		\begin{tabular}{rl}
 			\emph{Chair} & Christopher Homan \\
