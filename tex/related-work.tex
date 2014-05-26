@@ -50,13 +50,13 @@
 			\end{enumerate}
 			Where $D_m$ is defined such that if $D_m(p) = p'$, then $p|_{C \backslash \{c_m\}} = p'|_{C \backslash \{c_m\}}$ and the position of $c_m$ is uniformly distributed in $p'$.
 
-			For a more formal definition of $D_m$ we must first give a couple of preliminary definitions. First, we define a merging function $M\colon L(C)^n \times C^n \rightarrow L(C)^n$ such that
+			For a more formal definition of $D_m$ we must first give a couple of preliminary definitions. First, the authors define a merging function $M\colon L(C)^n \times C^n \rightarrow L(C)^n$ such that
 			\[
 				M((v_1, \ldots, v_n), (i_1, \ldots, i_n)) = (M(v_1, i_1), \ldots, M(v_n, i_n))
 			\]
 			where $M(v_j, i_j)$ is the preference list that results from moving $c_m$ to the $i_j$\textsuperscript{th} position. Second, we note that any profile $p$ can be written as $\sum_{i=1}^{m!} p_i l_i$ where $l_i \in L(C)$ and $p_i$ indicates how many times the linear order $l_i$ appears in $p$.
 
-			Then we can define $D_m$ as follows. Given a profile $p = \sum_{i=1}^{m!} p_i l_i$, we define \cite{xia2008sufficient}:
+			Then the authors define $D_m$ as follows. Given a profile $p = \sum_{i=1}^{m!} p_i l_i$, we define \cite{xia2008sufficient}:
 			\[
 				D_m(p) = \sum_{i=1}^{m!} \sum_{j=1}^{m!} \frac{p_i}{m} M(l_i, j).
 			\]
@@ -114,17 +114,17 @@
 		\sum_{i=1}^n M_i(f) \ge \frac{\epsilon^2}{10^4 n^3 m^{30}}.
 	\end{align*}
 
-	Isaksson, Kindler, and Mossel used purely geometric and combinatorial methods to achieve their results. One of the foundational techniques they employed was the canonical path method \cite{jerrum1993polynomial}. Given a graph $G$, the canonical path method attempts to give a lower bound on the ``surface area'' of a subset of vertices, $A$. Surface area is defined as the number of vertices in $A$ that have an edge to at least one vertex outside of $A$. Given two vertices $x, y$ such that $x \in A$ and $y \notin A$, we call the path between them the canonical path, and clearly this path must contain at least one surface vertex. Then by proving that each surface vertex lies on at most $r$ canonical paths, we bound the surface area of $A$ below by $\frac{|A| |\overline{A}|}{r}$ because the total number of total canonical paths is $|A| |\overline{A}|$.
+	Isaksson, Kindler, and Mossel used purely geometric and combinatorial methods to achieve their results. One of the foundational techniques they employed was the canonical path method \cite{jerrum1993polynomial}. Given a graph $G$, the canonical path method attempts to give a lower bound on the ``surface area'' of a subset of vertices, $A$. Surface area is defined as the number of vertices in $A$ that have an edge to at least one vertex outside of $A$. Given two vertices $x, y$ such that $x \in A$ and $y \notin A$, the authors call the path between them the canonical path, and clearly this path must contain at least one surface vertex. Then by proving that each surface vertex lies on at most $r$ canonical paths, the surface area of $A$ is bounded below by $\frac{|A| |\overline{A}|}{r}$ because the total number of total canonical paths is $|A| |\overline{A}|$.
 
 	The graph used by Isaksson, Kindler, and Mossel is very similar to the one used by Friedgut, Kalai, and Nisan. It is also similar to the one used for the results in this thesis, except that ours is directed, and is missing certain edges.
 
-	Next we define the boundary of $f$ with respect to alternatives $a, b$ as
+	Next the authors define the boundary of $f$ with respect to alternatives $a, b$ as
 	\[
 		B^{a,b}_i(f) = \{(x, x') \mid f(x) = a, f(x') = b, \forall j \neq i: x_j = x'_j\}.
 	\]
-	For any distinct alternatives $a, b, c, d$ we construct canonical paths between $B^{a,b}_i$ and $B^{c,d}_j$ such that each path passes through a manipulation point. These paths are called manipulation paths.
+	For any distinct alternatives $a, b, c, d$ the authors construct canonical paths between $B^{a,b}_i$ and $B^{c,d}_j$ such that each path passes through a manipulation point. These paths are called manipulation paths.
 
-	We define manipulation paths between pairs of profiles in $B^{a,b}_i$ and $B^{c,d}_j$. In the first half of the path we will preserve the order of $a, b$, while in the second half of the path we will only modify the order of $a, b$ and not any other alternatives. The length of the manipulation path will be $2n - 3$ because we are not modifying the last two indices. For any pair of profiles $(x, x') \in B^{a,b}_i$ and $(z, z') \in B^{c,d}_j$ we formally define the manipulation path as follows. The manipulation path is of the form:
+	The authors define manipulation paths between pairs of profiles in $B^{a,b}_i$ and $B^{c,d}_j$. In the first half of the path we will preserve the order of $a, b$, while in the second half of the path we will only modify the order of $a, b$ and not any other alternatives. The length of the manipulation path will be $2n - 3$ because we are not modifying the last two indices. For any pair of profiles $(x, x') \in B^{a,b}_i$ and $(z, z') \in B^{c,d}_j$ the manipulation path is formally defined as follows. The manipulation path is of the form:
 	\begin{align*}
 		(x^{(0)}, x^{\prime(0)}), \ldots, (x^{(n - 2)}, x^{\prime(n - 2)}), (z^{(n - 2)}, z^{\prime(n - 2)}), \ldots, (z^{(0)}, z^{\prime(0)})
 	\end{align*}
@@ -194,13 +194,13 @@
 
 		We claim that there exists a manipulation point $h((x, x'), (z, z')) = y$ which only differs from $u, u', v, v'$ on two indices. If Case 1 above holds, then we can let $y$ be whichever one of $u, u', v, v'$ is a manipulation point.
 
-		If Case 2 holds then we apply the Gibbard-Satterthwaite theorem to a restricted version of $f$, which we will call $f'$, which is $f$ restricted to the two indices on which $u, u', v, v'$ differ. We call these indices $k, p$. First we define a mapping $g : L(C)^2 \rightarrow L(C)^n$ which maps profiles from $f'$ to $f$.
+		If Case 2 holds then we apply the Gibbard-Satterthwaite theorem to a restricted version of $f$, which we will call $f'$, which is $f$ restricted to the two indices on which $u, u', v, v'$ differ. We call these indices $k, p$. First the authors define a mapping $g : L(C)^2 \rightarrow L(C)^n$ which maps profiles from $f'$ to $f$.
 		\begin{align*}
 			g(x)_q &= u_q \,\,\, \forall q \notin \{k, p\} \\
 			g(x)_k &= x_1 \\
 			g(x)_p &= x_2.
 		\end{align*}
-		We define the set of alternatives to be $C$ where $|C| = m$ and we define $f' : L(C)^2 \rightarrow C$ such that
+		The authors define the set of alternatives to be $C$ where $|C| = m$ and they define $f' : L(C)^2 \rightarrow C$ such that
 		\[
 			f'(x) = f(g(x)).
 		\]
