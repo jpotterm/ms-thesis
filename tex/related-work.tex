@@ -22,6 +22,14 @@
 	But the restriction to three alternatives renders these results useless for many practical applications, and it is also less satisfactory than a general solution from a theoretical standpoint. Therefore many people have worked to generalize these results.
 
 
+\subsection{Notation}
+\label{related-friedgut-notation}
+
+	The authors define a generalized social welfare function (GSWF) to be a function $F : L^n \rightarrow \{0, 1\}^{\binom{m}{2}}$. Every pair of alternatives $a, b \in C$ corresponds to a bit output by $F$ that tells which of the two alternatives wins. $F^{a,b}$ denotes the $(a, b)$'th bit output by $F$.
+
+    If $F$ is neutral and satisfies independence of irrelevant alternatives, then it is determined by a single boolean function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ in the sense that $F^{a,b}(x^{a,b}) = f(x^{a,b})$ for any profile $x$. In this case the authors write $F = f^{\otimes \binom{m}{2}}$.
+
+
 \section{A sufficient condition for voting rules to be frequently manipulable}
 
 	In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed five other conditions for the voting rule \cite{xia2008sufficient}:
