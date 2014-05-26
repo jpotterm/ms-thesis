@@ -17,7 +17,7 @@
 
 	This means that when $\epsilon$ is fixed---it is fixed once a voting rule is determined---then some voter has more than his share (a non-negligible amount) of manipulation power: $\max_i M_i(f) \ge \Omega(\frac{1}{n})$ \cite{friedgut2008elections}.
 
-	Besides the limitation to three alternatives, these results are incredibly general. They rest on two main assumptions which all common social choice functions satisfy. The first is the \emph{impartial culture assumption} which states that voters are independent and equally likely to select any of the possible orderings of alternatives. In other words, votes are selected uniformly at random. The second assumption is the neutrality of the social choice function. The neutrality assumption was removed by Friedgut, Kalai, and Nisan in 2011 \cite{friedgut2011quantitative}.
+	Besides the limitation to three alternatives, these results are incredibly general. They rest on two main assumptions. The first is the \emph{impartial culture assumption} which states that voters are independent and equally likely to select any of the possible orderings of alternatives. In other words, votes are selected uniformly at random. The second assumption is the neutrality of the social choice function. The neutrality assumption was removed by Friedgut, Kalai, and Nisan in 2011 \cite{friedgut2011quantitative}.
 
 	But the restriction to three alternatives renders these results useless for many practical applications, and it is also less satisfactory than a general solution from a theoretical standpoint. Therefore many people have worked to generalize these results.
 
@@ -32,7 +32,7 @@
 
 \section{A sufficient condition for voting rules to be frequently manipulable}
 
-	In 2008 Xia and Conitzer were able to prove a similar theorem for any number of candidates, but instead of neutrality they assumed five other conditions for the voting rule \cite{xia2008sufficient}:
+	In 2008 Xia and Conitzer were able to prove a theorem similar to that of Friedgut, Kalai, and Nisan for any number of candidates. But instead of neutrality they assumed five other conditions for the voting rule \cite{xia2008sufficient}:
 
 	\begin{description}
 		\item[Homogeneity] Let $k \in \mathbb{N}$, let $p$ be a profile of length $n$, and let $j \in \mathbb{N}$ such that $k \le j < (k + kn)$. A voting rule is homogeneous if $f(p) = f(p')$, where $p'$ consists of $k$ copies of every vote in $p$:
@@ -67,13 +67,17 @@
 
 \section{Frequent manipulability of elections: The case of two voters}
 
-	Around the same time Dobzinski and Procaccia published complementary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}. They proved the following:
+	Around the same time Dobzinski and Procaccia published complementary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}.
+
+    They conditioned their results upon $f$ being Pareto-optimal: if all voters rank alternative $a$ above $b$, then $b$ is not elected. They also use a concept of a SCF, $f$, being $\delta$-strategyproof which means that $f$ is manipulable with probability at most $\delta$.
+
+    Specifically, they proved the following:
 
 	\begin{theorem}[Dobzinski and Procaccia]
 		Let $f$ be a Pareto-optimal SCF and let $n = 2$, $m \ge 3$, and $\delta < \frac{1}{32m^9}$. If $f$ is $\delta$-strategyproof then $f$ is $16m^8 \delta$-dictatorial.
 	\end{theorem}
 
-	We will translate these results into the same terms used by Friedgut, Kalai, and Nisan so that we can easily compare their results. According to Dobzinski and Procaccia, being $\delta$-strategyproof means that $f$ is manipulable with probability at most $\delta$. This means that if
+	We will translate these results into the same terms used by Friedgut, Kalai, and Nisan so that we can easily compare their results. The fact that $f$ is $\delta$-strategyproof means that if
 
 	\begin{align*}
 		\sum_{i=1}^n M_i(f) \le \delta
