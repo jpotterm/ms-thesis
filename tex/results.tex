@@ -2,7 +2,7 @@
 
 \chapter{Results}
 
-	In this chapter we will attempt to generalize step 3 of Friedgut, Kalai, and Nisan by way of generalizing Friedgut's Lemma 6, Lemma 7, and Lemma 8. However, we will begin the chapter with some general lattice theory results that we will need later on in the chapter.
+	In this chapter we will attempt to generalize step 3 of Friedgut, Kalai, and Nisan by way of generalizing their Lemma 6, Lemma 7, and Lemma 8. However, we will begin the chapter with some general lattice theory results that we will need later on in the chapter.
 
 \section{Lattice Theory}
 
@@ -128,12 +128,9 @@
 
 
 \section{Main Theorem}
-
-	Hereafter, since we refer very often to \cite{friedgut2008elections}, instead of saying for example ``Lemma 2 of Friedgut, Kalai, and Nisan'' we will often shorten it to ``Lemma 2 of Friedgut''.
-
 	Friedgut, Kalai, and Nisan's main theorem is proved in three steps; the first two are already general, and hold for any $n, m \in N^+$. Therefore, to generalize the main theorem we need only generalize the third step, and therefore this third step is our main theorem. This step is comprised of Lemma 6, Lemma 7, and Lemma 8 which we will generalize one at a time. The lemma we will generalize is:
 
-	\begin{lemma}[Lemma 3 of Friedgut]
+	\begin{lemma}[Lemma 3 of Friedgut et al.]
 		For every SCF $f$ on three alternatives and every $a,b \in A$,
 		\[
 			M^{a,b} \le \sum_i M_i \cdot 6.
@@ -152,7 +149,7 @@
 	For the rest of the proof we will fix a SCF, $f$, and two alternatives $a, b \in C$.
 
 
-\section{Generalized Lemma 6 of Friedgut}
+\section{Generalized Lemma 6 of Friedgut et al.}
 
 	For any preference profile $p \in P$ there are $(\frac{m!}{2})^n$ profiles $x$ such that $x|_{\{a, b\}} = p|_{\{a, b\}}$. This is because there are $m!$ possible preference lists; half of them will have the preference between $a$ and $b$ that agrees with $p|_{\{a, b\}}$ and half will disagree. This gives $\frac{m!}{2}$ possible preference lists for each voter, so there are $(\frac{m!}{2})^n$ profiles comprised of these preference lists.
 
@@ -169,7 +166,7 @@
 		\end{align*}
 	\end{definition}
 
-	Before we state Lemma \ref{friedgut-lemma-6}, recall the definition of $M^{a,b}(f)$ from Friedgut \cite{friedgut2008elections}:
+	Before we state Lemma \ref{friedgut-lemma-6}, recall the definition of $M^{a,b}(f)$ from Friedgut, Kalai, and Nisan \cite{friedgut2008elections}:
 	\[
 		M^{a,b}(f) = \probability(f(p) = a, f(p') = b)
 	\]
@@ -177,7 +174,7 @@
 
 	Therefore we can rewrite $M^{a,b}(f)$ as follows.
 
-	\begin{lemma}[See Lemma 6 of Friedgut]
+	\begin{lemma}[See Lemma 6 of Friedgut et al.]
 		\label{friedgut-lemma-6}
 		\[
 			M^{a,b}(f) = E_{q \in L(C)^n} \left[ \frac{|A(q)|}{\left(\frac{m!}{2}\right)^n} \cdot \frac{|B(q)|}{\left(\frac{m!}{2}\right)^n} \right],
@@ -204,7 +201,7 @@
 	\end{proof}
 
 
-\section{Generalized Lemma 7 of Friedgut}
+\section{Generalized Lemma 7 of Friedgut et al.}
 
 	We now attempt to relate $M_i(f)$ to $A$ and $B$.
 
@@ -248,7 +245,7 @@
 
 	We now generalize Lemma 7 of Friedgut, Kalai, and Nisan. Their original lemma is:
 
-	\begin{lemma}[See Lemma 7 of Friedgut]
+	\begin{lemma}[See Lemma 7 of Friedgut et al.]
 		\[
 			M_i(f) \ge \frac{1}{6} 3^{-n} E_x \left[|\partial_i A(p)| + |\partial_i B(p)| \right]
 		\]
@@ -303,14 +300,14 @@
 
 	Summing over $i$ we get the following corollary.
 
-	\begin{corollary}[See Corollary 1 of Friedgut]
+	\begin{corollary}[See Corollary 1 of Friedgut et al.]
 		\[
 			\frac{1}{m!} \cdot \left(\frac{m!}{2}\right)^{-n} E_p[|\partial A(p)| + |\partial B(p)|] \le \sum_i M_i(f)
 		\]
 	\end{corollary}
 
 
-\section{Generalized Lemma 8 of Friedgut}
+\section{Generalized Lemma 8 of Friedgut et al.}
 
 	In this section we will fix a profile $p$, and for the sake of readability we use the following shorthand notation:
 	\begin{align*}
@@ -328,7 +325,7 @@
 
 	We now generalize Lemma 8 of Friedgut, Kalai, and Nisan. Their original lemma is:
 
-	\begin{lemma}[See Lemma 8 of Freidgut]
+	\begin{lemma}[See Lemma 8 of Friedgut et al.]
 		For every disjoint $A, B$ we have that
 		\[
 			|\partial A| + |\partial B| \ge \left( \frac{1}{3} \right)^n |A| \cdot |B|
@@ -464,7 +461,7 @@
 		\end{align*}
 	\end{proof}
 
-\section{Finished Step 3 of Friedgut}
+\section{Finished Step 3 of Friedgut et al.}
 
 	Lemma 6, 7, and 8 fit together as follows. First we define the variables $L_6$, $L_7$, and $L_8$ to be variable values that multiply each of the lemmas respectively. The values of these variables will change depending on the value of $m$, so we evaluate the lemmas in terms of these variables to be more general. We can define the lemmas in terms of these variables:
 	\begin{align*}
@@ -499,30 +496,30 @@
 		M^{a,b} &\le \sum_i M_i \cdot m!
 	\end{align*}
 
-\section{Main Theorem of Friedgut}
+\section{Main Theorem of Friedgut et al.}
 
-	Now we can use the Friedgut's generalized steps 1 and 2 along with our generalized version of step 3 to prove a general version of Friedgut's main theorem. We will restate Friedgut's generalized lemmas from step 1 and 2.
+	Now we can use Friedgut, Kalai, and Nisan's generalized steps 1 and 2 along with our generalized version of step 3 to prove a general version of their main theorem. We will restate their generalized lemmas from step 1 and 2.
 
-	\begin{lemma}[Lemma 1 of Friedgut]
+	\begin{lemma}[Lemma 1 of Friedgut et al.]
 		\label{friedgut-lemma-1}
 		For every fixed $m$ and $\epsilon > 0$ there exists $\delta > 0$ such that if $F = f^{\otimes \binom{m}{2}}$ is a neutral IIA GSWF over $m$ alternatives with $f : \{0,1\}^n \rightarrow \{0,1\}$, and $\Delta(f, DICT) > \epsilon$, then $F$ has probability of at least $\delta \ge (C\epsilon)^{\lfloor m/3 \rfloor}$ of not having a Generalized Condorcet Winner, where $C > 0$ is an absolute constant.
 	\end{lemma}
 
-	\begin{lemma}[Lemma 2 of Friedgut]
+	\begin{lemma}[Lemma 2 of Friedgut et al.]
 		\label{friedgut-lemma-2}
 		For every fixed $m$ there exists $\delta > 0$ such that for all $\epsilon > 0$ the following holds. Let $f$ be a neutral SCF among $m$ alternatives such that $\Delta(f, DICT) > \epsilon$. Then for all $(a,b)$ we have $M^{a,b}(f) \ge \delta$.
 	\end{lemma}
 
-	And we restate our generalized version of Friedgut's Lemma 3.
+	And we restate our generalized version of Friedgut, Kalai, and Nisan's Lemma 3.
 
-	\begin{conjecture}[Lemma 3 of Friedgut]
+	\begin{conjecture}[Lemma 3 of Friedgut et al.]
 		\label{friedgut-lemma-3}
 		For every SCF $f$ on $m$ alternatives and every $a,b \in A$, $M^{a,b} \le \sum_i M_i \cdot m!$
 	\end{conjecture}
 
-	With these three lemmas we can now prove a generalized version of Friedgut's main theorem.
+	With these three lemmas we can now prove a generalized version of Friedgut, Kalai, and Nisan's main theorem.
 
-	\begin{conjecture}[Theorem 1 of Friedgut]
+	\begin{conjecture}[Theorem 1 of Friedgut et al.]
 		There exists a constant $C > 0$ such that for every $\epsilon > 0$ the following holds. If $f$ is a neutral SCF for $n$ voters over 3 alternatives and $\Delta(f, g) > \epsilon$ for any dictatorship $g$, then $f$ has total manipulatiblity: $\sum^n_{i=1} M_i(f) \ge \frac{(C\epsilon)^{\lfloor m/3 \rfloor}}{m!}$.
 	\end{conjecture}
 
