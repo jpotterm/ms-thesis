@@ -27,7 +27,7 @@
 
 	The authors define a generalized social welfare function (GSWF) to be a function $F : L^n \rightarrow \{0, 1\}^{\binom{m}{2}}$. Every pair of alternatives $a, b \in C$ corresponds to a bit output by $F$ that tells which of the two alternatives wins. $F^{a,b}$ denotes the $(a, b)$'th bit output by $F$.
 
-    If $F$ is neutral and satisfies independence of irrelevant alternatives, then it is determined by a single boolean function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ in the sense that $F^{a,b}(x^{a,b}) = f(x^{a,b})$ for any profile $x$. In this case the authors write $F = f^{\otimes \binom{m}{2}}$.
+	If $F$ is neutral and satisfies independence of irrelevant alternatives, then it is determined by a single boolean function $f : \{0, 1\}^n \rightarrow \{0, 1\}$ in the sense that $F^{a,b}(x^{a,b}) = f(x^{a,b})$ for any profile $x$. In this case the authors write $F = f^{\otimes \binom{m}{2}}$.
 
 
 \section{A sufficient condition for voting rules to be frequently manipulable}
@@ -69,9 +69,9 @@
 
 	Around the same time Dobzinski and Procaccia published complementary results for two voters and social choice functions satisfying unanimity (the Pareto principle) \cite{dobzinski2008frequent}.
 
-    They conditioned their results upon $f$ being Pareto-optimal: if all voters rank alternative $a$ above $b$, then $b$ is not elected. They also use a concept of a SCF, $f$, being $\delta$-strategyproof which means that $f$ is manipulable with probability at most $\delta$.
+	They conditioned their results upon $f$ being Pareto-optimal: if all voters rank alternative $a$ above $b$, then $b$ is not elected. They also use a concept of a SCF, $f$, being $\delta$-strategyproof which means that $f$ is manipulable with probability at most $\delta$.
 
-    Specifically, they proved the following:
+	Specifically, they proved the following:
 
 	\begin{theorem}[Dobzinski and Procaccia]
 		Let $f$ be a Pareto-optimal SCF and let $n = 2$, $m \ge 3$, and $\delta < \frac{1}{32m^9}$. If $f$ is $\delta$-strategyproof then $f$ is $16m^8 \delta$-dictatorial.
